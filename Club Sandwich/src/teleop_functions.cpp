@@ -7,7 +7,7 @@ double turnVar;
 double straightVar;
 
 void teleopDrive() {
-    turnVar = (double)master.get_analog(ANALOG_RIGHT_X);//
+    turnVar = (double)master.get_analog(ANALOG_RIGHT_X)*.75;//
     straightVar = (double)master.get_analog(ANALOG_LEFT_Y);//
     
     if (fabs(turnVar) < driveDeadzone) {
@@ -69,45 +69,47 @@ bool intakeVar;
 bool outtakeVar;
 bool pistonVarOut;
 bool pistonVarIn;
+
+
 void teleopIntake() {
-    intakeVar=master.get_digital(E_CONTROLLER_DIGITAL_L2);
-    outtakeVar=master.get_digital(E_CONTROLLER_DIGITAL_R2);
-    pistonVarOut=master.get_digital(E_CONTROLLER_DIGITAL_UP);
-    pistonVarIn=master.get_digital(E_CONTROLLER_DIGITAL_DOWN);
-
-    if(intakeVar==true && outtakeVar==false){
-        Intake=127;
-    }
-    else if(pistonVarOut==true){//Piston Out, Intake Extended
-        intakePiston.set_value(true);
-    }
-    else if(intakeVar==false && outtakeVar==true){
-        Intake=-127;
-    }
-    else if(pistonVarIn==true){//Piston In, Intake Internal
-        intakePiston.set_value(false);
-    }
-    else{
-        Intake=0;
-    }
-
+    intake.move(master.get_digital(DIGITAL_L2)*127*.7 - master.get_digital(DIGITAL_R2)*127*.7);
 }
-bool Catapult=catapultPrime.get_value();
-bool PrimeShoot=master.get_digital(E_CONTROLLER_DIGITAL_A);
-double catapultSpeed;
-void teleopCatapult() {
+
+bool loading = false;
+
+void teleopCatapult(bool buttonMode) {
     //Have Button to prime, STOP at limit switch, and fire at a button
-    if(PrimeShoot==1){
-        Catapult=60;
+    if (buttonMode) {
+        catapultLeft.move(master.get_digital(E_CONTROLLER_DIGITAL_A)*127*.9);
+        catapultRight.move(master.get_digital(E_CONTROLLER_DIGITAL_A)*127*.9);
     }
-    else{
-        catapult=0;
+
+    if (!buttonMode) {
+        if (!catapultPrime.get_value()) {
+            catapultLeft.move(127*.85);
+            catapultRight.move(127*.85);
+            loading = true;
+        }
+
+        if (catapultPrime.get_value() && !master.get_digital(E_CONTROLLER_DIGITAL_A)) {
+            catapultLeft.brake();
+            catapultRight.brake();
+            loading = false;
+        }
+
+        if (master.get_digital(E_CONTROLLER_DIGITAL_A) && !loading) {
+            catapultLeft.move(127*.85);
+            catapultRight.move(127*.85);
+            delay(100);
+            catapultLeft.move(0);
+            catapultRight.move(0);
+        }
     }
 }
 
-// void teleopElevate() {
+void teleopElevate() {
 
-// }
+}
 
 
 //For drive, turning controlled by right sitck, left stick for forward and backward
