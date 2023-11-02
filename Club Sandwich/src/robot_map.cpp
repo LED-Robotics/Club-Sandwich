@@ -16,4 +16,3 @@ IMU gyro{20};
 
 Controller master{CONTROLLER_MASTER};
 Controller partner{CONTROLLER_PARTNER};
-

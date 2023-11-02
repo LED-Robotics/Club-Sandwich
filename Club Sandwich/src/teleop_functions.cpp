@@ -65,10 +65,22 @@ void teleopDrive() {
     backRight.move((int32_t)(completeSpeedRight));
     frontRight.move((int32_t)(completeSpeedRight));
 }
+
 bool intakeVar;
 bool outtakeVar;
+<<<<<<< HEAD
 bool extendIntake;
 bool extendPlow;
+=======
+bool pistonVarOut;
+bool pistonVarIn;
+
+void teleopIntake() {
+    intakeVar=master.get_digital(E_CONTROLLER_DIGITAL_L2);
+    outtakeVar=master.get_digital(E_CONTROLLER_DIGITAL_R2);
+    pistonVarOut=master.get_digital(E_CONTROLLER_DIGITAL_UP);
+    pistonVarIn=master.get_digital(E_CONTROLLER_DIGITAL_DOWN);
+>>>>>>> b371ea55b579f65302b6303330e7b3c886bf125f
 
 void teleopIntake() {
     intakeVar=master.get_digital(E_CONTROLLER_DIGITAL_L1);
@@ -94,9 +106,11 @@ void teleopIntake() {
     }
 
 }
+
 bool Catapult=catapultPrime.get_value();
 bool PrimeShoot=master.get_digital(E_CONTROLLER_DIGITAL_R2);
 double catapultSpeed;
+
 void teleopCatapult() {
     bool shoot= master.get_digital(DIGITAL_R2);
     //Have Button to prime, STOP at limit switch, and fire at a button
