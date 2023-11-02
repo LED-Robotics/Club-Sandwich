@@ -4,6 +4,7 @@ void teleopDrive();
 
 void teleopIntake();
 
-void teleopCatapult(bool buttonMode);
+void teleopCatapult();
 
-void teleopElevate();
+
+// void teleopElevate();

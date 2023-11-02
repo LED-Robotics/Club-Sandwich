@@ -19,8 +19,6 @@ extern const controller_analog_e_t DRIVE_Y;
 
 extern bool partnerConnected;
 
-extern bool catapultButtonOnly;
-
 //For separating commands between controllers
 // extern const controller_id_e_t INTAKE_CONTROLLER;
 

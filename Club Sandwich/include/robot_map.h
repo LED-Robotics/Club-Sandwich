@@ -8,16 +8,15 @@ extern Motor frontLeft;
 extern Motor backRight;
 extern Motor frontRight;
 
-extern Motor intake;
+extern Motor Intake;
 
-extern Motor catapultLeft;
-extern Motor catapultRight;
-
-extern Motor hook;
+extern Motor catapult;
 
 // //Digital Out/In
-extern ADIDigitalIn catapultPrime;
+extern ADIDigitalOut intakePiston;
 
+extern ADIDigitalIn limitSwitch;
+extern ADIDigitalIn catapultPrime;
 extern IMU gyro;
 
 extern Controller master;

@@ -29,8 +29,7 @@ void initialize() {
 	// lcdAllianceSelect();
 
 
-	catapultLeft.set_brake_mode(E_MOTOR_BRAKE_HOLD);
-	catapultRight.set_brake_mode(E_MOTOR_BRAKE_HOLD);
+	catapult.set_brake_mode(E_MOTOR_BRAKE_HOLD);
 	gyro.reset(true);
 }
 
@@ -78,7 +77,6 @@ void autonomous() {}
  * operator control task will be stopped. Re-enabling the robot will restart the
  * task, not resume it from where it left off.
  */
-
 void opcontrol() {
 	while (true) {
 		// if (partner.is_connected() && !partnerConnected) {
@@ -91,13 +89,9 @@ void opcontrol() {
 
 		teleopIntake();
 
-		teleopCatapult(catapultButtonOnly);
-		
-		teleopElevate();
+		teleopCatapult();
 
-		if (master.get_digital_new_press(DIGITAL_DOWN)) {
-        	catapultButtonOnly != catapultButtonOnly;
-    	}
+		// teleopElevate();
 
 		pros::delay(20);
 	}
