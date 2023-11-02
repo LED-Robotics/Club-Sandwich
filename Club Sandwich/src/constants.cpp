@@ -1,11 +1,18 @@
 #include "constants.h"
 
-//DEFAULT
+//INITIALIZE
 int currentSignature{RED_ID};
 
-int alliace{BLUE_ID};
+int alliance{BLUE_ID};
+
+int lcdFunButtonCount = 0;
+
+bool allianceSelected = false;
+
 
 //AUTONOMOUS
+const double INCH_CONSTANT = 0.0349065850398;
+
 int autonomousSelected{-1};
 
 

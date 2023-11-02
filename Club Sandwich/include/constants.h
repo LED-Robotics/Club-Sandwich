@@ -2,17 +2,27 @@
 #define CONTROLS_H
 #include "robot_map.h"
 
-//DEFAULT
+//INITIALIZE
 #define RED_ID 1
 
 #define BLUE_ID 2
 
 extern int currentSignature;
 
+extern int lcdFunButtonCount;
+
 extern int alliance;
+
+extern bool allianceSelected;
 
 
 //AUTONOMOUS
+#define LEFT 0
+
+#define RIGHT 1
+
+extern const double INCH_CONSTANT;
+
 extern int autonomousSelected;
 
 

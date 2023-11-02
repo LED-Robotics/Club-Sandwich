@@ -21,12 +21,16 @@ using namespace pros;
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-	pros::lcd::initialize();
-	// pros::lcd::set_text(1, "Hello PROS User!");
-	// pros::lcd::register_btn0_cb{lcdAutonSelect};
-	// pros::lcd::register_btn1_cb{lcdAutonSelect};
-	// lcdAutonSelect();
-	// lcdAllianceSelect();
+	lcd::initialize();
+	lcd::set_text_color(0, 0, 0);
+	lcd::set_background_color(255, 255, 255);
+	lcd::set_text(3, "Hello, Team Hunter!");
+	lcd::set_text(4, "Remember RULE #1: to have fun!");
+	lcd::register_btn0_cb(lcdAutonSelect);
+	lcd::register_btn1_cb(lcdFunButton);
+	lcd::register_btn2_cb(lcdAllianceSelect);
+	lcdAutonSelect();
+	lcdAllianceSelect();
 
 	catapultLeft.set_brake_mode(E_MOTOR_BRAKE_HOLD);
 	catapultRight.set_brake_mode(E_MOTOR_BRAKE_HOLD);
@@ -62,7 +66,9 @@ void competition_initialize() {}
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
-void autonomous() {}
+void autonomous() {
+	executeAutonomous();
+}
 
 /**
  * Runs the operator control code. This function will be started in its own task
