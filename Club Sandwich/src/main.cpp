@@ -22,12 +22,10 @@ using namespace pros;
  */
 void initialize() {
 	pros::lcd::initialize();
-	// pros::lcd::set_text(1, "Hello PROS User!");
-	// pros::lcd::register_btn0_cb{lcdAutonSelect};
-	// pros::lcd::register_btn1_cb{lcdAutonSelect};
-	// lcdAutonSelect();
-	// lcdAllianceSelect();
-
+	pros::lcd::register_btn0_cb(lcdAutonSelect);
+	pros::lcd::register_btn1_cb(lcdAllianceSelect);
+	lcdAutonSelect();
+	lcdAllianceSelect();
 
 	catapult.set_brake_mode(E_MOTOR_BRAKE_HOLD);
 	gyro.reset(true);
