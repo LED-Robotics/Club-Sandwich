@@ -67,38 +67,41 @@ void teleopDrive() {
 }
 bool intakeVar;
 bool outtakeVar;
-bool pistonVarOut;
-bool pistonVarIn;
-void teleopIntake() {
-    intakeVar=master.get_digital(E_CONTROLLER_DIGITAL_L2);
-    outtakeVar=master.get_digital(E_CONTROLLER_DIGITAL_R2);
-    pistonVarOut=master.get_digital(E_CONTROLLER_DIGITAL_UP);
-    pistonVarIn=master.get_digital(E_CONTROLLER_DIGITAL_DOWN);
+bool extendIntake;
+bool extendPlow;
 
+void teleopIntake() {
+    intakeVar=master.get_digital(E_CONTROLLER_DIGITAL_L1);
+    outtakeVar=master.get_digital(E_CONTROLLER_DIGITAL_R1);
     if(intakeVar==true && outtakeVar==false){
         Intake=127;
     }
-    else if(pistonVarOut==true){//Piston Out, Intake Extended
-        intakePiston.set_value(true);
-    }
     else if(intakeVar==false && outtakeVar==true){
         Intake=-127;
-    }
-    else if(pistonVarIn==true){//Piston In, Intake Internal
-        intakePiston.set_value(false);
     }
     else{
         Intake=0;
     }
 
+    if(master.get_digital_new_press(DIGITAL_A)){
+        extendIntake=!extendIntake;
+        intakePiston.set_value(extendIntake);
+
+    }
+    if(master.get_digital_new_press(DIGITAL_Y)){
+        extendPlow=!extendPlow;
+        plowPiston.set_value(extendPlow);
+    }
+
 }
 bool Catapult=catapultPrime.get_value();
-bool PrimeShoot=master.get_digital(E_CONTROLLER_DIGITAL_A);
+bool PrimeShoot=master.get_digital(E_CONTROLLER_DIGITAL_R2);
 double catapultSpeed;
 void teleopCatapult() {
+    bool shoot= master.get_digital(DIGITAL_R2);
     //Have Button to prime, STOP at limit switch, and fire at a button
-    if(PrimeShoot==1){
-        Catapult=60;
+    if(shoot==1){
+        catapult=100;
     }
     else{
         catapult=0;

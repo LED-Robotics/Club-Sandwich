@@ -14,6 +14,7 @@ extern Motor catapult;
 
 // //Digital Out/In
 extern ADIDigitalOut intakePiston;
+extern ADIDigitalOut plowPiston;
 
 extern ADIDigitalIn limitSwitch;
 extern ADIDigitalIn catapultPrime;
