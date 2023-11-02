@@ -6,5 +6,4 @@ void teleopIntake();
 
 void teleopCatapult();
 
-
 // void teleopElevate();
