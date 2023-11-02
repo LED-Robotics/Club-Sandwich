@@ -1,19 +1,35 @@
-#include "controls.h"
+#include "constants.h"
 
+//DEFAULT
+int currentSignature{RED_ID};
+
+int alliace{BLUE_ID};
+
+//AUTONOMOUS
+int autonomousSelected{-1};
+
+
+//TELEOPERATED
+//Driver
 const float driveDeadzone{.02};
 
-int currentSignature{RED_ID}; //Default
-
-int alliace{BLUE_ID}; //Default
-
-int autonomousSelected{-1}; //Default
-
 const controller_analog_e_t DRIVE_X{ANALOG_RIGHT_X};
+
 const controller_analog_e_t DRIVE_Y{ANALOG_LEFT_Y};
 
-bool partnerConnected{true};
+double turnVar;
 
-bool catapultButtonOnly = false;
+double straightVar;
+
+double bashMode = false;
+
+//Catapult
+bool automaticPrime = true;
+
+bool loading = false;
+
+//Controller
+bool partnerConnected{true};
 
 // const controller_id_e_t INTAKE_CONTROLLER{CONTROLLER_MASTER / CONTROLLER_PARTNER};
 

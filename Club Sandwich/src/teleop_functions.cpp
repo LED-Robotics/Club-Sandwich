@@ -1,10 +1,7 @@
 #include "teleop_functions.h"
-#include "controls.h"
+#include "constants.h"
 
 using namespace pros;
-
-double turnVar;
-double straightVar;
 
 void teleopDrive() {
     turnVar = (double)master.get_analog(ANALOG_RIGHT_X)*.75;//
@@ -55,36 +52,46 @@ void teleopDrive() {
                 completeSpeedLeft=-fabs(turnVar);
                 completeSpeedRight=fabs(turnVar);
             }
-        }
-        
-              //Pos. values for right turn relative, Neg. for left relative
+        }  //Pos. values for right turn relative, Neg. for left relative
     }
 
-    backLeft.move((int32_t)(completeSpeedLeft));
-    frontLeft.move((int32_t)(completeSpeedLeft));
-    backRight.move((int32_t)(completeSpeedRight));
-    frontRight.move((int32_t)(completeSpeedRight));
-}
-bool intakeVar;
-bool outtakeVar;
-bool pistonVarOut;
-bool pistonVarIn;
+    if (master.get_digital_new_press(DIGITAL_UP)) {
+        bashMode != bashMode;
+    }
 
+    if (bashMode) {
+        //Bash Mode! (front is back)
+        backLeft.move((int32_t)(-completeSpeedLeft));
+        frontLeft.move((int32_t)(-completeSpeedLeft));
+        backRight.move((int32_t)(-completeSpeedRight));
+        frontRight.move((int32_t)(-completeSpeedRight));    
+    } else {
+        //Standard drive (front is front)
+        backLeft.move((int32_t)(completeSpeedLeft));
+        frontLeft.move((int32_t)(completeSpeedLeft));
+        backRight.move((int32_t)(completeSpeedRight));
+        frontRight.move((int32_t)(completeSpeedRight));
+    }
+}
 
 void teleopIntake() {
     intake.move(master.get_digital(DIGITAL_L2)*127*.7 - master.get_digital(DIGITAL_R2)*127*.7);
 }
 
-bool loading = false;
-
-void teleopCatapult(bool buttonMode) {
-    //Have Button to prime, STOP at limit switch, and fire at a button
-    if (buttonMode) {
-        catapultLeft.move(master.get_digital(E_CONTROLLER_DIGITAL_A)*127*.9);
-        catapultRight.move(master.get_digital(E_CONTROLLER_DIGITAL_A)*127*.9);
+void teleopCatapult() {
+    //One of two modes (determined by IFs)
+    if (master.get_digital_new_press(DIGITAL_DOWN)) {
+       	automaticPrime != automaticPrime;
     }
 
-    if (!buttonMode) {
+    if (!automaticPrime) {
+        //Catapult primes automatically, stops at limit switch, and fires at a button
+        catapultLeft.move(master.get_digital(E_CONTROLLER_DIGITAL_A)*127*.6);
+        catapultRight.move(master.get_digital(E_CONTROLLER_DIGITAL_A)*127*.6);
+        loading = true; //The value remains true to prevent errors since loading is no longer tracked
+    } else {
+        //Button cannot be pressed while priming
+        //Button necessary to prime and launch. In the case the limit switch or other functions fail.
         if (!catapultPrime.get_value()) {
             catapultLeft.move(127*.85);
             catapultRight.move(127*.85);
@@ -100,7 +107,7 @@ void teleopCatapult(bool buttonMode) {
         if (master.get_digital(E_CONTROLLER_DIGITAL_A) && !loading) {
             catapultLeft.move(127*.85);
             catapultRight.move(127*.85);
-            delay(100);
+            delay(100);  //Fine Tune!
             catapultLeft.move(0);
             catapultRight.move(0);
         }

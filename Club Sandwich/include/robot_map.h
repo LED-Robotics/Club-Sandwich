@@ -2,23 +2,29 @@
 
 using namespace pros;
 
-//Motors
+//MOTORS
+//Driver
 extern Motor backLeft;
 extern Motor frontLeft;
 extern Motor backRight;
 extern Motor frontRight;
 
+//Intake
 extern Motor intake;
 
+//Catapult
 extern Motor catapultLeft;
 extern Motor catapultRight;
 
+//Elevator
 extern Motor hook;
 
-// //Digital Out/In
+//Limit Switch
 extern ADIDigitalIn catapultPrime;
 
+//Gyro
 extern IMU gyro;
 
+//Controllers
 extern Controller master;
-extern Controller partner;
+// extern Controller partner;

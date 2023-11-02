@@ -3,7 +3,7 @@
 #include "autonomous_functions.h"
 #include "autonomous.h"
 #include "teleop_functions.h"
-#include "controls.h"
+#include "constants.h"
 
 using namespace pros;
 
@@ -27,7 +27,6 @@ void initialize() {
 	// pros::lcd::register_btn1_cb{lcdAutonSelect};
 	// lcdAutonSelect();
 	// lcdAllianceSelect();
-
 
 	catapultLeft.set_brake_mode(E_MOTOR_BRAKE_HOLD);
 	catapultRight.set_brake_mode(E_MOTOR_BRAKE_HOLD);
@@ -91,13 +90,9 @@ void opcontrol() {
 
 		teleopIntake();
 
-		teleopCatapult(catapultButtonOnly);
+		teleopCatapult();
 		
 		teleopElevate();
-
-		if (master.get_digital_new_press(DIGITAL_DOWN)) {
-        	catapultButtonOnly != catapultButtonOnly;
-    	}
 
 		pros::delay(20);
 	}
