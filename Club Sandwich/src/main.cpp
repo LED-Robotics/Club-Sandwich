@@ -22,10 +22,6 @@ using namespace pros;
  */
 void initialize() {
 	lcd::initialize();
-	lcd::set_text_color(0, 0, 0);
-	lcd::set_background_color(255, 255, 255);
-	lcd::set_text(3, "Hello, Team Hunter!");
-	lcd::set_text(4, "Remember RULE #1: to have fun!");
 	lcd::register_btn0_cb(lcdAutonSelect);
 	lcd::register_btn1_cb(lcdFunButton);
 	lcd::register_btn2_cb(lcdAllianceSelect);
@@ -91,7 +87,7 @@ void opcontrol() {
 		// } else if (!partner.is_connected() && partnerConnected) {
 		// 	partnerConnected = false;
 		// }
-		
+
 		teleopDrive();
 
 		teleopIntake();

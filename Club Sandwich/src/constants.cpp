@@ -5,9 +5,9 @@ int currentSignature{RED_ID};
 
 int alliance{BLUE_ID};
 
-int lcdFunButtonCount = 0;
+bool funButtonPressed = false;
 
-bool allianceSelected = false;
+int allianceSelected = 0;
 
 
 //AUTONOMOUS
@@ -28,7 +28,7 @@ double turnVar;
 
 double straightVar;
 
-double bashMode = false;
+bool bashMode = false;
 
 //Catapult
 bool automaticPrime = true;

@@ -9,11 +9,11 @@
 
 extern int currentSignature;
 
-extern int lcdFunButtonCount;
+extern bool funButtonPressed;
 
 extern int alliance;
 
-extern bool allianceSelected;
+extern int allianceSelected;
 
 
 //AUTONOMOUS
@@ -38,7 +38,7 @@ extern double turnVar;
 
 extern double straightVar;
 
-extern double bashMode;
+extern bool bashMode;
 
 //Catapult
 extern bool automaticPrime;
