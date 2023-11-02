@@ -68,43 +68,32 @@ void teleopDrive() {
 
 bool intakeVar;
 bool outtakeVar;
-<<<<<<< HEAD
 bool extendIntake;
 bool extendPlow;
-=======
-bool pistonVarOut;
-bool pistonVarIn;
 
 void teleopIntake() {
-    intakeVar=master.get_digital(E_CONTROLLER_DIGITAL_L2);
-    outtakeVar=master.get_digital(E_CONTROLLER_DIGITAL_R2);
-    pistonVarOut=master.get_digital(E_CONTROLLER_DIGITAL_UP);
-    pistonVarIn=master.get_digital(E_CONTROLLER_DIGITAL_DOWN);
->>>>>>> b371ea55b579f65302b6303330e7b3c886bf125f
+    // intakeVar=master.get_digital(E_CONTROLLER_DIGITAL_L1);
+    // outtakeVar=master.get_digital(E_CONTROLLER_DIGITAL_R1);
+    // if(intakeVar==true && outtakeVar==false){
+    //     Intake=127;
+    // }
+    // else if(intakeVar==false && outtakeVar==true){
+    //     Intake=-127;
+    // }
+    // else{
+    //     Intake=0;
+    // }
 
-void teleopIntake() {
-    intakeVar=master.get_digital(E_CONTROLLER_DIGITAL_L1);
-    outtakeVar=master.get_digital(E_CONTROLLER_DIGITAL_R1);
-    if(intakeVar==true && outtakeVar==false){
-        Intake=127;
-    }
-    else if(intakeVar==false && outtakeVar==true){
-        Intake=-127;
-    }
-    else{
-        Intake=0;
-    }
+    // if(master.get_digital_new_press(DIGITAL_A)){
+    //     extendIntake=!extendIntake;
+    //     intakePiston.set_value(extendIntake);
 
-    if(master.get_digital_new_press(DIGITAL_A)){
-        extendIntake=!extendIntake;
-        intakePiston.set_value(extendIntake);
-
-    }
-    if(master.get_digital_new_press(DIGITAL_Y)){
-        extendPlow=!extendPlow;
-        plowPiston.set_value(extendPlow);
-    }
-
+    // }
+    // if(master.get_digital_new_press(DIGITAL_Y)){
+    //     extendPlow=!extendPlow;
+    //     plowPiston.set_value(extendPlow);
+    // }
+    intake.move(master.get_digital(DIGITAL_L2)*127 - master.get_digital(DIGITAL_R2)*127);
 }
 
 bool Catapult=catapultPrime.get_value();
@@ -112,13 +101,12 @@ bool PrimeShoot=master.get_digital(E_CONTROLLER_DIGITAL_R2);
 double catapultSpeed;
 
 void teleopCatapult() {
-    bool shoot= master.get_digital(DIGITAL_R2);
-    //Have Button to prime, STOP at limit switch, and fire at a button
-    if(shoot==1){
-        catapult=100;
-    }
-    else{
-        catapult=0;
+    if (master.get_digital(DIGITAL_X)) {
+        catapult.move(127*.5);
+    } else if (master.get_digital(DIGITAL_Y)) {
+        catapult.move(-127*.5);
+    } else {
+        catapult.move(0);
     }
 }
 
