@@ -108,7 +108,7 @@ void longAuton() {
 }
 
 void shortAuton() {
-    a_Drive(30);
+    a_Turn(30);
 }
 
 void skills() {
