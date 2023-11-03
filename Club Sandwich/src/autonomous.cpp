@@ -9,10 +9,10 @@ void printData() {
             lcd::print(0, "Auton Selected: Standby");
             break;
         case 1:
-            lcd::print(0, "Auton Slected: Long Auton");
+            lcd::print(0, "Auton Slected: Left");
             break;
         case 2:
-            lcd::print(0, "Auton Selected: Short Auton");
+            lcd::print(0, "Auton Selected: Right");
             break;
         case 3:
             lcd::print(0, "Auton Selected: Programming Skills");
@@ -43,10 +43,10 @@ void executeAutonomous() {
         case 0:
             break;
         case 1:
-            longAuton();
+            leftAuton();
             break;
         case 2:
-            shortAuton();
+            rightAuton();
             break;
         case 3:
             skills();
@@ -54,11 +54,11 @@ void executeAutonomous() {
     }
 }
 
-void longAuton() {
+void leftAuton() {
 
 }
 
-void shortAuton() {
+void rightAuton() {
 
 }
 

@@ -10,8 +10,8 @@ void lcdAllianceSelect();
 
 void executeAutonomous();
 
-void longAuton();
+void leftAuton();
 
-void shortAuton();
+void rightAuton();
 
 void skills();

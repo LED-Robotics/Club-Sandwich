@@ -6,6 +6,7 @@
 #define BLUE_ID 2
 
 extern const float driveDeadzone;
+extern const float driveCurveExtent;
 
 extern int currentSignature;
 

@@ -77,11 +77,11 @@ void autonomous() {}
  */
 void opcontrol() {
 	while (true) {
-		// if (partner.is_connected() && !partnerConnected) {
-		// 	partnerConnected = true;
-		// } else if (!partner.is_connected() && partnerConnected) {
-		// 	partnerConnected = false;
-		// }
+		if (partner.is_connected() && !partnerConnected) {
+			partnerConnected = true;
+		} else if (!partner.is_connected() && partnerConnected) {
+			partnerConnected = false;
+		}
 		
 		teleopDrive();
 

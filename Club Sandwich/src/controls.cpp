@@ -1,6 +1,7 @@
 #include "controls.h"
 
 const float driveDeadzone{.02};
+const float driveCurveExtent{0.95};
 
 int currentSignature{RED_ID};
 

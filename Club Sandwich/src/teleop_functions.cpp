@@ -3,66 +3,35 @@
 
 using namespace pros;
 
-double turnVar;
-double straightVar;
+double driveX;
+double driveY;
 
 void teleopDrive() {
-    turnVar = (double)master.get_analog(ANALOG_RIGHT_X);//
-    straightVar = (double)master.get_analog(ANALOG_LEFT_Y);//
-    
-    if (fabs(turnVar) < driveDeadzone) {
-        turnVar = 0.0;
-    }
-    if (fabs(straightVar) < driveDeadzone) {
-        straightVar = 0.0;
-    }
-    double completeSpeedLeft = straightVar;
-    double completeSpeedRight = straightVar;//full speed for going straight/backwards
-    
-    if (turnVar!=0.0){//If You Want to Turn
-        if(turnVar>0.0){//Right************************************//
-            if(straightVar>0.0){//Going Forward
-                completeSpeedRight=straightVar-fabs(turnVar);
-                if(completeSpeedRight<0.0){
-                    completeSpeedRight=0.0;
-                }
-            }
-            else if(straightVar<0.0){//Going Backward
-                completeSpeedRight=straightVar+fabs(turnVar);
-                if (completeSpeedRight>0.0){
-                    completeSpeedRight=0.0;
-                }
-            }
-            else{
-                completeSpeedLeft=fabs(turnVar);
-                completeSpeedRight=-fabs(turnVar);
-            }
-        }
-        if(turnVar<0.0){//Left**************************************//
-            if(straightVar>0.0){//Going Forward
-                completeSpeedLeft=straightVar-fabs(turnVar);
-                if(completeSpeedLeft<0.0){
-                    completeSpeedLeft=0.0;
-                }
-            }
-            else if(straightVar<0){//Going Backwards
-                completeSpeedLeft=straightVar+fabs(turnVar);
-                if(completeSpeedLeft>0.0){
-                    completeSpeedLeft=0.0;
-                }
-            }
-            else{
-                completeSpeedLeft=-fabs(turnVar);
-                completeSpeedRight=fabs(turnVar);
-            }
-        }
-    }
+    // store our raw joystick values
+    driveX = (double)master.get_analog(DRIVE_X) / 127.0;  // /127 to push value between -1.0 and 1.0
+    driveY = (double)master.get_analog(DRIVE_Y) / 127.0;
 
-    //Pos. values for right turn relative, Neg. for left relative
-    backLeft.move((int32_t)(completeSpeedLeft));
-    frontLeft.move((int32_t)(completeSpeedLeft));
-    backRight.move((int32_t)(completeSpeedRight));
-    frontRight.move((int32_t)(completeSpeedRight));
+    // zero out axes if they fall within deadzone
+    if (driveX > -driveDeadzone && driveX < driveDeadzone)
+        driveX = 0.0;
+    if (driveY > -driveDeadzone && driveY < driveDeadzone)
+        driveY = 0.0;
+
+    // setup differential variables for arcade control
+    double leftSpeedRaw = driveY + driveX;
+    double rightSpeedRaw = driveY - driveX;
+
+    // put speeds through a polynomial to smooth out joystick input
+    // check the curve out here: https://www.desmos.com/calculator/65tpwhxyai the range between 0.0 to 1.0 is used for the motors
+    // change driveCurveExtent to modify curve strength
+    float leftSpeed = driveCurveExtent * pow(leftSpeedRaw, 3) + (1- driveCurveExtent) * leftSpeedRaw;
+    float rightSpeed = driveCurveExtent * pow(rightSpeedRaw, 3) + (1- driveCurveExtent) * rightSpeedRaw;
+
+    // set motors to final speeds
+    backLeft.move((int32_t)(leftSpeed * 127));  // *127 to change value back to int
+    frontLeft.move((int32_t)(leftSpeed * 127));
+    backRight.move((int32_t)(rightSpeed * 127));
+    frontRight.move((int32_t)(rightSpeed * 127));
 }
 
 bool intakeVar;
@@ -71,40 +40,54 @@ bool pistonVarOut;
 bool pistonVarIn;
 
 void teleopIntake() {
-    intakeVar=master.get_digital(E_CONTROLLER_DIGITAL_L2);
-    outtakeVar=master.get_digital(E_CONTROLLER_DIGITAL_R2);
-    pistonVarOut=master.get_digital(E_CONTROLLER_DIGITAL_UP);
-    pistonVarIn=master.get_digital(E_CONTROLLER_DIGITAL_DOWN);
+    intakeVar = master.get_digital(E_CONTROLLER_DIGITAL_L2);
+    outtakeVar = master.get_digital(E_CONTROLLER_DIGITAL_R2);
+    pistonVarOut = master.get_digital(E_CONTROLLER_DIGITAL_UP);
+    pistonVarIn = master.get_digital(E_CONTROLLER_DIGITAL_DOWN);
 
-    if(intakeVar==true && outtakeVar==false){
-        Intake=127;
+    if(intakeVar && !outtakeVar){
+        intake.move(127);
     }
-    else if(pistonVarOut==true){//Piston Out, Intake Extended
+    else if(pistonVarOut){//Piston Out, intake Extended
         intakePiston.set_value(true);
     }
-    else if(intakeVar==false && outtakeVar==true){
-        Intake=-127;
+    else if(!intakeVar && outtakeVar){
+        intake.move(-127);
     }
-    else if(pistonVarIn==true){//Piston In, Intake Internal
+    else if(pistonVarIn){//Piston In, intake Internal
         intakePiston.set_value(false);
     }
     else{
-        Intake=0;
+        intake.move(0);
     }
 
 }
 
-bool Catapult=catapultPrime.get_value();
-bool PrimeShoot=master.get_digital(E_CONTROLLER_DIGITAL_A);
-double catapultSpeed;
+bool priming = false;
+bool firing = false;
 
+controller_digital_e_t prime = DIGITAL_A;
+controller_digital_e_t shoot = DIGITAL_B;
+
+// have button to prime, stop at limit switch, and fire on a different button
 void teleopCatapult() {
-    //Have Button to prime, STOP at limit switch, and fire at a button
-    if(PrimeShoot==1){
-        Catapult=60;
+    bool primed = !catapultPrime.get_value(); // check if primed
+    if(master.get_digital(prime) && !firing) priming = true;  // start priming
+    if(priming) {
+        // move if not at limit switch
+        if(!primed) catapult.move(60);
+        else catapult.move(0);
     }
-    else{
-        catapult=0;
+    if(master.get_digital(shoot) && primed) {
+        // if limit switch is hit and shoot button is pressed
+        priming = false;
+        firing = true;
+        // move with encoder (tune this)
+        catapult.move_relative(500, 500);
+    }
+    if(!priming && !firing) {
+        // chill
+        catapult.move(0);
     }
 }
 
