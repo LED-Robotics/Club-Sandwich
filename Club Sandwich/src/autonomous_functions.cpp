@@ -1,6 +1,6 @@
 #include "autonomous_functions.h"
 
-const double INCH_CONSTANT = 0.0349065850398;
+const double INCH_CONSTANT = 0.09794150344116636047315923899847;
 
 void autonDrive(double distance) {
     int speed = 100;
