@@ -11,6 +11,10 @@ extern Motor frontRight;
 extern Motor intake;
 
 extern Motor catapult;
+extern Motor catapult2;
+
+extern Motor leftPlow;
+extern Motor rightPlow;
 
 // //Digital Out/In
 extern ADIDigitalOut intakePiston;

@@ -6,5 +6,6 @@ void teleopIntake();
 
 void teleopCatapult();
 
+void teleopPlow();
 
-// void teleopElevate();
+void teleopElevate();

@@ -38,62 +38,77 @@ bool intakeVar;
 bool outtakeVar;
 bool pistonVarOut;
 bool pistonVarIn;
+bool extendIntake;
 
 void teleopIntake() {
-    intakeVar = master.get_digital(E_CONTROLLER_DIGITAL_L2);
-    outtakeVar = master.get_digital(E_CONTROLLER_DIGITAL_R2);
-    pistonVarOut = master.get_digital(E_CONTROLLER_DIGITAL_UP);
-    pistonVarIn = master.get_digital(E_CONTROLLER_DIGITAL_DOWN);
+    intakeVar = master.get_digital(E_CONTROLLER_DIGITAL_L1);
+    outtakeVar = master.get_digital(E_CONTROLLER_DIGITAL_R1);
 
     if(intakeVar && !outtakeVar){
         intake.move(127);
     }
-    else if(pistonVarOut){//Piston Out, intake Extended
-        intakePiston.set_value(true);
-    }
     else if(!intakeVar && outtakeVar){
         intake.move(-127);
     }
-    else if(pistonVarIn){//Piston In, intake Internal
-        intakePiston.set_value(false);
+    else if(master.get_digital_new_press(DIGITAL_A)){
+        extendIntake=!extendIntake;
+        intakePiston.set_value(extendIntake);
     }
     else{
         intake.move(0);
     }
-
 }
 
-bool priming = false;
-bool firing = false;
+int bottom = 0;
 
-controller_digital_e_t prime = DIGITAL_A;
-controller_digital_e_t shoot = DIGITAL_B;
+controller_digital_e_t shoot = DIGITAL_R2;
 
 // have button to prime, stop at limit switch, and fire on a different button
 void teleopCatapult() {
-    bool primed = !catapultPrime.get_value(); // check if primed
-    if(master.get_digital(prime) && !firing) priming = true;  // start priming
-    if(priming) {
-        // move if not at limit switch
-        if(!primed) catapult.move(60);
-        else catapult.move(0);
+    bool primed = catapultPrime.get_value(); // check if primed
+    pros::lcd::print(3, "Dingdong: %d", primed);
+    bool shooting = master.get_digital(shoot);
+    if(!shooting) {//Automatic Prime
+        // move if not primed
+        if(!primed) {
+            catapult.move(100);
+            catapult2.move(100);
+        }
+        else {
+            catapult.move(10);
+            catapult2.move(10);
+        }
+    } else {
+        catapult.move(127);
+        catapult2.move(127);
     }
-    if(master.get_digital(shoot) && primed) {
-        // if limit switch is hit and shoot button is pressed
-        priming = false;
-        firing = true;
-        // move with encoder (tune this)
-        catapult.move_relative(500, 500);
-    }
-    if(!priming && !firing) {
-        // chill
-        catapult.move(0);
-    }
+    pros::lcd::print(4, "Dingdonger: %d", catapult.get_voltage());
 }
 
-// void teleopElevate() {
+bool leftPlowState = false;
+bool rightPlowState = false;
 
-// }
+void teleopPlow(){
+   if(master.get_digital_new_press(E_CONTROLLER_DIGITAL_LEFT)) leftPlowState = !leftPlowState;
+   if(master.get_digital_new_press(E_CONTROLLER_DIGITAL_RIGHT)) rightPlowState = !rightPlowState;
+   if(master.get_digital_new_press(E_CONTROLLER_DIGITAL_UP)) {
+        int states = leftPlowState + rightPlowState;
+        if(states < 2) {
+            leftPlowState = true;
+            rightPlowState = true;
+        } else {
+            leftPlowState = false;
+            rightPlowState = false;
+        }
+   }
+    leftPlow.move_absolute(leftPlowState ? 90 : 0, 500);
+    rightPlow.move_absolute(rightPlowState ? 90 : 0, 500);
+}
+
+
+void teleopElevate() {
+
+}
 
 
 //For drive, turning controlled by right sitck, left stick for forward and backward

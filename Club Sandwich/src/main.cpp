@@ -28,6 +28,7 @@ void initialize() {
 	lcdAllianceSelect();
 
 	catapult.set_brake_mode(E_MOTOR_BRAKE_HOLD);
+	catapult2.set_brake_mode(E_MOTOR_BRAKE_HOLD);
 	gyro.reset(true);
 }
 
@@ -88,6 +89,8 @@ void opcontrol() {
 		teleopIntake();
 
 		teleopCatapult();
+
+		teleopPlow();
 
 		// teleopElevate();
 
