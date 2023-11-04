@@ -115,5 +115,9 @@ void rightAuton() {
 }
 
 void skills() {
-
+    while (true) {
+	a_ReloadCatapult();
+	delay(1200);
+	a_FireCatapult();
+    }
 }
