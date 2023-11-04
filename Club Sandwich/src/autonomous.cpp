@@ -27,6 +27,10 @@ void printData(bool funButtonPressed) {
             lcd::print(2, "Autonomous Selected: Right");
             break;
         case 3:
+            lcd::print(3, "Autonomous Selected: Catapult");
+        case 4:
+            lcd::print(4, "Autonomous Selected: Outtake");
+        case 5:
             lcd::print(2, "Autonomous Selected: Skills!!!");
             break;
     }
@@ -63,7 +67,7 @@ void printData(bool funButtonPressed) {
 //LCD 0
 void lcdAutonSelect() {
     autonomousSelected++;
-    if (autonomousSelected > 3) { autonomousSelected = 0; } //Cycle
+    if (autonomousSelected > 5) { autonomousSelected = 0; } //Cycle
     printData(false);
 }
 
@@ -90,14 +94,6 @@ void lcdAllianceSelect() {
 void executeAutonomous() {
     switch (autonomousSelected) {
         case 0:
-            a_ReloadCatapult();
-            a_FireCatapult();
-            // a_Turn(-22, 6.9, 6.9);
-            // a_Drive(-37.0, 6.9, 6.9);
-            // a_Turn(-119.0, 6.9, 6.9);
-            // a_Drive(10.0, 6.9, 6.9);
-            // a_Turn(-135);
-            // a_Turn(135.0);
             break;
         case 1:
             leftAuton();
@@ -106,26 +102,51 @@ void executeAutonomous() {
             rightAuton();
             break;
         case 3:
+            onlyCatapult();
+            break;
+        case 4:
+            onlyOuttake();
+            break;
+        case 5:
             skills();
             break;
     }
 }
 
 void leftAuton() {
-    
+    a_ReloadCatapult();
+    a_FireCatapult();
+    a_Drive(-5.0, 0, 0);
+    a_Turn(-90.0, 0, 0);
+    a_Drive(45, 0, 0);
 }
 
 void rightAuton() {
-    // a_ReloadCatapult();
-    // a_Drive(38);
-    // a_FireCatapult();
-    // a_Turn(90.0);
+    a_Drive(5, 0, 0);
+    a_Turn(15, 0, 0);
+    a_Drive(20, 0, 0);
+    a_Intake(-127);
+    a_Drive(4, 0, 0);
+    delay(200);
+    a_Intake(0);
+    a_Turn(-170, 0, 0);
+    a_Drive(-12, 0, 0);
+    // a_Drive(20, 0, 0);
+}
+
+void onlyCatapult() {
+    a_ReloadCatapult();
+    a_FireCatapult();
+}
+
+void onlyOuttake() {
+    a_Intake(-127);
 }
 
 void skills() {
     while (true) {
-	a_ReloadCatapult();
-	delay(1200);
-	a_FireCatapult();
+        a_ReloadCatapult();
+        delay(300);
+        a_FireCatapult();
     }
 }
