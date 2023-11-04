@@ -21,15 +21,17 @@ void printData(bool funButtonPressed) {
             lcd::print(2, "Autonomous Selected: Standby.");
             break;
         case 1:
-            lcd::print(2, "Autonomous Selected: Left");
+            lcd::print(2, "Autonomous Selected: Red Left");
             break;
         case 2:
             lcd::print(2, "Autonomous Selected: Right");
             break;
         case 3:
             lcd::print(3, "Autonomous Selected: Catapult");
+            break;
         case 4:
             lcd::print(4, "Autonomous Selected: Outtake");
+            break;
         case 5:
             lcd::print(2, "Autonomous Selected: Skills!!!");
             break;
@@ -122,16 +124,20 @@ void leftAuton() {
 }
 
 void rightAuton() {
-    a_Drive(5, 0, 0);
-    a_Turn(15, 0, 0);
-    a_Drive(20, 0, 0);
+    a_Drive(5.0, 0, 0);
+    a_Turn(16.0, 0, 0);
+    a_Drive(20.0, 0, 0);
     a_Intake(-127);
-    a_Drive(4, 0, 0);
+    a_Drive(4.0, 0, 0);
     delay(200);
     a_Intake(0);
-    a_Turn(-170, 0, 0);
-    a_Drive(-12, 0, 0);
-    // a_Drive(20, 0, 0);
+    a_Turn(-170.0, 0, 0);
+    a_Drive(-12.0, 0, 0);
+    a_Drive(30.0, 0, 0);
+    a_Turn(30.0, 0, 0);
+    a_Drive(40.0, 0, 0);
+    a_Turn(8.0, 0, 0);
+    a_Drive(45.0, 0, 0);
 }
 
 void onlyCatapult() {
