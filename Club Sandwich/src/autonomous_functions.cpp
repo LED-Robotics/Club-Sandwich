@@ -1,21 +1,41 @@
 #include "autonomous_functions.h"
 
-void a_Drive(double distance) {
-    distance = distance;
+void a_Drive(double distance, double staticMod, double dynamicMod) {
+    backLeft.tare_position();
+    frontLeft.tare_position();
+    backRight.tare_position();
+    frontRight.tare_position();
+    double initial = 0;
+    bool backwards = false;
+    if (distance < 0.0) {
+        backwards = true;
+    }
+    distance = fabs(distance);
     int speed = 100;
     double modifier = 1.0;
     if(distance < 0) speed *= -1;
-    double initial = (abs(frontLeft.get_position()) * INCH_CONSTANT + abs(frontRight.get_position()) * INCH_CONSTANT) / 2 -12;
+    if (distance > 12) {
+        initial = (abs(frontLeft.get_position()) * INCH_CONSTANT + abs(frontRight.get_position()) * INCH_CONSTANT) / 2 -12;
+    } else {
+        initial = (abs(frontLeft.get_position()) * INCH_CONSTANT + abs(frontRight.get_position()) * INCH_CONSTANT) / 2;
+    }
     double current = 0.0;
     while(current < distance) {
         current = ((abs(frontLeft.get_position()) * INCH_CONSTANT + abs(frontRight.get_position()) * INCH_CONSTANT) / 2) - initial;
-        modifier = 5.0 - (current / distance) * 2.0;
+        // modifier = staticMod - (current / distance) * dynamicMod;
+        modifier = 1.0;
         if(modifier > 1.0) modifier = 1.0;
-
-        backLeft.move(speed * modifier);
-        frontLeft.move(speed * modifier);
-        backRight.move(speed * modifier);
-        frontRight.move(speed * modifier);
+            if (backwards) {
+                backLeft.move(-speed * modifier);
+                frontLeft.move(-speed * modifier);
+                backRight.move(-speed * modifier);
+                frontRight.move(-speed * modifier);    
+            } else {
+                backLeft.move(speed * modifier);
+                frontLeft.move(speed * modifier);
+                backRight.move(speed * modifier);
+                frontRight.move(speed * modifier);
+            }
         delay(20);
     }
     backLeft.move(0);
@@ -24,21 +44,37 @@ void a_Drive(double distance) {
     frontRight.move(0);
 }
 
-void a_Turn(double angle) {
+void a_Turn(double angle,  double staticMod, double dynamicMod) {
+    backLeft.tare_position();
+    frontLeft.tare_position();
+    backRight.tare_position();
+    frontRight.tare_position();
+    bool left = false;
+    if (angle > 0.0) {
+        left = true;
+    }
+    angle = fabs(angle);
     gyro.tare();
     int speed = 80;
     double modifier = 1.0;
-    if(angle < 0) speed *= -1;
+    // if(angle < 0) speed *= -1;
     double current = 0.0;
     while(current < angle) {
         current = abs(gyro.get_rotation());
-        modifier = 1.8 - (current / angle) * 1.7;
+        // modifier = 2.0 - (current / angle) * 2.0;
+        modifier = 1.0;
         if(modifier > 1.0) modifier = 1.0;
-
-        backLeft.move(speed * modifier);
-        frontLeft.move(speed * modifier);
-        backRight.move(-speed * modifier);
-        frontRight.move(-speed * modifier);
+            if (left) {
+                backLeft.move(speed * modifier);
+                frontLeft.move(speed * modifier);
+                backRight.move(-speed * modifier);
+                frontRight.move(-speed * modifier);
+            } else {
+                backLeft.move(-speed * modifier);
+                frontLeft.move(-speed * modifier);
+                backRight.move(speed * modifier);
+                frontRight.move(speed * modifier);
+            }
         delay(20);
     }
     backLeft.move(0);

@@ -1,9 +1,9 @@
 #include "robot_map.h"
 #include "constants.h"
 
-void a_Drive(double distance);
+void a_Drive(double distance, double staticMod, double dynamicMod);
 
-void a_Turn(double angle);
+void a_Turn(double angle, double staticMod, double dynamicMod);
 
 void a_Intake(int speed);
 

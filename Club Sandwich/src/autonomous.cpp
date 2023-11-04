@@ -90,6 +90,14 @@ void lcdAllianceSelect() {
 void executeAutonomous() {
     switch (autonomousSelected) {
         case 0:
+            a_ReloadCatapult();
+            a_FireCatapult();
+            // a_Turn(-22, 6.9, 6.9);
+            // a_Drive(-37.0, 6.9, 6.9);
+            // a_Turn(-119.0, 6.9, 6.9);
+            // a_Drive(10.0, 6.9, 6.9);
+            // a_Turn(-135);
+            // a_Turn(135.0);
             break;
         case 1:
             leftAuton();
@@ -108,10 +116,10 @@ void leftAuton() {
 }
 
 void rightAuton() {
-    a_ReloadCatapult();
-    a_Drive(38);
-    a_FireCatapult();
-    a_Turn(90.0);
+    // a_ReloadCatapult();
+    // a_Drive(38);
+    // a_FireCatapult();
+    // a_Turn(90.0);
 }
 
 void skills() {
