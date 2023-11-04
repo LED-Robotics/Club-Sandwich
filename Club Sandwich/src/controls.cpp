@@ -7,7 +7,7 @@ int currentSignature{RED_ID};
 
 int alliance{BLUE_ID};
 
-int autonomousSelected{0};
+int autonomousSelected{-1};
 
 const controller_analog_e_t DRIVE_X{ANALOG_RIGHT_X};
 const controller_analog_e_t DRIVE_Y{ANALOG_LEFT_Y};

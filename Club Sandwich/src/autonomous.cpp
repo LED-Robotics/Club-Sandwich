@@ -12,7 +12,7 @@ void printData() {
             lcd::print(0, "Auton Slected: Left");
             break;
         case 2:
-            lcd::print(0, "Auton Selected: Right");
+            lcd::print(0, "Auton Selected: Skills");
             break;
         case 3:
             lcd::print(0, "Auton Selected: Programming Skills");
@@ -23,7 +23,7 @@ void printData() {
 
 void lcdAutonSelect() {
     autonomousSelected++;
-    if (autonomousSelected > 3) { autonomousSelected = 0; }
+    if (autonomousSelected > 2) { autonomousSelected = 0; }
     printData();
 }
 
@@ -46,10 +46,10 @@ void executeAutonomous() {
             leftWP();
             break;
         case 2:
-            leftSP();
+            skills();
             break;
         case 3:
-            skills();
+            leftSP();
             break;
     }
 }
@@ -72,11 +72,19 @@ void leftWP() {
     intake.move(127);
     autonDrive(60.0);
     intakePiston.set_value(false);
-    delay(500);
+    delay(1500);
     intake.move(0);
     autonDrive(-40.0);
-    autonTurn(90);
-
+    autonTurn(120);
+    delay(500);
+    catapult.move(127);
+    catapult2.move(127);
+    delay(350);
+    catapult.move(0);
+    catapult2.move(0);
+    autonTurn(25);
+    delay(500);
+    autonDrive(-41.5);
 
 }
 
@@ -95,6 +103,15 @@ void leftSP() {//Shoot ball over to your own net, spin and hit elevation bar
     delay(500);
     autonDrive(-48);//fine tune
     delay(500);
+    autonTurn(65);
+    delay(500);
+    catapult.move(127);
+    catapult2.move(127);
+    delay(500);//fine tune
+    catapult.move(0);
+    catapult2.move(0);
+
+    autonTurn(-65);
 }
 
 void rightWP(){
@@ -104,5 +121,6 @@ void rightSP(){
 
 }
 void skills() {
-
+    catapult.move(127);
+    catapult2.move(127);
 }
