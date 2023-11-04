@@ -5,11 +5,11 @@ void a_Drive(double distance) {
     int speed = 100;
     double modifier = 1.0;
     if(distance < 0) speed *= -1;
-    double initial = (abs(frontLeft.get_position()) * INCH_CONSTANT + abs(frontRight.get_position()) * INCH_CONSTANT) / 2;
+    double initial = (abs(frontLeft.get_position()) * INCH_CONSTANT + abs(frontRight.get_position()) * INCH_CONSTANT) / 2 -12;
     double current = 0.0;
     while(current < distance) {
         current = ((abs(frontLeft.get_position()) * INCH_CONSTANT + abs(frontRight.get_position()) * INCH_CONSTANT) / 2) - initial;
-        modifier = 1.2 - (current / distance) * 1.0;
+        modifier = 5.0 - (current / distance) * 2.0;
         if(modifier > 1.0) modifier = 1.0;
 
         backLeft.move(speed * modifier);
@@ -48,33 +48,24 @@ void a_Turn(double angle) {
 }
 
 void a_Intake(int speed) {
-    intake.move(speed * 127);
+    intake.move(-speed * 127);
 }
 
-void a_fireCatapult(double distance) {
-    distance = distance;
-    int speed = 100;
-    double modifier = 1.0;
-    if(distance < 0) speed *= -1;
-    double initial = abs(hook.get_position()) * INCH_CONSTANT;
-    double current = 0.0;
-    while(current < distance) {
-        current = abs(hook.get_position()) * INCH_CONSTANT - initial;
-        modifier = 1.2 - (current / distance) * 1.0;
-        if(modifier > 1.0) modifier = 1.0;
-
-        hook.move(speed * modifier);
-        delay(20);
-    }
-    .move(0);
-}
-
-void a_reloadCatapult() {
-    catapultLeft.move(127*.7);
-    catapultRight.move(127*.7);
-    delay (100);
+void a_FireCatapult() {
+    catapultLeft.move(127);
+    catapultRight.move(127);
+    delay(500);
     catapultLeft.move(0);
     catapultRight.move(0);
+}
+
+void a_ReloadCatapult() {
+    while (!catapultPrime.get_value()) {
+        catapultLeft.move(127);
+        catapultRight.move(127);
+    }
+    catapultLeft.brake();
+    catapultRight.brake();
 }
 
         // //Button cannot be pressed while priming

@@ -21,10 +21,10 @@ void printData(bool funButtonPressed) {
             lcd::print(2, "Autonomous Selected: Standby.");
             break;
         case 1:
-            lcd::print(2, "Autonomous Selected: Long Auton");
+            lcd::print(2, "Autonomous Selected: Left");
             break;
         case 2:
-            lcd::print(2, "Autonomous Selected: Short Auton");
+            lcd::print(2, "Autonomous Selected: Right");
             break;
         case 3:
             lcd::print(2, "Autonomous Selected: Skills!!!");
@@ -90,14 +90,12 @@ void lcdAllianceSelect() {
 void executeAutonomous() {
     switch (autonomousSelected) {
         case 0:
-            a_Drive(30);
-            // a_Turn(90.0);
             break;
         case 1:
-            longAuton();
+            leftAuton();
             break;
         case 2:
-            shortAuton();
+            rightAuton();
             break;
         case 3:
             skills();
@@ -105,12 +103,15 @@ void executeAutonomous() {
     }
 }
 
-void longAuton() {
-
+void leftAuton() {
+    
 }
 
-void shortAuton() {
-
+void rightAuton() {
+    a_ReloadCatapult();
+    a_Drive(38);
+    a_FireCatapult();
+    a_Turn(90.0);
 }
 
 void skills() {

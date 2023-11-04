@@ -17,7 +17,7 @@ extern Motor catapultLeft;
 extern Motor catapultRight;
 
 //Elevator
-extern Motor hook;
+// extern Motor hook;
 
 //Limit Switch
 extern ADIDigitalIn catapultPrime;

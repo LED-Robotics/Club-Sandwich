@@ -7,6 +7,6 @@ void a_Turn(double angle);
 
 void a_Intake(int speed);
 
-void a_fireCatapult(double distance);
+void a_FireCatapult();
 
-void a_reloadCatapult();
+void a_ReloadCatapult();

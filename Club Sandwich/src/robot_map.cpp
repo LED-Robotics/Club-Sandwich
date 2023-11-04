@@ -15,7 +15,7 @@ Motor catapultLeft{20, MOTOR_GEAR_RED, false, MOTOR_ENCODER_DEGREES};
 Motor catapultRight{7, MOTOR_GEAR_RED, true, MOTOR_ENCODER_DEGREES};
 
 //Elevator
-Motor hook{5, MOTOR_GEAR_200, false, MOTOR_ENCODER_DEGREES};
+// Motor hook{5, MOTOR_GEAR_200, false, MOTOR_ENCODER_DEGREES};
 
 //Limit Switch
 ADIDigitalIn catapultPrime{'A'};

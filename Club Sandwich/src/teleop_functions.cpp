@@ -5,9 +5,9 @@ using namespace pros;
 
 void teleopDrive() {
     if (bashMode) {
-        turnVar = (double)master.get_analog(ANALOG_RIGHT_X)*-.75;//   
+        turnVar = (double)master.get_analog(ANALOG_RIGHT_X)*-.85;//   
     } else {
-        turnVar = (double)master.get_analog(ANALOG_RIGHT_X)*.75;//
+        turnVar = (double)master.get_analog(ANALOG_RIGHT_X)*.85;//
     }
     straightVar = (double)master.get_analog(ANALOG_LEFT_Y);//
     
@@ -81,7 +81,7 @@ void teleopDrive() {
 }
 
 void teleopIntake() {
-    intake.move(master.get_digital(DIGITAL_L2)*127*.7 - master.get_digital(DIGITAL_R2)*127*.7);
+    intake.move(master.get_digital(DIGITAL_L2)*127*.7 - master.get_digital(DIGITAL_R2)*127*.77);
 }
 
 void teleopCatapult() {
@@ -130,9 +130,9 @@ void teleopCatapult() {
     }
 }
 
-void teleopElevate() {
-    hook.move(master.get_digital(DIGITAL_L1)*127*.4 - master.get_digital(DIGITAL_R1)*127*.4);
-}
+// void teleopElevate() {
+//     hook.move(master.get_digital(DIGITAL_L1)*127*.4 - master.get_digital(DIGITAL_R1)*127*.4);
+// }
 
 
 //For drive, turning controlled by right sitck, left stick for forward and backward

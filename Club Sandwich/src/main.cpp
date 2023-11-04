@@ -94,7 +94,7 @@ void opcontrol() {
 
 		teleopCatapult();
 		
-		teleopElevate();
+		// teleopElevate();
 
 		pros::delay(20);
 	}
