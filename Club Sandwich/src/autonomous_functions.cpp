@@ -1,6 +1,7 @@
 #include "autonomous_functions.h"
 
 void a_Drive(double distance) {
+    distance = distance;
     int speed = 100;
     double modifier = 1.0;
     if(distance < 0) speed *= -1;
@@ -8,13 +9,13 @@ void a_Drive(double distance) {
     double current = 0.0;
     while(current < distance) {
         current = ((abs(frontLeft.get_position()) * INCH_CONSTANT + abs(frontRight.get_position()) * INCH_CONSTANT) / 2) - initial;
-        modifier = 1.8 - (current / distance) * 1.5;
+        modifier = 1.2 - (current / distance) * 1.0;
         if(modifier > 1.0) modifier = 1.0;
 
         backLeft.move(speed * modifier);
         frontLeft.move(speed * modifier);
-        backRight.move(-speed * modifier);
-        frontRight.move(-speed * modifier);
+        backRight.move(speed * modifier);
+        frontRight.move(speed * modifier);
         delay(20);
     }
     backLeft.move(0);
@@ -31,7 +32,7 @@ void a_Turn(double angle) {
     double current = 0.0;
     while(current < angle) {
         current = abs(gyro.get_rotation());
-        modifier = 1.8 - (current / angle) * 1.5;
+        modifier = 1.8 - (current / angle) * 1.7;
         if(modifier > 1.0) modifier = 1.0;
 
         backLeft.move(speed * modifier);
@@ -46,12 +47,26 @@ void a_Turn(double angle) {
     frontRight.move(0);
 }
 
-void a_Intake(bool power) {
-    intake.move((int32_t)power * 127);
+void a_Intake(int speed) {
+    intake.move(speed * 127);
 }
 
-void a_fireCatapult() {
+void a_fireCatapult(double distance) {
+    distance = distance;
+    int speed = 100;
+    double modifier = 1.0;
+    if(distance < 0) speed *= -1;
+    double initial = abs(hook.get_position()) * INCH_CONSTANT;
+    double current = 0.0;
+    while(current < distance) {
+        current = abs(hook.get_position()) * INCH_CONSTANT - initial;
+        modifier = 1.2 - (current / distance) * 1.0;
+        if(modifier > 1.0) modifier = 1.0;
 
+        hook.move(speed * modifier);
+        delay(20);
+    }
+    .move(0);
 }
 
 void a_reloadCatapult() {

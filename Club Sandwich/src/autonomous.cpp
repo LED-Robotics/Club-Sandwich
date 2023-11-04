@@ -90,6 +90,8 @@ void lcdAllianceSelect() {
 void executeAutonomous() {
     switch (autonomousSelected) {
         case 0:
+            a_Drive(30);
+            // a_Turn(90.0);
             break;
         case 1:
             longAuton();
@@ -108,7 +110,7 @@ void longAuton() {
 }
 
 void shortAuton() {
-    a_Turn(30);
+
 }
 
 void skills() {
