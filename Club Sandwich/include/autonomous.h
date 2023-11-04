@@ -10,8 +10,12 @@ void lcdAllianceSelect();
 
 void executeAutonomous();
 
-void leftAuton();
+void leftWP();
 
-void rightAuton();
+void leftSP();
+
+void rightWP();
+
+void rightSP();
 
 void skills();

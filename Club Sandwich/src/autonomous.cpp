@@ -1,5 +1,5 @@
 #include "autonomous.h"
-
+#include "autonomous_functions.h"
 using namespace pros;
 
 void printData() {
@@ -43,10 +43,10 @@ void executeAutonomous() {
         case 0:
             break;
         case 1:
-            leftAuton();
+            leftWP();
             break;
         case 2:
-            rightAuton();
+            leftSP();
             break;
         case 3:
             skills();
@@ -54,14 +54,55 @@ void executeAutonomous() {
     }
 }
 
-void leftAuton() {
+void leftWP() {
+    autonPrime();
+    intake.move(127);
+    delay(1500);
+    intake.move(0);
+    catapult.move(127);
+    catapult2.move(127);
+    delay(750);//fine tune
+    catapult.move(0);
+    catapult2.move(0);
+    autonDrive(-4.5);
+    delay(500);
+    autonTurn(220.0);//fine tune
+    intakePiston.set_value(true);
+    autonPrime();
+    intake.move(127);
+    autonDrive(60.0);
+    intakePiston.set_value(false);
+    delay(500);
+    intake.move(0);
+    autonDrive(-40.0);
+    autonTurn(90);
+
 
 }
 
-void rightAuton() {
-
+void leftSP() {//Shoot ball over to your own net, spin and hit elevation bar
+    // autonDrive(24.0);
+    // autonDrive(12.0);
+//     autonTurn(65);//90 DEGREES!!! TRISTAN IS FUCKING RETARDED
+    catapult.move(127);
+    catapult2.move(127);
+    delay(500);//fine tune
+    catapult.move(0);
+    catapult2.move(0);
+    delay(500);
+    intake.move(127);
+    autonTurn(-45);//fine tune
+    delay(500);
+    autonDrive(-48);//fine tune
+    delay(500);
 }
 
+void rightWP(){
+
+}
+void rightSP(){
+
+}
 void skills() {
 
 }

@@ -11,4 +11,6 @@ void autonTurn(double angle);
 
 void autonIntake(bool forwards);
 
+void autonPrime();
+
 void autonCatapult();

@@ -18,7 +18,7 @@ extern Motor rightPlow;
 
 // //Digital Out/In
 extern ADIDigitalOut intakePiston;
-
+extern ADIAnalogIn catapultLineSense;
 extern ADIDigitalIn limitSwitch;
 extern ADIDigitalIn catapultPrime;
 extern IMU gyro;

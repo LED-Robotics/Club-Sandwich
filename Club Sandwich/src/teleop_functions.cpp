@@ -20,7 +20,7 @@ void teleopDrive() {
     // setup differential variables for arcade control
     double leftSpeedRaw = driveY + driveX;
     double rightSpeedRaw = driveY - driveX;
-
+    // Its me
     // put speeds through a polynomial to smooth out joystick input
     // check the curve out here: https://www.desmos.com/calculator/65tpwhxyai the range between 0.0 to 1.0 is used for the motors
     // change driveCurveExtent to modify curve strength
@@ -39,7 +39,7 @@ bool outtakeVar;
 bool pistonVarOut;
 bool pistonVarIn;
 bool extendIntake;
-
+//Its me
 void teleopIntake() {
     intakeVar = master.get_digital(E_CONTROLLER_DIGITAL_L1);
     outtakeVar = master.get_digital(E_CONTROLLER_DIGITAL_R1);
@@ -65,7 +65,7 @@ controller_digital_e_t shoot = DIGITAL_R2;
 
 // have button to prime, stop at limit switch, and fire on a different button
 void teleopCatapult() {
-    bool primed = catapultPrime.get_value(); // check if primed
+    bool primed = catapultLineSense.get_value() < 1000; // check if primed
     pros::lcd::print(3, "Dingdong: %d", primed);
     bool shooting = master.get_digital(shoot);
     if(!shooting) {//Automatic Prime
@@ -75,8 +75,8 @@ void teleopCatapult() {
             catapult2.move(100);
         }
         else {
-            catapult.move(10);
-            catapult2.move(10);
+            catapult.move(15);
+            catapult2.move(15);
         }
     } else {
         catapult.move(127);

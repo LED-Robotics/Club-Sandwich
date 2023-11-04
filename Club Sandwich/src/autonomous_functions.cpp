@@ -1,22 +1,34 @@
 #include "autonomous_functions.h"
 
-const double INCH_CONSTANT = 0.09794150344116636047315923899847;
+// const double INCH_CONSTANT = 0.09794150344116636047315923899847;
+// const double INCH_CONSTANT = 58.76490206469981;
+const double INCH_CONSTANT = 34.617869579932255;  // guess this bozo
 
 void autonDrive(double distance) {
+    backLeft.tare_position();
+    backRight.tare_position();
+    frontLeft.tare_position();
+    frontRight.tare_position();
     int speed = 100;
     double modifier = 1.0;
+    distance *= INCH_CONSTANT;
     if(distance < 0) speed *= -1;
-    double initial = (abs(frontLeft.get_position()) * INCH_CONSTANT + abs(frontRight.get_position()) * INCH_CONSTANT) / 2;
+    double initial = (abs(frontLeft.get_position()) + abs(frontRight.get_position())) / 2;
     double current = 0.0;
+    pros::lcd::print(2, "Initial: %f", initial);
+    pros::lcd::print(3, "Distance: %f", distance);
+    distance = abs(distance);
     while(current < distance) {
-        current = ((abs(frontLeft.get_position()) * INCH_CONSTANT + abs(frontRight.get_position()) * INCH_CONSTANT) / 2) - initial;
-        modifier = 1.8 - (current / distance) * 1.5;
+        current = ((abs(frontLeft.get_position()) + abs(frontRight.get_position())) / 2) - initial;
+        pros::lcd::print(4, "current: %f", current);
+        if(current / distance > 0.85 && frontLeft.get_actual_velocity() < 4.0) break;
+        modifier = 1.8 - (current / distance) * 1.8;
         if(modifier > 1.0) modifier = 1.0;
 
         backLeft.move(speed * modifier);
         frontLeft.move(speed * modifier);
-        backRight.move(-speed * modifier);
-        frontRight.move(-speed * modifier);
+        backRight.move(speed * modifier);
+        frontRight.move(speed * modifier);
         delay(20);
     }
     backLeft.move(0);
@@ -31,6 +43,7 @@ void autonTurn(double angle) {
     double modifier = 1.0;
     if(angle < 0) speed *= -1;
     double current = 0.0;
+    angle = abs(angle);
     while(current < angle) {
         current = abs(gyro.get_rotation());
         modifier = 1.8 - (current / angle) * 1.5;
@@ -53,10 +66,12 @@ void autonIntake(bool forwards) {
 }
 
 void autonPrime() {
-    while(catapultPrime.get_value()) {
-        catapult.move(60);
+    while(catapultLineSense.get_value() > 1200) {
+        catapult.move(100);
+        catapult2.move(100);
     }
-    catapult.move(10);
+    catapult.move(15);
+    catapult2.move(15);
 }
 
 void autonCatapult() {
