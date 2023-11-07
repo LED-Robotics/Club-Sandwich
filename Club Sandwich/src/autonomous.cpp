@@ -21,7 +21,7 @@ void printData(bool funButtonPressed) {
             lcd::print(2, "Autonomous Selected: Standby.");
             break;
         case 1:
-            lcd::print(2, "Autonomous Selected: Red Left");
+            lcd::print(2, "Autonomous Selected: Left");
             break;
         case 2:
             lcd::print(2, "Autonomous Selected: Right");
@@ -96,6 +96,23 @@ void lcdAllianceSelect() {
 void executeAutonomous() {
     switch (autonomousSelected) {
         case 0:
+            a_Drive(5.0, 0, 0);
+            a_Turn(17.0, 0, 0);
+            a_Drive(20.0, 0, 0);
+            a_Intake(-127);
+            delay(100);
+            a_Intake(0);
+            a_Turn(-160.0, 0, 0);
+            a_Drive(-9.0, 0, 0);
+            a_Drive(20.0, 0, 0);
+            a_Turn(65.0, 0, 0);
+            a_ReloadCatapult();
+            a_Intake(127);
+            a_Drive(50.0, 0, 0);
+            // a_Drive(10.0, 0, 0);
+            // a_Intake(127);
+            // a_Turn(10.0, 0, 0);
+            // a_Drive(5.0, 0, 0);
             break;
         case 1:
             leftAuton();
@@ -124,20 +141,20 @@ void leftAuton() {
 }
 
 void rightAuton() {
-    a_Drive(5.0, 0, 0);
-    a_Turn(16.0, 0, 0);
-    a_Drive(20.0, 0, 0);
-    a_Intake(-127);
-    a_Drive(4.0, 0, 0);
-    delay(200);
-    a_Intake(0);
-    a_Turn(-170.0, 0, 0);
-    a_Drive(-12.0, 0, 0);
-    a_Drive(30.0, 0, 0);
-    a_Turn(30.0, 0, 0);
-    a_Drive(40.0, 0, 0);
-    a_Turn(8.0, 0, 0);
-    a_Drive(45.0, 0, 0);
+    // a_Drive(5.0, 0, 0);
+    // a_Turn(16.0, 0, 0);
+    // a_Drive(20.0, 0, 0);
+    // a_Intake(-127);
+    // a_Drive(4.0, 0, 0);
+    // delay(200);
+    // a_Intake(0);
+    // a_Turn(-170.0, 0, 0);
+    // a_Drive(-12.0, 0, 0);
+    // a_Drive(30.0, 0, 0);
+    // a_Turn(30.0, 0, 0);
+    // a_Drive(40.0, 0, 0);
+    // a_Turn(8.0, 0, 0);
+    // a_Drive(45.0, 0, 0);
 }
 
 void onlyCatapult() {
