@@ -91,7 +91,7 @@ void teleopCatapult() {
     } else if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_DOWN)) {
        	catapultLeft.move(127);
         catapultRight.move(127);
-        delay(200);
+        delay(100);
         automaticPrime = true;
     }
 
@@ -109,12 +109,12 @@ void teleopCatapult() {
         //Button cannot be pressed while priming
         //Button necessary to prime and launch. In the case the limit switch or other functions fail.
         if (!catapultPrime.get_value()) {
-            catapultLeft.move(127*.85);
-            catapultRight.move(127*.85);
+            catapultLeft.move(127);
+            catapultRight.move(127);
             loading = true;
         }
 
-        if (catapultPrime.get_value() && !master.get_digital(E_CONTROLLER_DIGITAL_A)) {
+        if ((catapultPrime.get_value() && !master.get_digital(E_CONTROLLER_DIGITAL_A))) {
             catapultLeft.brake();
             catapultRight.brake();
             loading = false;
@@ -123,7 +123,7 @@ void teleopCatapult() {
         if (master.get_digital(E_CONTROLLER_DIGITAL_A) && !loading) {
             catapultLeft.move(127);
             catapultRight.move(127);
-            delay(150);  //Fine Tune!
+            delay(300);  //Fine Tune!
             catapultLeft.move(0);
             catapultRight.move(0);
         }
