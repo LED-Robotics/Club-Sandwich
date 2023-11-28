@@ -108,13 +108,11 @@ void teleopCatapult() {
     } else {
         //Button cannot be pressed while priming
         //Button necessary to prime and launch. In the case the limit switch or other functions fail.
-        if (!catapultPrime.get_value()) {
+        if (!catapultPrimeLeft.get_value() && !catapultPrimeRight.get_value()) {
             catapultLeft.move(127);
             catapultRight.move(127);
             loading = true;
-        }
-
-        if ((catapultPrime.get_value() && !master.get_digital(E_CONTROLLER_DIGITAL_A))) {
+        } else if (!master.get_digital(E_CONTROLLER_DIGITAL_A)) {
             catapultLeft.brake();
             catapultRight.brake();
             loading = false;

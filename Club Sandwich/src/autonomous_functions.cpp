@@ -96,24 +96,10 @@ void a_FireCatapult() {
 }
 
 void a_ReloadCatapult() {
-    while (!catapultPrime.get_value()) {
+    while (!catapultPrimeLeft.get_value() && !catapultPrimeRight.get_value()) {
         catapultLeft.move(127);
         catapultRight.move(127);
     }
     catapultLeft.brake();
     catapultRight.brake();
 }
-
-        // //Button cannot be pressed while priming
-        // //Button necessary to prime and launch. In the case the limit switch or other functions fail.
-        // if (!catapultPrime.get_value()) {
-        //     catapultLeft.move(127*.85);
-        //     catapultRight.move(127*.85);
-        //     loading = true;
-        // }
-
-        // if (catapultPrime.get_value() && !master.get_digital(E_CONTROLLER_DIGITAL_A)) {
-        //     catapultLeft.brake();
-        //     catapultRight.brake();
-        //     loading = false;
-        // }

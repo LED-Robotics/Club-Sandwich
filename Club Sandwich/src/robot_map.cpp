@@ -18,7 +18,8 @@ Motor catapultRight{7, MOTOR_GEAR_RED, true, MOTOR_ENCODER_DEGREES};
 // Motor hook{5, MOTOR_GEAR_200, false, MOTOR_ENCODER_DEGREES};
 
 //Limit Switch
-ADIDigitalIn catapultPrime{'A'};
+ADIDigitalIn catapultPrimeLeft{'A'};
+ADIDigitalIn catapultPrimeRight{'B'};
 
 //Gyro
 IMU gyro{9};

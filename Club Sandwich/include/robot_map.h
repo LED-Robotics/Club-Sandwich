@@ -20,7 +20,8 @@ extern Motor catapultRight;
 // extern Motor hook;
 
 //Limit Switch
-extern ADIDigitalIn catapultPrime;
+extern ADIDigitalIn catapultPrimeLeft;
+extern ADIDigitalIn catapultPrimeRight;
 
 //Gyro
 extern IMU gyro;
