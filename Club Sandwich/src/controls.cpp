@@ -9,8 +9,8 @@ int alliance{BLUE_ID};
 
 int autonomousSelected{-1};
 
-const controller_analog_e_t DRIVE_X{ANALOG_RIGHT_X};
-const controller_analog_e_t DRIVE_Y{ANALOG_LEFT_Y};
+const pros::controller_analog_e_t DRIVE_X{ANALOG_RIGHT_X};
+const pros::controller_analog_e_t DRIVE_Y{ANALOG_LEFT_Y};
 
 bool partnerConnected{true};
 

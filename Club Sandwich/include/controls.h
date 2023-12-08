@@ -14,9 +14,9 @@ extern int alliance;
 
 extern int autonomousSelected;
 
-extern const controller_analog_e_t DRIVE_X;
+extern const pros::controller_analog_e_t DRIVE_X;
 
-extern const controller_analog_e_t DRIVE_Y;
+extern const pros::controller_analog_e_t DRIVE_Y;
 
 extern bool partnerConnected;
 

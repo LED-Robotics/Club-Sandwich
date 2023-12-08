@@ -1,7 +1,7 @@
 #include "teleop_functions.h"
 #include "controls.h"
 
-using namespace pros;
+// using namespace pros;
 
 double driveX;
 double driveY;
@@ -24,14 +24,14 @@ void teleopDrive() {
     // put speeds through a polynomial to smooth out joystick input
     // check the curve out here: https://www.desmos.com/calculator/65tpwhxyai the range between 0.0 to 1.0 is used for the motors
     // change driveCurveExtent to modify curve strength
-    float leftSpeed = driveCurveExtent * pow(leftSpeedRaw, 3) + (1- driveCurveExtent) * leftSpeedRaw;
-    float rightSpeed = driveCurveExtent * pow(rightSpeedRaw, 3) + (1- driveCurveExtent) * rightSpeedRaw;
+    double leftSpeed = driveCurveExtent * pow(leftSpeedRaw, 3) + (1- driveCurveExtent) * leftSpeedRaw;
+    double rightSpeed = driveCurveExtent * pow(rightSpeedRaw, 3) + (1- driveCurveExtent) * rightSpeedRaw;
 
     // set motors to final speeds
-    backLeft.move((int32_t)(leftSpeed * 127));  // *127 to change value back to int
-    frontLeft.move((int32_t)(leftSpeed * 127));
-    backRight.move((int32_t)(rightSpeed * 127));
-    frontRight.move((int32_t)(rightSpeed * 127));
+    backLeft.controllerSet(leftSpeed);  // *127 to change value back to int
+    frontLeft.controllerSet(leftSpeed);
+    backRight.controllerSet(rightSpeed);
+    frontRight.controllerSet(rightSpeed);
 }
 
 bool intakeVar;
@@ -41,27 +41,27 @@ bool pistonVarIn;
 bool extendIntake;
 //Its me
 void teleopIntake() {
-    intakeVar = master.get_digital(E_CONTROLLER_DIGITAL_L1);
-    outtakeVar = master.get_digital(E_CONTROLLER_DIGITAL_R1);
+    intakeVar = master.get_digital(DIGITAL_L1);
+    outtakeVar = master.get_digital(DIGITAL_R1);
 
     if(intakeVar && !outtakeVar){
-        intake.move(127);
+        intake.controllerSet(1.0);
     }
     else if(!intakeVar && outtakeVar){
-        intake.move(-127);
+        intake.controllerSet(-1.0);
     }
     else if(master.get_digital_new_press(DIGITAL_A)){
         extendIntake=!extendIntake;
         intakePiston.set_value(extendIntake);
     }
     else{
-        intake.move(0);
+        intake.controllerSet(0.0);
     }
 }
 
 int bottom = 0;
 
-controller_digital_e_t shoot = DIGITAL_R2;
+pros::controller_digital_e_t shoot = DIGITAL_R2;
 
 // have button to prime, stop at limit switch, and fire on a different button
 void teleopCatapult() {
@@ -71,27 +71,27 @@ void teleopCatapult() {
     if(!shooting) {//Automatic Prime
         // move if not primed
         if(!primed) {
-            catapult.move(100);
-            catapult2.move(100);
+            catapult.controllerSet(0.79);
+            catapult2.controllerSet(0.79);
         }
         else {
-            catapult.move(15);
-            catapult2.move(15);
+            catapult.controllerSet(0.12);
+            catapult2.controllerSet(0.12);
         }
     } else {
-        catapult.move(127);
-        catapult2.move(127);
+        catapult.controllerSet(1.0);
+        catapult2.controllerSet(1.0);
     }
-    pros::lcd::print(4, "Dingdonger: %d", catapult.get_voltage());
+    pros::lcd::print(4, "Dingdonger: %d", catapult.getVoltage());
 }
 
 bool leftPlowState = false;
 bool rightPlowState = false;
 
 void teleopPlow(){
-   if(master.get_digital_new_press(E_CONTROLLER_DIGITAL_LEFT)) leftPlowState = !leftPlowState;
-   if(master.get_digital_new_press(E_CONTROLLER_DIGITAL_RIGHT)) rightPlowState = !rightPlowState;
-   if(master.get_digital_new_press(E_CONTROLLER_DIGITAL_UP)) {
+   if(master.get_digital_new_press(DIGITAL_LEFT)) leftPlowState = !leftPlowState;
+   if(master.get_digital_new_press(DIGITAL_RIGHT)) rightPlowState = !rightPlowState;
+   if(master.get_digital_new_press(DIGITAL_UP)) {
         int states = leftPlowState + rightPlowState;
         if(states < 2) {
             leftPlowState = true;
@@ -101,8 +101,8 @@ void teleopPlow(){
             rightPlowState = false;
         }
    }
-    leftPlow.move_absolute(leftPlowState ? 90 : 0, 500);
-    rightPlow.move_absolute(rightPlowState ? 90 : 0, 500);
+    leftPlow.moveAbsolute(leftPlowState ? 90 : 0, 500);
+    rightPlow.moveAbsolute(rightPlowState ? 90 : 0, 500);
 }
 
 

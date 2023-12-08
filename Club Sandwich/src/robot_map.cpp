@@ -1,22 +1,32 @@
 #include "robot_map.h"
 
-Motor backLeft{4, MOTOR_GEAR_BLUE, true, MOTOR_ENCODER_DEGREES};
-Motor frontLeft{2, MOTOR_GEAR_BLUE, true, MOTOR_ENCODER_DEGREES};
-Motor backRight{3, MOTOR_GEAR_BLUE, false, MOTOR_ENCODER_DEGREES};
-Motor frontRight{1, MOTOR_GEAR_BLUE, false, MOTOR_ENCODER_DEGREES};
+std::shared_ptr<ChassisController> chassis =
+ChassisControllerBuilder()
+.withMotors(
+    {-4, -2}, // Left motors are 1 & 2 (reversed)
+    {3, 1}    // Right motors are 3 & 4
+)
+// Green gearset, 4 in wheel diam, 11.5 in wheel track
+.withDimensions(AbstractMotor::gearset::blue, {{4_in, 11.5_in}, imev5BlueTPR})
+.build();
 
-Motor intake{11, MOTOR_GEAR_200, true, MOTOR_ENCODER_DEGREES};//*Small Motors 200 RPM
+Motor backLeft{4, true, AbstractMotor::gearset::blue , AbstractMotor::encoderUnits::degrees};
+Motor frontLeft{2, true, AbstractMotor::gearset::blue, AbstractMotor::encoderUnits::degrees};
+Motor backRight{3, false, AbstractMotor::gearset::blue, AbstractMotor::encoderUnits::degrees};
+Motor frontRight{1, false, AbstractMotor::gearset::blue, AbstractMotor::encoderUnits::degrees};
 
-Motor catapult{7,MOTOR_GEAR_RED, true, MOTOR_ENCODER_DEGREES};
-Motor catapult2{6,MOTOR_GEAR_RED, false, MOTOR_ENCODER_DEGREES};
-Motor leftPlow {15, MOTOR_GEAR_200, false, MOTOR_ENCODER_DEGREES};
-Motor rightPlow{16, MOTOR_GEAR_200, true, MOTOR_ENCODER_DEGREES};
+Motor intake{11, true, AbstractMotor::gearset::green, AbstractMotor::encoderUnits::degrees};//*Small Motors 200 RPM
 
-ADIDigitalOut intakePiston{'G'};
+Motor catapult{7,true, AbstractMotor::gearset::red, AbstractMotor::encoderUnits::degrees};
+Motor catapult2{6, false, AbstractMotor::gearset::red, AbstractMotor::encoderUnits::degrees};
+Motor leftPlow {15, false, AbstractMotor::gearset::green, AbstractMotor::encoderUnits::degrees};
+Motor rightPlow{16, true, AbstractMotor::gearset::green, AbstractMotor::encoderUnits::degrees};
 
-ADIAnalogIn catapultLineSense{'H'};
-IMU gyro{20};
+pros::ADIDigitalOut intakePiston{'G'};
 
-Controller master{CONTROLLER_MASTER};
-Controller partner{CONTROLLER_PARTNER};
+pros::ADIAnalogIn catapultLineSense{'H'};
+pros::IMU gyro{20};
+
+pros::Controller master{CONTROLLER_MASTER};
+pros::Controller partner{CONTROLLER_PARTNER};
 

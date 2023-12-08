@@ -5,7 +5,7 @@
 #include "teleop_functions.h"
 #include "controls.h"
 
-using namespace pros;
+// using namespace pros;
 
 /**
  * A callback function for LLEMU's center button.
@@ -22,13 +22,13 @@ using namespace pros;
  */
 void initialize() {
 	pros::lcd::initialize();
-	pros::lcd::register_btn0_cb(lcdAutonSelect);
-	pros::lcd::register_btn1_cb(lcdAllianceSelect);
-	lcdAutonSelect();
-	lcdAllianceSelect();
+	// pros::lcd::register_btn0_cb(lcdAutonSelect);
+	// pros::lcd::register_btn1_cb(lcdAllianceSelect);
+	// lcdAutonSelect();
+	// lcdAllianceSelect();
 
-	catapult.set_brake_mode(E_MOTOR_BRAKE_HOLD);
-	catapult2.set_brake_mode(E_MOTOR_BRAKE_HOLD);
+	catapult.setBrakeMode(AbstractMotor::brakeMode::hold);
+	catapult2.setBrakeMode(AbstractMotor::brakeMode::hold);
 	gyro.reset(true);
 }
 
@@ -62,7 +62,7 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-	executeAutonomous();
+	// executeAutonomous();
 }
 /**
  * Runs the operator control code. This function will be started in its own task

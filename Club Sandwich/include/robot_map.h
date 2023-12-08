@@ -1,6 +1,8 @@
 #include "main.h"
 
-using namespace pros;
+using namespace okapi;
+
+extern std::shared_ptr<ChassisController> chassis;
 
 //Motors
 extern Motor backLeft;
@@ -17,11 +19,11 @@ extern Motor leftPlow;
 extern Motor rightPlow;
 
 // //Digital Out/In
-extern ADIDigitalOut intakePiston;
-extern ADIAnalogIn catapultLineSense;
-extern ADIDigitalIn limitSwitch;
-extern ADIDigitalIn catapultPrime;
-extern IMU gyro;
+extern pros::ADIDigitalOut intakePiston;
+extern pros::ADIAnalogIn catapultLineSense;
+extern pros::ADIDigitalIn limitSwitch;
+extern pros::ADIDigitalIn catapultPrime;
+extern pros::IMU gyro;
 
-extern Controller master;
-extern Controller partner;
+extern pros::Controller master;
+extern pros::Controller partner;
