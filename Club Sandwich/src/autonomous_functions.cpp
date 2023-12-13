@@ -1,10 +1,10 @@
 #include "autonomous_functions.h"
 
-void a_Drive(double distance, double staticMod, double dynamicMod) {
-    backLeft.tare_position();
-    frontLeft.tare_position();
-    backRight.tare_position();
-    frontRight.tare_position();
+void a_ChassisDrive(double distance, double staticMod, double dynamicMod) {
+    driveBLeft.tare_position();
+    driveFLeft.tare_position();
+    driveBRight.tare_position();
+    driveFRight.tare_position();
     double initial = 0;
     bool backwards = false;
     if (distance < 0.0) {
@@ -15,40 +15,40 @@ void a_Drive(double distance, double staticMod, double dynamicMod) {
     double modifier = 1.0;
     if(distance < 0) speed *= -1;
     if (distance > 12) {
-        initial = (abs(frontLeft.get_position()) * INCH_CONSTANT + abs(frontRight.get_position()) * INCH_CONSTANT) / 2 -12;
+        initial = (abs(driveFLeft.get_position()) * INCH_CONSTANT + abs(driveFRight.get_position()) * INCH_CONSTANT) / 2 -12;
     } else {
-        initial = (abs(frontLeft.get_position()) * INCH_CONSTANT + abs(frontRight.get_position()) * INCH_CONSTANT) / 2;
+        initial = (abs(driveFLeft.get_position()) * INCH_CONSTANT + abs(driveFRight.get_position()) * INCH_CONSTANT) / 2;
     }
     double current = 0.0;
     while(current < distance) {
-        current = ((abs(frontLeft.get_position()) * INCH_CONSTANT + abs(frontRight.get_position()) * INCH_CONSTANT) / 2) - initial;
+        current = ((abs(driveFLeft.get_position()) * INCH_CONSTANT + abs(driveFRight.get_position()) * INCH_CONSTANT) / 2) - initial;
         // modifier = staticMod - (current / distance) * dynamicMod;
         modifier = 1.0;
         if(modifier > 1.0) modifier = 1.0;
             if (backwards) {
-                backLeft.move(-speed * modifier);
-                frontLeft.move(-speed * modifier);
-                backRight.move(-speed * modifier);
-                frontRight.move(-speed * modifier);    
+                driveBLeft.move(-speed * modifier);
+                driveFLeft.move(-speed * modifier);
+                driveBRight.move(-speed * modifier);
+                driveFRight.move(-speed * modifier);    
             } else {
-                backLeft.move(speed * modifier);
-                frontLeft.move(speed * modifier);
-                backRight.move(speed * modifier);
-                frontRight.move(speed * modifier);
+                driveBLeft.move(speed * modifier);
+                driveFLeft.move(speed * modifier);
+                driveBRight.move(speed * modifier);
+                driveFRight.move(speed * modifier);
             }
         delay(20);
     }
-    backLeft.move(0);
-    frontLeft.move(0);
-    backRight.move(0);
-    frontRight.move(0);
+    driveBLeft.move(0);
+    driveFLeft.move(0);
+    driveBRight.move(0);
+    driveFRight.move(0);
 }
 
-void a_Turn(double angle,  double staticMod, double dynamicMod) {
-    backLeft.tare_position();
-    frontLeft.tare_position();
-    backRight.tare_position();
-    frontRight.tare_position();
+void a_ChassisTurn(double angle,  double staticMod, double dynamicMod) {
+    driveBLeft.tare_position();
+    driveFLeft.tare_position();
+    driveBRight.tare_position();
+    driveFRight.tare_position();
     bool left = false;
     if (angle > 0.0) {
         left = true;
@@ -65,29 +65,25 @@ void a_Turn(double angle,  double staticMod, double dynamicMod) {
         modifier = 1.0;
         if(modifier > 1.0) modifier = 1.0;
             if (left) {
-                backLeft.move(speed * modifier);
-                frontLeft.move(speed * modifier);
-                backRight.move(-speed * modifier);
-                frontRight.move(-speed * modifier);
+                driveBLeft.move(speed * modifier);
+                driveFLeft.move(speed * modifier);
+                driveBRight.move(-speed * modifier);
+                driveFRight.move(-speed * modifier);
             } else {
-                backLeft.move(-speed * modifier);
-                frontLeft.move(-speed * modifier);
-                backRight.move(speed * modifier);
-                frontRight.move(speed * modifier);
+                driveBLeft.move(-speed * modifier);
+                driveFLeft.move(-speed * modifier);
+                driveBRight.move(speed * modifier);
+                driveFRight.move(speed * modifier);
             }
         delay(20);
     }
-    backLeft.move(0);
-    frontLeft.move(0);
-    backRight.move(0);
-    frontRight.move(0);
+    driveBLeft.move(0);
+    driveFLeft.move(0);
+    driveBRight.move(0);
+    driveFRight.move(0);
 }
 
-void a_Intake(int speed) {
-    intake.move(-speed * 127);
-}
-
-void a_FireCatapult() {
+void a_CatapultFire() {
     catapultLeft.move(127);
     catapultRight.move(127);
     delay(500);
@@ -95,11 +91,16 @@ void a_FireCatapult() {
     catapultRight.move(0);
 }
 
-void a_ReloadCatapult() {
+void a_CatapultReload() {
     while (!catapultPrimeLeft.get_value() && !catapultPrimeRight.get_value()) {
         catapultLeft.move(127);
         catapultRight.move(127);
     }
     catapultLeft.brake();
     catapultRight.brake();
+}
+
+void a_PneumaticFlexz(bool flex) {
+    pneumaticLeft.set_value(flex);
+    pneumaticRight.set_value(flex);
 }

@@ -4,13 +4,10 @@ using namespace pros;
 
 //MOTORS
 //Driver
-extern Motor backLeft;
-extern Motor frontLeft;
-extern Motor backRight;
-extern Motor frontRight;
-
-//Intake
-extern Motor intake;
+extern Motor driveBLeft;
+extern Motor driveFLeft;
+extern Motor driveBRight;
+extern Motor driveFRight;
 
 //Catapult
 extern Motor catapultLeft;
@@ -22,6 +19,10 @@ extern Motor catapultRight;
 //Limit Switch
 extern ADIDigitalIn catapultPrimeLeft;
 extern ADIDigitalIn catapultPrimeRight;
+
+//Pneumatics
+extern ADIDigitalOut pneumaticLeft;
+extern ADIDigitalOut pneumaticRight;
 
 //Gyro
 extern IMU gyro;

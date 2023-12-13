@@ -9,6 +9,8 @@ bool funButtonPressed = false;
 
 int allianceSelected = 0;
 
+bool pneumaticOut = false;
+
 
 //AUTONOMOUS
 const double INCH_CONSTANT = 0.0349065850398;

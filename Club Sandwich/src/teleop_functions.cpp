@@ -67,21 +67,17 @@ void teleopDrive() {
 
     if (bashMode) {
         //Bash Mode! (front is back)
-        backLeft.move((int32_t)(-completeSpeedLeft));
-        frontLeft.move((int32_t)(-completeSpeedLeft));
-        backRight.move((int32_t)(-completeSpeedRight));
-        frontRight.move((int32_t)(-completeSpeedRight));
+        driveBLeft.move((int32_t)(-completeSpeedLeft));
+        driveFLeft.move((int32_t)(-completeSpeedLeft));
+        driveBRight.move((int32_t)(-completeSpeedRight));
+        driveFRight.move((int32_t)(-completeSpeedRight));
     } else {
         //Standard drive (front is front)
-        backLeft.move((int32_t)(completeSpeedLeft));
-        frontLeft.move((int32_t)(completeSpeedLeft));
-        backRight.move((int32_t)(completeSpeedRight));
-        frontRight.move((int32_t)(completeSpeedRight));
+        driveBLeft.move((int32_t)(completeSpeedLeft));
+        driveFLeft.move((int32_t)(completeSpeedLeft));
+        driveBRight.move((int32_t)(completeSpeedRight));
+        driveFRight.move((int32_t)(completeSpeedRight));
     }
-}
-
-void teleopIntake() {
-    intake.move(master.get_digital(DIGITAL_L2)*127*.7 - master.get_digital(DIGITAL_R2)*127*.77);
 }
 
 void teleopCatapult() {
@@ -128,13 +124,14 @@ void teleopCatapult() {
     }
 }
 
-// void teleopElevate() {
-//     hook.move(master.get_digital(DIGITAL_L1)*127*.4 - master.get_digital(DIGITAL_R1)*127*.4);
-// }
+void teleopPneumaticFlexz() {
+    if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_L2)) {
+        pneumaticLeft.set_value(false);
+        pneumaticRight.set_value(false);
+    }
 
-
-//For drive, turning controlled by right sitck, left stick for forward and backward
-//Turning, reverse drive value to make spin
-//drive y left stick
-//drive x right stick
-//left, right is the positive
+    if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_R2)) {
+        pneumaticLeft.set_value(true);
+        pneumaticRight.set_value(true);
+    }
+}

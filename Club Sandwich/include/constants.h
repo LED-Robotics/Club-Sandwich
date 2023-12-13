@@ -15,6 +15,8 @@ extern int alliance;
 
 extern int allianceSelected;
 
+extern bool pneumaticOut;
+
 
 //AUTONOMOUS
 #define LEFT 0

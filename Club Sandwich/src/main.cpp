@@ -90,11 +90,9 @@ void opcontrol() {
 
 		teleopDrive();
 
-		teleopIntake();
-
 		teleopCatapult();
-		
-		// teleopElevate();
+
+		teleopPneumaticFlexz();
 
 		pros::delay(20);
 	}

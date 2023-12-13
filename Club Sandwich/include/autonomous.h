@@ -18,6 +18,4 @@ void rightAuton();
 
 void onlyCatapult();
 
-void onlyOuttake();
-
 void skills();

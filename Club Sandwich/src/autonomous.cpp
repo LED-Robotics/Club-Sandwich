@@ -27,13 +27,11 @@ void printData(bool funButtonPressed) {
             lcd::print(2, "Autonomous Selected: Right");
             break;
         case 3:
-            lcd::print(3, "Autonomous Selected: Catapult");
+            lcd::print(2, "Autonomous Selected: Catapult");
             break;
         case 4:
-            lcd::print(4, "Autonomous Selected: Outtake");
-            break;
-        case 5:
             lcd::print(2, "Autonomous Selected: Skills!!!");
+            lcd::print(3, "Programming expertice for 1min");
             break;
     }
 
@@ -69,7 +67,7 @@ void printData(bool funButtonPressed) {
 //LCD 0
 void lcdAutonSelect() {
     autonomousSelected++;
-    if (autonomousSelected > 5) { autonomousSelected = 0; } //Cycle
+    if (autonomousSelected > 4) { autonomousSelected = 0; } //Cycle
     printData(false);
 }
 
@@ -96,23 +94,6 @@ void lcdAllianceSelect() {
 void executeAutonomous() {
     switch (autonomousSelected) {
         case 0:
-            a_Drive(5.0, 0, 0);
-            a_Turn(17.0, 0, 0);
-            a_Drive(20.0, 0, 0);
-            a_Intake(-127);
-            delay(100);
-            a_Intake(0);
-            a_Turn(-160.0, 0, 0);
-            a_Drive(-9.0, 0, 0);
-            a_Drive(20.0, 0, 0);
-            a_Turn(65.0, 0, 0);
-            a_ReloadCatapult();
-            a_Intake(127);
-            a_Drive(50.0, 0, 0);
-            // a_Drive(10.0, 0, 0);
-            // a_Intake(127);
-            // a_Turn(10.0, 0, 0);
-            // a_Drive(5.0, 0, 0);
             break;
         case 1:
             leftAuton();
@@ -124,52 +105,26 @@ void executeAutonomous() {
             onlyCatapult();
             break;
         case 4:
-            onlyOuttake();
-            break;
-        case 5:
             skills();
             break;
     }
 }
 
 void leftAuton() {
-    a_ReloadCatapult();
-    a_FireCatapult();
-    a_Drive(-5.0, 0, 0);
-    a_Turn(-90.0, 0, 0);
-    a_Drive(45, 0, 0);
 }
 
 void rightAuton() {
-    // a_Drive(5.0, 0, 0);
-    // a_Turn(16.0, 0, 0);
-    // a_Drive(20.0, 0, 0);
-    // a_Intake(-127);
-    // a_Drive(4.0, 0, 0);
-    // delay(200);
-    // a_Intake(0);
-    // a_Turn(-170.0, 0, 0);
-    // a_Drive(-12.0, 0, 0);
-    // a_Drive(30.0, 0, 0);
-    // a_Turn(30.0, 0, 0);
-    // a_Drive(40.0, 0, 0);
-    // a_Turn(8.0, 0, 0);
-    // a_Drive(45.0, 0, 0);
 }
 
 void onlyCatapult() {
-    a_ReloadCatapult();
-    a_FireCatapult();
-}
-
-void onlyOuttake() {
-    a_Intake(-127);
+    a_CatapultReload();
+    a_CatapultFire();
 }
 
 void skills() {
     while (true) {
-        a_ReloadCatapult();
+        a_CatapultReload();
         delay(300);
-        a_FireCatapult();
+        a_CatapultFire();
     }
 }
