@@ -65,13 +65,13 @@ pros::controller_digital_e_t shoot = DIGITAL_R2;
 
 // have button to prime, stop at limit switch, and fire on a different button
 void teleopCatapult() {
-    bool primed = catapultLineSense.get_value() < 1000; // check if primed
+    bool primed = catapultLineSense.get_value() < 1800; // check if primed
     pros::lcd::print(3, "Dingdong: %d", primed);
     bool shooting = master.get_digital(shoot);
     if(!shooting) {//Automatic Prime
         // move if not primed
         if(!primed) {
-            catapult.controllerSet(0.79);
+            catapult.controllerSet(0.5);
             catapult2.controllerSet(0.79);
         }
         else {

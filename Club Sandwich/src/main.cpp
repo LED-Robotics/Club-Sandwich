@@ -63,6 +63,8 @@ void competition_initialize() {}
  */
 void autonomous() {
 	// executeAutonomous();
+	leftWP();
+
 }
 /**
  * Runs the operator control code. This function will be started in its own task
