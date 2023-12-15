@@ -11,27 +11,32 @@ void teleopDrive() {
     driveX = (double)master.get_analog(DRIVE_X) / 127.0;  // /127 to push value between -1.0 and 1.0
     driveY = (double)master.get_analog(DRIVE_Y) / 127.0;
 
-    // zero out axes if they fall within deadzone
-    if (driveX > -driveDeadzone && driveX < driveDeadzone)
-        driveX = 0.0;
-    if (driveY > -driveDeadzone && driveY < driveDeadzone)
-        driveY = 0.0;
+    driveX = driveCurveExtent * pow(driveX, 3) + (1- driveCurveExtent) * driveX;
+    driveY = driveCurveExtent * pow(driveY, 3) + (1- driveCurveExtent) * driveY;
 
-    // setup differential variables for arcade control
-    double leftSpeedRaw = driveY + driveX;
-    double rightSpeedRaw = driveY - driveX;
-    // Its me
-    // put speeds through a polynomial to smooth out joystick input
-    // check the curve out here: https://www.desmos.com/calculator/65tpwhxyai the range between 0.0 to 1.0 is used for the motors
-    // change driveCurveExtent to modify curve strength
-    double leftSpeed = driveCurveExtent * pow(leftSpeedRaw, 3) + (1- driveCurveExtent) * leftSpeedRaw;
-    double rightSpeed = driveCurveExtent * pow(rightSpeedRaw, 3) + (1- driveCurveExtent) * rightSpeedRaw;
+    chassisModel->arcade(driveY, driveX, driveDeadzone);
 
-    // set motors to final speeds
-    backLeft.controllerSet(leftSpeed);  // *127 to change value back to int
-    frontLeft.controllerSet(leftSpeed);
-    backRight.controllerSet(rightSpeed);
-    frontRight.controllerSet(rightSpeed);
+    // // zero out axes if they fall within deadzone
+    // if (driveX > -driveDeadzone && driveX < driveDeadzone)
+    //     driveX = 0.0;
+    // if (driveY > -driveDeadzone && driveY < driveDeadzone)
+    //     driveY = 0.0;
+
+    // // setup differential variables for arcade control
+    // double leftSpeedRaw = driveY + driveX;
+    // double rightSpeedRaw = driveY - driveX;
+    // // Its me
+    // // put speeds through a polynomial to smooth out joystick input
+    // // check the curve out here: https://www.desmos.com/calculator/65tpwhxyai the range between 0.0 to 1.0 is used for the motors
+    // // change driveCurveExtent to modify curve strength
+    // double leftSpeed = driveCurveExtent * pow(leftSpeedRaw, 3) + (1- driveCurveExtent) * leftSpeedRaw;
+    // double rightSpeed = driveCurveExtent * pow(rightSpeedRaw, 3) + (1- driveCurveExtent) * rightSpeedRaw;
+
+    // // set motors to final speeds
+    // backLeft.controllerSet(leftSpeed);  // *127 to change value back to int
+    // frontLeft.controllerSet(leftSpeed);
+    // backRight.controllerSet(rightSpeed);
+    // frontRight.controllerSet(rightSpeed);
 }
 
 bool intakeVar;

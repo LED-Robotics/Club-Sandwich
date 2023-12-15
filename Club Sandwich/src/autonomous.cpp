@@ -85,7 +85,15 @@ void leftWP() {
     // autonTurn(25);
     // delay(500);
     // autonDrive(-41.5);
-    chassis->moveDistance(1000.0_ft);
+    // chassis->moveDistance(1.0_ft);
+    // chassis->turnAngle(90.0_deg);
+    // pros::delay(2000);
+    // chassis->moveDistance(2.0_ft);
+    chassis->setState({0_ft, 0_ft, 0_deg});
+    chassis->stop();
+    chassis->waitUntilSettled();
+    // chassis->driveToPoint({2.0_ft, 2.0_ft});
+    chassis->turnToAngle(90_deg);
 }
 
 void leftSP() {//Shoot ball over to your own net, spin and hit elevation bar

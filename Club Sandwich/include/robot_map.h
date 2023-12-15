@@ -2,7 +2,8 @@
 
 using namespace okapi;
 
-extern std::shared_ptr<ChassisController> chassis;
+extern std::shared_ptr<OdomChassisController> chassis;
+extern std::shared_ptr<ChassisModel> chassisModel;
 
 //Motors
 extern Motor backLeft;

@@ -91,7 +91,7 @@ void opcontrol() {
 
 		teleopIntake();
 
-		teleopCatapult();
+		// teleopCatapult();
 
 		teleopPlow();
 

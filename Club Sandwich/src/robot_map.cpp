@@ -1,14 +1,21 @@
 #include "robot_map.h"
 
-std::shared_ptr<ChassisController> chassis =
+std::shared_ptr<OdomChassisController> chassis =
 ChassisControllerBuilder()
 .withMotors(
-    {-4, -2, -17}, // Left motors are 1 & 2 (reversed)
-    {3, 1, 18}    // Right motors are 3 & 4
+    {-2, -4, -18}, // Left motors are 1 & 2 (reversed)
+    {1, 17, 3}    // Right motors are 3 & 4
 )
 // Green gearset, 4 in wheel diam, 11.5 in wheel track
-.withDimensions({AbstractMotor::gearset::blue, (5.0 / 3.0)}, {{3.25_in, 12.125_in}, imev5BlueTPR})
-.build();
+.withDimensions({AbstractMotor::gearset::blue, (5.0 / 3.0)}, {{3.25_in, 19.0_in}, imev5BlueTPR})
+.withGains(
+    {0.001, 0.0, 0.0000},
+    {0.001, 0.0, 0.0000},
+    {0.000, 0.0, 0.0000}
+)
+.withOdometry()
+.buildOdometry();
+std::shared_ptr<ChassisModel> chassisModel = chassis->getModel();
 
 Motor backLeft{4, true, AbstractMotor::gearset::blue , AbstractMotor::encoderUnits::degrees};
 Motor frontLeft{2, true, AbstractMotor::gearset::blue, AbstractMotor::encoderUnits::degrees};
