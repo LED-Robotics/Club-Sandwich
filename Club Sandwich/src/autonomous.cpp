@@ -92,8 +92,38 @@ void leftWP() {
     chassis->setState({0_ft, 0_ft, 0_deg});
     chassis->stop();
     chassis->waitUntilSettled();
-    // chassis->driveToPoint({2.0_ft, 2.0_ft});
-    chassis->turnToAngle(90_deg);
+    chassis->driveToPoint({0.5_ft, 0.0_ft});
+    autonTare();
+    intakePiston.set_value(true);
+    chassis->driveToPoint({1.6_ft, 1.6_ft});
+    autonTare();
+    chassis->turnAngle(-20_deg);
+    chassis->moveDistance(0.3_ft);
+    intake.controllerSet(-103);
+    pros::delay(850);
+    chassis->moveDistance(-1.1_ft);
+    autonTare();
+    intakePiston.set_value(true);
+    intake.controllerSet(1.0);
+    autonTare();
+    chassis->driveToPoint({0.125_ft,-4_ft});
+    pros::delay(500);
+    intake.controllerSet(0);
+    autonTare();
+    chassis->driveToPoint({-0.9_ft, 1.4_ft});
+    intake.controllerSet(-1.0);
+    autonTare();
+
+
+
+    // chassis->moveDistance(-0.5_ft);
+    // autonTare();
+    // chassis->turnAngle(-25_deg);
+    // autonTare();
+    // chassis->moveDistance(-1.0_ft);
+
+
+
 }
 
 void leftSP() {//Shoot ball over to your own net, spin and hit elevation bar
@@ -129,6 +159,6 @@ void rightSP(){
 
 }
 void skills() {
-    catapult.controllerSet(1.0);
+    thunker.controllerSet(1.0);
     catapult2.controllerSet(1.0);
 }

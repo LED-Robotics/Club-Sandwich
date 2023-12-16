@@ -22,16 +22,16 @@ Motor frontLeft{2, true, AbstractMotor::gearset::blue, AbstractMotor::encoderUni
 Motor backRight{3, false, AbstractMotor::gearset::blue, AbstractMotor::encoderUnits::degrees};
 Motor frontRight{1, false, AbstractMotor::gearset::blue, AbstractMotor::encoderUnits::degrees};
 
-Motor intake{11, true, AbstractMotor::gearset::green, AbstractMotor::encoderUnits::degrees};//*Small Motors 200 RPM
+Motor intake{9, true, AbstractMotor::gearset::invalid, AbstractMotor::encoderUnits::degrees};//*Small Motors 200 RPM
 
-Motor catapult{10,true, AbstractMotor::gearset::red, AbstractMotor::encoderUnits::degrees};
+Motor thunker{10,true, AbstractMotor::gearset::red, AbstractMotor::encoderUnits::degrees};
 Motor catapult2{6, false, AbstractMotor::gearset::red, AbstractMotor::encoderUnits::degrees};
 Motor leftPlow {15, false, AbstractMotor::gearset::green, AbstractMotor::encoderUnits::degrees};
 Motor rightPlow{16, true, AbstractMotor::gearset::green, AbstractMotor::encoderUnits::degrees};
 
 pros::ADIDigitalOut intakePiston{'H'};
 
-pros::ADIAnalogIn catapultLineSense{'G'};
+pros::ADIAnalogIn thunkerLineSense{'G'};
 pros::IMU gyro{20};
 
 pros::Controller master{CONTROLLER_MASTER};

@@ -22,12 +22,12 @@
  */
 void initialize() {
 	pros::lcd::initialize();
-	// pros::lcd::register_btn0_cb(lcdAutonSelect);
+	pros::lcd::register_btn0_cb(lcdAutonSelect);
 	// pros::lcd::register_btn1_cb(lcdAllianceSelect);
 	// lcdAutonSelect();
 	// lcdAllianceSelect();
 
-	catapult.setBrakeMode(AbstractMotor::brakeMode::hold);
+	thunker.setBrakeMode(AbstractMotor::brakeMode::hold);
 	catapult2.setBrakeMode(AbstractMotor::brakeMode::hold);
 	gyro.reset(true);
 }
@@ -62,8 +62,8 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-	// executeAutonomous();
-	leftWP();
+	executeAutonomous();
+	// leftWP();
 
 }
 /**
@@ -86,14 +86,17 @@ void opcontrol() {
 		} else if (!partner.is_connected() && partnerConnected) {
 			partnerConnected = false;
 		}
-		
+		autonTare();
+
+
+
 		teleopDrive();
 
 		teleopIntake();
 
 		// teleopCatapult();
 
-		teleopPlow();
+		teleopThunker();
 
 		// teleopElevate();
 

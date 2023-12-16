@@ -46,21 +46,29 @@ bool pistonVarIn;
 bool extendIntake;
 //Its me
 void teleopIntake() {
-    intakeVar = master.get_digital(DIGITAL_L1);
-    outtakeVar = master.get_digital(DIGITAL_R1);
+    intakeVar=master.get_digital(DIGITAL_R1);
+    outtakeVar=master.get_digital(DIGITAL_L1);
+    pistonVarOut=master.get_digital_new_press(DIGITAL_UP);
+    pistonVarIn=master.get_digital_new_press(DIGITAL_DOWN);
 
-    if(intakeVar && !outtakeVar){
+    if(intakeVar){
         intake.controllerSet(1.0);
     }
-    else if(!intakeVar && outtakeVar){
+    else if(outtakeVar){
         intake.controllerSet(-1.0);
     }
-    else if(master.get_digital_new_press(DIGITAL_A)){
-        extendIntake=!extendIntake;
-        intakePiston.set_value(extendIntake);
-    }
     else{
-        intake.controllerSet(0.0);
+        intake.controllerSet(0);
+
+    }
+
+    //SECTION FOR PNEUMATICS
+
+    if(pistonVarOut){
+        intakePiston.set_value(true);
+    }
+    if(pistonVarIn){
+        intakePiston.set_value(false);
     }
 }
 
@@ -69,45 +77,30 @@ int bottom = 0;
 pros::controller_digital_e_t shoot = DIGITAL_R2;
 
 // have button to prime, stop at limit switch, and fire on a different button
-void teleopCatapult() {
-    bool primed = catapultLineSense.get_value() < 1800; // check if primed
-    pros::lcd::print(3, "Dingdong: %d", primed);
-    bool shooting = master.get_digital(shoot);
-    if(!shooting) {//Automatic Prime
-        // move if not primed
-        if(!primed) {
-            catapult.controllerSet(0.5);
-            catapult2.controllerSet(0.79);
-        }
-        else {
-            catapult.controllerSet(0.12);
-            catapult2.controllerSet(0.12);
-        }
-    } else {
-        catapult.controllerSet(1.0);
-        catapult2.controllerSet(1.0);
-    }
-    pros::lcd::print(4, "Dingdonger: %d", catapult.getVoltage());
-}
+
 
 bool leftPlowState = false;
 bool rightPlowState = false;
 
-void teleopPlow(){
-   if(master.get_digital_new_press(DIGITAL_LEFT)) leftPlowState = !leftPlowState;
-   if(master.get_digital_new_press(DIGITAL_RIGHT)) rightPlowState = !rightPlowState;
-   if(master.get_digital_new_press(DIGITAL_UP)) {
-        int states = leftPlowState + rightPlowState;
-        if(states < 2) {
-            leftPlowState = true;
-            rightPlowState = true;
-        } else {
-            leftPlowState = false;
-            rightPlowState = false;
+void teleopThunker(){
+
+    bool primed = thunkerLineSense.get_value() <  1500; //check if primed
+
+    bool thunkerNoThunking = master.get_digital(DIGITAL_R2);
+    pros::lcd::print(0,"Dingdonger: %d", thunkerLineSense.get_value());
+
+    if(!thunkerNoThunking) {//Automatic Prime
+        // move if not primed
+        if(!primed) {
+        thunker.controllerSet(0.8);
         }
-   }
-    leftPlow.moveAbsolute(leftPlowState ? 90 : 0, 500);
-    rightPlow.moveAbsolute(rightPlowState ? 90 : 0, 500);
+        else {
+        thunker.controllerSet(0);
+        }
+    } else {
+        thunker.controllerSet(1.0);
+
+}
 }
 
 

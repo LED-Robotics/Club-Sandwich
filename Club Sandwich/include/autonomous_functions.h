@@ -14,3 +14,5 @@ void autonIntake(bool forwards);
 void autonPrime();
 
 void autonCatapult();
+
+void autonTare();

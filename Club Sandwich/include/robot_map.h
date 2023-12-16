@@ -13,7 +13,7 @@ extern Motor frontRight;
 
 extern Motor intake;
 
-extern Motor catapult;
+extern Motor thunker;
 extern Motor catapult2;
 
 extern Motor leftPlow;
@@ -21,7 +21,7 @@ extern Motor rightPlow;
 
 // //Digital Out/In
 extern pros::ADIDigitalOut intakePiston;
-extern pros::ADIAnalogIn catapultLineSense;
+extern pros::ADIAnalogIn thunkerLineSense;
 extern pros::ADIDigitalIn limitSwitch;
 extern pros::ADIDigitalIn catapultPrime;
 extern pros::IMU gyro;
