@@ -111,9 +111,35 @@ void executeAutonomous() {
 }
 
 void leftAuton() {
+    a_CatapultReload();
+    delay(100);
+    a_CatapultFire();
+    a_ChassisDrive(1.0, 0.0, 0.0);
+    a_ChassisTurn(28.5, 0.0, 0.0);
+    a_ChassisDrive(-42.0, 0.0, 0.0);
+    a_ChassisTurn(89.0, 0.0, 0.0);
 }
 
 void rightAuton() {
+    a_CatapultSpeed(40.0);
+    a_CatapultReload();
+    a_ChassisDrive(-15.0, 0.0, 0.0);
+    a_ChassisTurn(-25.0, 0.0, 0.0);
+    delay(100);
+    a_CatapultFire();
+    a_CatapultReload();
+    a_ChassisTurn(25.0, 0.0, 0.0);
+    a_ChassisDrive(-8.5, 0.0, 0.0);
+    a_ChassisTurn(-205.0, 0.0, 0.0);
+    a_ChassisDrive(23.3, 0.0, 0.0);
+    delay(100);
+    a_PneumaticFlexzLeft(true);
+    for (double i = 0.0; i < 4.0; i++) {
+        a_ChassisDrive(1.9, 0.0, 0.0);
+        a_ChassisTurn(17.0, 0.0, 0.0);
+    }
+    a_ChassisDrive(20.0, 0.0, 0.0);
+    a_PneumaticFlexzLeft(false);
 }
 
 void onlyCatapult() {

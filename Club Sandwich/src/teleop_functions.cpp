@@ -5,9 +5,9 @@ using namespace pros;
 
 void teleopDrive() {
     if (bashMode) {
-        turnVar = (double)master.get_analog(ANALOG_RIGHT_X)*-.85;//   
+        turnVar = (double)master.get_analog(ANALOG_RIGHT_X)*-1;//   
     } else {
-        turnVar = (double)master.get_analog(ANALOG_RIGHT_X)*.85;//
+        turnVar = (double)master.get_analog(ANALOG_RIGHT_X);//
     }
     straightVar = (double)master.get_analog(ANALOG_LEFT_Y);//
     
@@ -133,5 +133,14 @@ void teleopPneumaticFlexz() {
     if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_R2)) {
         pneumaticLeft.set_value(true);
         pneumaticRight.set_value(true);
+    }
+
+    if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_R1)) {
+        pneumaticLeft.set_value(!pneumaticOut);
+        pneumaticOut != pneumaticOut;
+    }
+    if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_L1)) {
+        pneumaticRight.set_value(!pneumaticOut);
+        pneumaticOut != pneumaticOut;
     }
 }

@@ -86,9 +86,10 @@ void a_ChassisTurn(double angle,  double staticMod, double dynamicMod) {
 void a_CatapultFire() {
     catapultLeft.move(127);
     catapultRight.move(127);
-    delay(500);
+    delay(750);
     catapultLeft.move(0);
     catapultRight.move(0);
+    delay(50);
 }
 
 void a_CatapultReload() {
@@ -98,9 +99,19 @@ void a_CatapultReload() {
     }
     catapultLeft.brake();
     catapultRight.brake();
+    delay(20);
 }
 
-void a_PneumaticFlexz(bool flex) {
+void a_CatapultSpeed(double speed) {
+    catapultLeft.move(speed);
+    catapultRight.move(speed);
+    delay(20);
+}
+
+void a_PneumaticFlexzLeft(bool flex) {
     pneumaticLeft.set_value(flex);
+}
+
+void a_PneumaticFlexzRight(bool flex) {
     pneumaticRight.set_value(flex);
 }

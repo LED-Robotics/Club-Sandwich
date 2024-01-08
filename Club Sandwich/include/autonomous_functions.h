@@ -9,4 +9,8 @@ void a_CatapultFire();
 
 void a_CatapultReload();
 
-void a_PneumaticFlexz(bool flex);
+void a_CatapultSpeed(double speed);
+
+void a_PneumaticFlexzLeft(bool flex);
+
+void a_PneumaticFlexzRight(bool flex);
