@@ -2,28 +2,22 @@
 
 //MOTORS
 //Driver
-Motor driveBLeft{4, MOTOR_GEAR_GREEN, false, MOTOR_ENCODER_DEGREES};
-Motor driveFLeft{2, MOTOR_GEAR_GREEN, false, MOTOR_ENCODER_DEGREES};
-Motor driveBRight{3, MOTOR_GEAR_GREEN, true, MOTOR_ENCODER_DEGREES};
-Motor driveFRight{1, MOTOR_GEAR_GREEN, true, MOTOR_ENCODER_DEGREES};
+Motor driveBLeft{1, MOTOR_GEAR_BLUE, false, MOTOR_ENCODER_DEGREES};
+Motor driveCLeft{2, MOTOR_GEAR_BLUE, false, MOTOR_ENCODER_DEGREES};
+Motor driveFLeft{3, MOTOR_GEAR_BLUE, false, MOTOR_ENCODER_DEGREES};
+Motor driveBRight{11, MOTOR_GEAR_BLUE, true, MOTOR_ENCODER_DEGREES};
+Motor driveCRight{12, MOTOR_GEAR_BLUE, false, MOTOR_ENCODER_DEGREES};
+Motor driveFRight{13, MOTOR_GEAR_BLUE, true, MOTOR_ENCODER_DEGREES};
 
-//Catapult
-Motor catapultLeft{20, MOTOR_GEAR_RED, false, MOTOR_ENCODER_DEGREES};
-Motor catapultRight{7, MOTOR_GEAR_RED, true, MOTOR_ENCODER_DEGREES};
-
-//Elevator
-// Motor hook{5, MOTOR_GEAR_200, false, MOTOR_ENCODER_DEGREES};
-
-//Limit Switch
-ADIDigitalIn catapultPrimeLeft{'A'};
-ADIDigitalIn catapultPrimeRight{'B'};
+//Flywheel
+Motor flywheelGoBurr{15, MOTOR_GEAR_BLUE, false, MOTOR_ENCODER_DEGREES};
 
 //Pneumatics
-ADIDigitalOut pneumaticLeft{'C'};
-ADIDigitalOut pneumaticRight{'D'};
+ADIDigitalOut pneumaticLeft{'A'};
+ADIDigitalOut pneumaticRight{'H'};
 
 //Gyro
-IMU gyro{9};
+IMU gyro{14};
 
 //Controller
 Controller master{CONTROLLER_MASTER};

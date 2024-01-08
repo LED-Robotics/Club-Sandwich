@@ -5,7 +5,7 @@ using namespace pros;
 
 void teleopDrive() {
     if (bashMode) {
-        turnVar = (double)master.get_analog(ANALOG_RIGHT_X)*-1;//   
+        turnVar = (double)master.get_analog(ANALOG_RIGHT_X)*-1;//
     } else {
         turnVar = (double)master.get_analog(ANALOG_RIGHT_X);//
     }
@@ -69,59 +69,23 @@ void teleopDrive() {
         //Bash Mode! (front is back)
         driveBLeft.move((int32_t)(-completeSpeedLeft));
         driveFLeft.move((int32_t)(-completeSpeedLeft));
+        driveCLeft.move((int32_t)(-completeSpeedLeft));
         driveBRight.move((int32_t)(-completeSpeedRight));
+        driveCRight.move((int32_t)(-completeSpeedRight));
         driveFRight.move((int32_t)(-completeSpeedRight));
     } else {
         //Standard drive (front is front)
         driveBLeft.move((int32_t)(completeSpeedLeft));
+        driveCLeft.move((int32_t)(completeSpeedLeft));
         driveFLeft.move((int32_t)(completeSpeedLeft));
         driveBRight.move((int32_t)(completeSpeedRight));
+        driveCRight.move((int32_t)(completeSpeedRight));
         driveFRight.move((int32_t)(completeSpeedRight));
     }
 }
 
-void teleopCatapult() {
-    //One of two modes (determined by IFs)
-    if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_LEFT)) {
-        automaticPrime = false;
-    } else if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_DOWN)) {
-       	catapultLeft.move(127);
-        catapultRight.move(127);
-        delay(100);
-        automaticPrime = true;
-    }
-
-    if (!automaticPrime) {
-        if (!master.get_digital(E_CONTROLLER_DIGITAL_A)) {
-            catapultLeft.move(127*.2);
-            catapultRight.move(127*.2);
-        } else {
-            catapultLeft.move(master.get_digital(E_CONTROLLER_DIGITAL_A)*127*.85);
-            catapultRight.move(master.get_digital(E_CONTROLLER_DIGITAL_A)*127*.85);
-        }
-
-        loading = false; //The value remains true to prevent errors since loading is no longer tracked
-    } else {
-        //Button cannot be pressed while priming
-        //Button necessary to prime and launch. In the case the limit switch or other functions fail.
-        if (!catapultPrimeLeft.get_value() && !catapultPrimeRight.get_value()) {
-            catapultLeft.move(127);
-            catapultRight.move(127);
-            loading = true;
-        } else if (!master.get_digital(E_CONTROLLER_DIGITAL_A)) {
-            catapultLeft.brake();
-            catapultRight.brake();
-            loading = false;
-        }
-
-        if (master.get_digital(E_CONTROLLER_DIGITAL_A) && !loading) {
-            catapultLeft.move(127);
-            catapultRight.move(127);
-            delay(300);  //Fine Tune!
-            catapultLeft.move(0);
-            catapultRight.move(0);
-        }
-    }
+void teleopFlywheel() {
+    
 }
 
 void teleopPneumaticFlexz() {

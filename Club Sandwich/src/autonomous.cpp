@@ -27,9 +27,6 @@ void printData(bool funButtonPressed) {
             lcd::print(2, "Autonomous Selected: Right");
             break;
         case 3:
-            lcd::print(2, "Autonomous Selected: Catapult");
-            break;
-        case 4:
             lcd::print(2, "Autonomous Selected: Skills!!!");
             lcd::print(3, "Programming expertice for 1min");
             break;
@@ -67,7 +64,7 @@ void printData(bool funButtonPressed) {
 //LCD 0
 void lcdAutonSelect() {
     autonomousSelected++;
-    if (autonomousSelected > 4) { autonomousSelected = 0; } //Cycle
+    if (autonomousSelected > 3) { autonomousSelected = 0; } //Cycle
     printData(false);
 }
 
@@ -102,18 +99,12 @@ void executeAutonomous() {
             rightAuton();
             break;
         case 3:
-            onlyCatapult();
-            break;
-        case 4:
             skills();
             break;
     }
 }
 
 void leftAuton() {
-    a_CatapultReload();
-    delay(100);
-    a_CatapultFire();
     a_ChassisDrive(1.0, 0.0, 0.0);
     a_ChassisTurn(28.5, 0.0, 0.0);
     a_ChassisDrive(-42.0, 0.0, 0.0);
@@ -121,13 +112,9 @@ void leftAuton() {
 }
 
 void rightAuton() {
-    a_CatapultSpeed(40.0);
-    a_CatapultReload();
     a_ChassisDrive(-15.0, 0.0, 0.0);
     a_ChassisTurn(-25.0, 0.0, 0.0);
     delay(100);
-    a_CatapultFire();
-    a_CatapultReload();
     a_ChassisTurn(25.0, 0.0, 0.0);
     a_ChassisDrive(-8.5, 0.0, 0.0);
     a_ChassisTurn(-205.0, 0.0, 0.0);
@@ -142,15 +129,8 @@ void rightAuton() {
     a_PneumaticFlexzLeft(false);
 }
 
-void onlyCatapult() {
-    a_CatapultReload();
-    a_CatapultFire();
-}
-
 void skills() {
     while (true) {
-        a_CatapultReload();
-        delay(300);
-        a_CatapultFire();
+        a_Flywheel();
     }
 }

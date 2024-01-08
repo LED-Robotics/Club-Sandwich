@@ -16,6 +16,4 @@ void leftAuton();
 
 void rightAuton();
 
-void onlyCatapult();
-
 void skills();

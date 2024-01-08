@@ -28,8 +28,6 @@ void initialize() {
 	lcdAutonSelect();
 	lcdAllianceSelect();
 
-	catapultLeft.set_brake_mode(E_MOTOR_BRAKE_HOLD);
-	catapultRight.set_brake_mode(E_MOTOR_BRAKE_HOLD);
 	gyro.reset(true);
 }
 
@@ -90,7 +88,7 @@ void opcontrol() {
 
 		teleopDrive();
 
-		teleopCatapult();
+		teleopFlywheel();
 
 		teleopPneumaticFlexz();
 

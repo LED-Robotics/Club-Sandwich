@@ -2,6 +2,6 @@
 #include <cstdint>
 void teleopDrive();
 
-void teleopCatapult();
+void teleopFlywheel();
 
 void teleopPneumaticFlexz();

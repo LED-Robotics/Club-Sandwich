@@ -2,8 +2,10 @@
 
 void a_ChassisDrive(double distance, double staticMod, double dynamicMod) {
     driveBLeft.tare_position();
+    driveCLeft.tare_position();
     driveFLeft.tare_position();
     driveBRight.tare_position();
+    driveCRight.tare_position();
     driveFRight.tare_position();
     double initial = 0;
     bool backwards = false;
@@ -27,13 +29,17 @@ void a_ChassisDrive(double distance, double staticMod, double dynamicMod) {
         if(modifier > 1.0) modifier = 1.0;
             if (backwards) {
                 driveBLeft.move(-speed * modifier);
+                driveCLeft.move(-speed * modifier);
                 driveFLeft.move(-speed * modifier);
                 driveBRight.move(-speed * modifier);
+                driveCRight.move(-speed * modifier);
                 driveFRight.move(-speed * modifier);    
             } else {
                 driveBLeft.move(speed * modifier);
+                driveCLeft.move(speed * modifier);
                 driveFLeft.move(speed * modifier);
                 driveBRight.move(speed * modifier);
+                driveCRight.move(speed * modifier);
                 driveFRight.move(speed * modifier);
             }
         delay(20);
@@ -83,29 +89,8 @@ void a_ChassisTurn(double angle,  double staticMod, double dynamicMod) {
     driveFRight.move(0);
 }
 
-void a_CatapultFire() {
-    catapultLeft.move(127);
-    catapultRight.move(127);
-    delay(750);
-    catapultLeft.move(0);
-    catapultRight.move(0);
-    delay(50);
-}
-
-void a_CatapultReload() {
-    while (!catapultPrimeLeft.get_value() && !catapultPrimeRight.get_value()) {
-        catapultLeft.move(127);
-        catapultRight.move(127);
-    }
-    catapultLeft.brake();
-    catapultRight.brake();
-    delay(20);
-}
-
-void a_CatapultSpeed(double speed) {
-    catapultLeft.move(speed);
-    catapultRight.move(speed);
-    delay(20);
+void a_Flywheel() {
+    
 }
 
 void a_PneumaticFlexzLeft(bool flex) {

@@ -5,20 +5,14 @@ using namespace pros;
 //MOTORS
 //Driver
 extern Motor driveBLeft;
+extern Motor driveCLeft;
 extern Motor driveFLeft;
 extern Motor driveBRight;
+extern Motor driveCRight;
 extern Motor driveFRight;
 
-//Catapult
-extern Motor catapultLeft;
-extern Motor catapultRight;
-
-//Elevator
-// extern Motor hook;
-
-//Limit Switch
-extern ADIDigitalIn catapultPrimeLeft;
-extern ADIDigitalIn catapultPrimeRight;
+//Flywheel
+extern Motor flywheelGoBurr;
 
 //Pneumatics
 extern ADIDigitalOut pneumaticLeft;
