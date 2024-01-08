@@ -45,15 +45,19 @@ void a_ChassisDrive(double distance, double staticMod, double dynamicMod) {
         delay(20);
     }
     driveBLeft.move(0);
+    driveCLeft.move(0);
     driveFLeft.move(0);
     driveBRight.move(0);
+    driveCRight.move(0);
     driveFRight.move(0);
 }
 
 void a_ChassisTurn(double angle,  double staticMod, double dynamicMod) {
     driveBLeft.tare_position();
+    driveCLeft.tare_position();
     driveFLeft.tare_position();
     driveBRight.tare_position();
+    driveCRight.tare_position();
     driveFRight.tare_position();
     bool left = false;
     if (angle > 0.0) {
@@ -84,8 +88,10 @@ void a_ChassisTurn(double angle,  double staticMod, double dynamicMod) {
         delay(20);
     }
     driveBLeft.move(0);
+    driveCLeft.move(0);
     driveFLeft.move(0);
     driveBRight.move(0);
+    driveCRight.move(0);
     driveFRight.move(0);
 }
 

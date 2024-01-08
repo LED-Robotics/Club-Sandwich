@@ -10,7 +10,7 @@ Motor driveCRight{12, MOTOR_GEAR_BLUE, true, MOTOR_ENCODER_DEGREES}; //12
 Motor driveFRight{13, MOTOR_GEAR_BLUE, true, MOTOR_ENCODER_DEGREES}; //13
 
 //Flywheel
-Motor flywheel{15, MOTOR_GEAR_BLUE, false, MOTOR_ENCODER_DEGREES}; //15
+Motor flywheel{15, MOTOR_GEAR_BLUE, true, MOTOR_ENCODER_DEGREES}; //15
 
 //Pneumatics
 ADIDigitalOut pneumaticLeft{'A'}; //A
