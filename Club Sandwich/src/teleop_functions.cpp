@@ -85,7 +85,11 @@ void teleopDrive() {
 }
 
 void teleopFlywheel() {
-    
+    if (master.get_digital(E_CONTROLLER_DIGITAL_A)) {
+        flywheel.move((int32_t)(127.0));
+    } else if (master.get_digital(E_CONTROLLER_DIGITAL_B)) {
+        flywheel.move((int32_t)(-127.0));
+    }
 }
 
 void teleopPneumaticFlexz() {

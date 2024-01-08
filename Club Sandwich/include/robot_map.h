@@ -12,7 +12,7 @@ extern Motor driveCRight;
 extern Motor driveFRight;
 
 //Flywheel
-extern Motor flywheelGoBurr;
+extern Motor flywheel;
 
 //Pneumatics
 extern ADIDigitalOut pneumaticLeft;

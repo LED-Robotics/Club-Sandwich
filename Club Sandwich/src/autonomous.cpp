@@ -131,6 +131,6 @@ void rightAuton() {
 
 void skills() {
     while (true) {
-        a_Flywheel();
+        a_FlywheelGoBurr(127.0);
     }
 }

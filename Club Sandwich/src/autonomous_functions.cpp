@@ -89,8 +89,8 @@ void a_ChassisTurn(double angle,  double staticMod, double dynamicMod) {
     driveFRight.move(0);
 }
 
-void a_Flywheel() {
-    
+void a_FlywheelGoBurr(double speed) {
+    flywheel.move(speed);
 }
 
 void a_PneumaticFlexzLeft(bool flex) {
