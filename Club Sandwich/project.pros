@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "Butter Criterion",
+    "project_name": "Helicoprion",
     "target": "v5",
     "templates": {
       "kernel": {

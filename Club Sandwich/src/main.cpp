@@ -90,6 +90,8 @@ void opcontrol() {
 
 		teleopFlywheel();
 
+		teleopCling();
+
 		teleopPneumaticFlexz();
 
 		pros::delay(20);

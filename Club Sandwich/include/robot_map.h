@@ -14,6 +14,9 @@ extern Motor driveFRight;
 //Flywheel
 extern Motor flywheel;
 
+//Climb
+extern Motor climb;
+
 //Pneumatics
 extern ADIDigitalOut pneumaticLeft;
 extern ADIDigitalOut pneumaticRight;

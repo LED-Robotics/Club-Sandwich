@@ -5,7 +5,7 @@ using namespace pros;
 
 void teleopDrive() {
     if (bashMode) {
-        turnVar = (double)master.get_analog(ANALOG_RIGHT_X)*-1;//
+        turnVar = (double)master.get_analog(ANALOG_RIGHT_X)*-.73;//
     } else {
         turnVar = (double)master.get_analog(ANALOG_RIGHT_X);//
     }
@@ -92,6 +92,10 @@ void teleopFlywheel() {
     } else {
         flywheel.move((int32_t)(0.0));
     }
+}
+
+void teleopCling() {
+    climb.move((int32_t)((master.get_digital(E_CONTROLLER_DIGITAL_L2) - master.get_digital(E_CONTROLLER_DIGITAL_R2))*127.0));
 }
 
 void teleopPneumaticFlexz() {

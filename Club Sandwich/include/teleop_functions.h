@@ -4,4 +4,6 @@ void teleopDrive();
 
 void teleopFlywheel();
 
+void teleopCling();
+
 void teleopPneumaticFlexz();
