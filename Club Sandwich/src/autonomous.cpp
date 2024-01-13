@@ -1,5 +1,6 @@
 #include "autonomous.h"
 #include "autonomous_functions.h"
+#include <math.h>
 // using namespace pros;
 
 void printData() {
@@ -9,10 +10,10 @@ void printData() {
             pros::lcd::print(0, "Auton Selected: Standby");
             break;
         case 1:
-            pros::lcd::print(0, "Auton Slected: Left");
+            pros::lcd::print(0, "Auton Slected: Right");
             break;
         case 2:
-            pros::lcd::print(0, "Auton Selected: Skills");
+            pros::lcd::print(0, "Auton Selected: Left");
             break;
         case 3:
             pros::lcd::print(0, "Auton Selected: Programming Skills");
@@ -23,7 +24,7 @@ void printData() {
 
 void lcdAutonSelect() {
     autonomousSelected++;
-    if (autonomousSelected > 2) { autonomousSelected = 0; }
+    if (autonomousSelected > 3) { autonomousSelected = 0; }
     printData();
 }
 
@@ -43,10 +44,10 @@ void executeAutonomous() {
         case 0:
             break;
         case 1:
-            leftWP();
+            rightWP2();//RIGHT
             break;
         case 2:
-            skills();
+            leftWP();//LEFT
             break;
         case 3:
             leftSP();
@@ -54,7 +55,7 @@ void executeAutonomous() {
     }
 }
 
-void leftWP() {
+void rightWP() {
     // autonPrime();
     // intake.move(127);
     // delay(1500);
@@ -97,16 +98,17 @@ void leftWP() {
     intakePiston.set_value(true);
     chassis->driveToPoint({1.6_ft, 1.6_ft});
     autonTare();
-    chassis->turnAngle(-20_deg);
-    chassis->moveDistance(0.3_ft);
-    intake.controllerSet(-103);
+    chassis->turnToAngle(-20_deg);
+    autonTare();
+    chassis->driveToPoint({0.1_ft, 0.0_ft});
+    intake.controllerSet(-1.0);
     pros::delay(850);
     chassis->moveDistance(-1.1_ft);
     autonTare();
     intakePiston.set_value(true);
     intake.controllerSet(1.0);
     autonTare();
-    chassis->driveToPoint({0.125_ft,-4_ft});
+    chassis->driveToPoint({0.125_ft,-3.75_ft});
     pros::delay(500);
     intake.controllerSet(0);
     autonTare();
@@ -124,41 +126,72 @@ void leftWP() {
 
 
 
+
+}
+
+void rightWP2(){
+    // chassis->driveToPoint({0.5_ft, 0.0_ft});
+    // intakePiston.set_value(true);
+    // chassis->driveToPoint({2.0_ft, 1.0_ft});
+    chassis->driveToPoint({2.25_ft, 0.0_ft});
+    intakePiston.set_value(true);
+    intake.controllerSet(-1.0);
+    pros::delay(1250);
+    intake.controllerSet(0.0);
+    chassis->setState({0_ft, 0_ft, 0_deg});
+    chassis->driveToPoint({0.5_ft, -1.75_ft});
+    intake.controllerSet(1.0);
+    pros::delay(500);
+    intake.controllerSet(0.0);
+    chassis->turnAngle(120_deg);
+    chassis->moveDistance(1.5_ft);
+    intake.controllerSet(-1.0);
+    pros::delay(750);
+    intake.controllerSet(0.0);
+    chassis->moveDistance(-0.5_ft);
+    chassis->turnAngle(-55_deg);
+    chassis->moveDistance(1.25_ft);
+    intake.controllerSet(1.0);
+    pros::delay(500);
+    intake.controllerSet(0.0);
+    chassis->turnAngle(90_deg);
+    intake.controllerSet(-1.0);
+    pros::delay(800);
+    intake.controllerSet(0.0);
+    intakePiston.set_value(false);
+    chassis->moveDistance(-0.5_ft);
+    chassis->turnAngle(175_deg);
+    chassis->moveDistance(-1.75_ft);
+
+
+
+   
+   
+
 }
 
 void leftSP() {//Shoot ball over to your own net, spin and hit elevation bar
-//     // autonDrive(24.0);
-//     // autonDrive(12.0);
-// //     autonTurn(65);//90 DEGREES!!! TRISTAN IS FUCKING RETARDED
-//     catapult.move(127);
-//     catapult2.move(127);
-//     delay(500);//fine tune
-//     catapult.move(0);
-//     catapult2.move(0);
-//     delay(500);
-//     intake.move(127);
-//     autonTurn(-45);//fine tune
-//     delay(500);
-//     autonDrive(-48);//fine tune
-//     delay(500);
-//     autonTurn(65);
-//     delay(500);
-//     catapult.move(127);
-//     catapult2.move(127);
-//     delay(500);//fine tune
-//     catapult.move(0);
-//     catapult2.move(0);
-
-//     autonTurn(-65);
+   chassis->moveDistanceAsync(2.0_ft);
+   pros::delay(250);
+   chassis->turnAngleAsync(45_deg);
+   chassis->waitUntilSettled();
+   
+    // chassis->driveToPoint({2.0_ft, 2.0_ft});
 }
 
-void rightWP(){
+void leftWP(){
+    flyWheel.controllerSet(1);
+    pros::delay(850);
+    flyWheel.controllerSet(0);
+    // chassis->setState({0_ft, 0_ft, 0_deg});
+    autonTare();
+    // chassis->driveToPoint({1_ft, 0_ft});
 
 }
 void rightSP(){
 
 }
 void skills() {
-    thunker.controllerSet(1.0);
-    catapult2.controllerSet(1.0);
-}
+    autonTare();
+    chassis->turnToPoint({1.0_ft, 0.0_ft});
+}//2nd value on the X axis, first value on the Y

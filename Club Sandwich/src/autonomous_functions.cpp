@@ -80,7 +80,7 @@ const double INCH_CONSTANT = 34.617869579932255;  // guess this bozo
 // }
 void autonTare(){
     chassis->stop();
-    chassis->waitUntilSettled();
     chassis->setState({0_ft, 0_ft, 0_deg});
+    chassis->waitUntilSettled();
 
 }

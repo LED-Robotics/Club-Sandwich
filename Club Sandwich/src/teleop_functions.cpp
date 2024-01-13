@@ -11,10 +11,14 @@ void teleopDrive() {
     driveX = (double)master.get_analog(DRIVE_X) / 127.0;  // /127 to push value between -1.0 and 1.0
     driveY = (double)master.get_analog(DRIVE_Y) / 127.0;
 
+    // pros::lcd::print(2, "DriveY: %f", driveY);
+    // pros::lcd::print(3, "DriveX: %f", driveX);
+
     driveX = driveCurveExtent * pow(driveX, 3) + (1- driveCurveExtent) * driveX;
     driveY = driveCurveExtent * pow(driveY, 3) + (1- driveCurveExtent) * driveY;
 
     chassisModel->arcade(driveY, driveX, driveDeadzone);
+    // chassisModel->tank(driveY, driveY);
 
     // // zero out axes if they fall within deadzone
     // if (driveX > -driveDeadzone && driveX < driveDeadzone)
@@ -82,30 +86,29 @@ pros::controller_digital_e_t shoot = DIGITAL_R2;
 bool leftPlowState = false;
 bool rightPlowState = false;
 
-void teleopThunker(){
-
-    bool primed = thunkerLineSense.get_value() <  1500; //check if primed
-
+void teleopFlywheel(){
     bool thunkerNoThunking = master.get_digital(DIGITAL_R2);
-    pros::lcd::print(0,"Dingdonger: %d", thunkerLineSense.get_value());
 
-    if(!thunkerNoThunking) {//Automatic Prime
-        // move if not primed
-        if(!primed) {
-        thunker.controllerSet(0.8);
-        }
-        else {
-        thunker.controllerSet(0);
-        }
-    } else {
-        thunker.controllerSet(1.0);
-
-}
+    if(thunkerNoThunking){
+        flyWheel.controllerSet(1.0);
+    }
+    else{
+        flyWheel.controllerSet(0.0);
+    }
 }
 
 
-void teleopElevate() {
-
+void teleopFlap() {
+    int flapCounter;
+    int flapRetract;
+    bool flap=master.get_digital(DIGITAL_LEFT);
+    bool noFlap=master.get_digital(DIGITAL_RIGHT);
+    if(flap){
+        leftFlap.moveAbsolute(90, 100);
+    }
+    if(noFlap){
+        leftFlap.moveAbsolute(-90, 100);
+    }
 }
 
 

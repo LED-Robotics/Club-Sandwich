@@ -16,6 +16,8 @@ void leftSP();
 
 void rightWP();
 
+void rightWP2();
+
 void rightSP();
 
 void skills();

@@ -6,18 +6,16 @@ extern std::shared_ptr<OdomChassisController> chassis;
 extern std::shared_ptr<ChassisModel> chassisModel;
 
 //Motors
-extern Motor backLeft;
-extern Motor frontLeft;
-extern Motor backRight;
-extern Motor frontRight;
+// extern Motor backLeft;
+// extern Motor frontLeft;
+// extern Motor backRight;
+// extern Motor frontRight;
 
 extern Motor intake;
 
-extern Motor thunker;
-extern Motor catapult2;
+extern Motor flyWheel;
 
-extern Motor leftPlow;
-extern Motor rightPlow;
+extern Motor leftFlap;
 
 // //Digital Out/In
 extern pros::ADIDigitalOut intakePiston;

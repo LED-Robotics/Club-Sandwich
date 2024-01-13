@@ -4,8 +4,9 @@ void teleopDrive();
 
 void teleopIntake();
 
-void teleopCatapult();
 
-void teleopThunker();
+void teleopFlywheel();
 
 void teleopElevate();
+
+void teleopFlap();

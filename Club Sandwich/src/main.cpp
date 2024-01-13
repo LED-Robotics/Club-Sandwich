@@ -27,9 +27,9 @@ void initialize() {
 	// lcdAutonSelect();
 	// lcdAllianceSelect();
 
-	thunker.setBrakeMode(AbstractMotor::brakeMode::hold);
-	catapult2.setBrakeMode(AbstractMotor::brakeMode::hold);
+	flyWheel.setBrakeMode(AbstractMotor::brakeMode::coast);
 	gyro.reset(true);
+	leftFlap.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 }
 
 /**
@@ -62,10 +62,8 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-	executeAutonomous();
-	// leftWP();
-
-}
+	rightWP2();
+	}
 /**
  * Runs the operator control code. This function will be started in its own task
  * with the default priority and stack size whenever the robot is enabled via
@@ -80,25 +78,24 @@ void autonomous() {
  * task, not resume it from where it left off.
  */
 void opcontrol() {
+	// chassis->setMoveThreshold(); Use to possibly check if the joystick values are getting fucked up
+	autonomous();
 	while (true) {
-		if (partner.is_connected() && !partnerConnected) {
-			partnerConnected = true;
-		} else if (!partner.is_connected() && partnerConnected) {
-			partnerConnected = false;
-		}
-		autonTare();
-
-
-
+		// if (partner.is_connected() && !partnerConnected) {
+		// 	parterConnected = true;
+		// } else if (!partner.is_connected() && partnerConnected) {
+		// 	partnerConnected = false;
+		// }
+	
 		teleopDrive();
 
 		teleopIntake();
 
 		// teleopCatapult();
 
-		teleopThunker();
+		teleopFlywheel();
 
-		// teleopElevate();
+		teleopFlap();
 
 		pros::delay(20);
 	}
