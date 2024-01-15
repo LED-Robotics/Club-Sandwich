@@ -4,9 +4,10 @@ void teleopDrive();
 
 void teleopIntake();
 
-
 void teleopFlywheel();
 
 void teleopElevate();
 
 void teleopFlap();
+
+void teleopZoneFlapper();

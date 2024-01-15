@@ -31,7 +31,8 @@ Motor leftFlap{5, true, AbstractMotor::gearset::invalid, AbstractMotor::encoderU
 
 pros::ADIDigitalOut intakePiston{'H'};
 
-pros::ADIAnalogIn thunkerLineSense{'G'};
+pros::ADIDigitalOut backFlapPiston{'G'};
+
 pros::IMU gyro{20};
 
 pros::Controller master{CONTROLLER_MASTER};

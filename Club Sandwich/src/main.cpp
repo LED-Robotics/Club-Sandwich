@@ -79,7 +79,6 @@ void autonomous() {
  */
 void opcontrol() {
 	// chassis->setMoveThreshold(); Use to possibly check if the joystick values are getting fucked up
-	autonomous();
 	while (true) {
 		// if (partner.is_connected() && !partnerConnected) {
 		// 	parterConnected = true;
@@ -96,6 +95,8 @@ void opcontrol() {
 		teleopFlywheel();
 
 		teleopFlap();
+
+		teleopZoneFlapper();
 
 		pros::delay(20);
 	}

@@ -19,7 +19,7 @@ extern Motor leftFlap;
 
 // //Digital Out/In
 extern pros::ADIDigitalOut intakePiston;
-extern pros::ADIAnalogIn thunkerLineSense;
+extern pros::ADIDigitalOut backFlapPiston;
 extern pros::ADIDigitalIn limitSwitch;
 extern pros::ADIDigitalIn catapultPrime;
 extern pros::IMU gyro;

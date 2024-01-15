@@ -111,6 +111,14 @@ void teleopFlap() {
     }
 }
 
+int pneumaticOut = 0;
+void teleopZoneFlapper() {
+    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)) {
+        backFlapPiston.set_value(pneumaticOut % 2 == 1);
+        pneumaticOut++;
+    }
+}
+
 
 //For drive, turning controlled by right sitck, left stick for forward and backward
 //Turning, reverse drive value to make spin
