@@ -28,7 +28,7 @@ void initialize() {
 	lcdAutonSelect();
 	lcdAllianceSelect();
 
-	gyro.reset(true);
+	gyro.reset();
 }
 
 /**

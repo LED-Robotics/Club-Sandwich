@@ -13,7 +13,9 @@ bool pneumaticOut = false;
 
 
 //AUTONOMOUS
-const double INCH_CONSTANT = 0.0349065850398;
+double gyroDegrees = 0.0;
+
+double angleDeadzone = 2.0;
 
 int autonomousSelected{-1};
 

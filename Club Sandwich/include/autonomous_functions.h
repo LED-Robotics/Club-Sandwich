@@ -1,9 +1,9 @@
 #include "robot_map.h"
 #include "constants.h"
 
-void a_ChassisDrive(double distance, double staticMod, double dynamicMod);
+void a_ChassisDrive(double power, double millis);
 
-void a_ChassisTurn(double angle, double staticMod, double dynamicMod);
+void a_ChassisTurn(double power, double angle);
 
 void a_FlywheelGoBurr(double speed);
 

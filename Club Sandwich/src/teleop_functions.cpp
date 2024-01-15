@@ -67,20 +67,12 @@ void teleopDrive() {
 
     if (bashMode) {
         //Bash Mode! (front is back)
-        driveBLeft.move((int32_t)(-completeSpeedLeft));
-        driveFLeft.move((int32_t)(-completeSpeedLeft));
-        driveCLeft.move((int32_t)(-completeSpeedLeft));
-        driveBRight.move((int32_t)(-completeSpeedRight));
-        driveCRight.move((int32_t)(-completeSpeedRight));
-        driveFRight.move((int32_t)(-completeSpeedRight));
+        drivetrainLeft.move((int32_t)(-completeSpeedLeft));
+        drivetrainRight.move((int32_t)(-completeSpeedRight));
     } else {
         //Standard drive (front is front)
-        driveBLeft.move((int32_t)(completeSpeedLeft));
-        driveCLeft.move((int32_t)(completeSpeedLeft));
-        driveFLeft.move((int32_t)(completeSpeedLeft));
-        driveBRight.move((int32_t)(completeSpeedRight));
-        driveCRight.move((int32_t)(completeSpeedRight));
-        driveFRight.move((int32_t)(completeSpeedRight));
+        drivetrainLeft.move((int32_t)(completeSpeedLeft));
+        drivetrainRight.move((int32_t)(completeSpeedRight));
     }
 }
 

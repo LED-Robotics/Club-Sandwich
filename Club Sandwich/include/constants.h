@@ -23,7 +23,9 @@ extern bool pneumaticOut;
 
 #define RIGHT 1
 
-extern const double INCH_CONSTANT;
+extern double gyroDegrees;
+
+extern double angleDeadzone;
 
 extern int autonomousSelected;
 
