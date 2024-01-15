@@ -87,7 +87,7 @@ void teleopFlywheel() {
 }
 
 void teleopCling() {
-    climb.move((int32_t)((master.get_digital(E_CONTROLLER_DIGITAL_L2) - master.get_digital(E_CONTROLLER_DIGITAL_R2))*127.0));
+    climb.move((int32_t)((master.get_digital(E_CONTROLLER_DIGITAL_Y) - master.get_digital(E_CONTROLLER_DIGITAL_X))*127.0));
 }
 
 void teleopPneumaticFlexz() {
