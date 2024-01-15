@@ -4,60 +4,63 @@
 using namespace pros;
 
 void teleopDrive() {
-    if (bashMode) {
-        turnVar = (double)master.get_analog(ANALOG_RIGHT_X)*-.73;//
-    } else {
-        turnVar = (double)master.get_analog(ANALOG_RIGHT_X);//
-    }
-    straightVar = (double)master.get_analog(ANALOG_LEFT_Y);//
+    // if (bashMode) {
+    //     turnVar = (double)master.get_analog(ANALOG_RIGHT_X)*-.69;//
+    // } else {
+    //     turnVar = (double)master.get_analog(ANALOG_RIGHT_X);//
+    // }
+    // straightVar = (double)master.get_analog(ANALOG_LEFT_Y);//
     
-    if (fabs(turnVar) < driveDeadzone) {
-        turnVar = 0.0;
-    }
-    if (fabs(straightVar) < driveDeadzone) {
-        straightVar = 0.0;
-    }
-    double completeSpeedLeft = straightVar;
-    double completeSpeedRight = straightVar;//full speed for going straight/backwards
+    // if (fabs(turnVar) < driveDeadzone) {
+    //     turnVar = 0.0;
+    // }
+    // if (fabs(straightVar) < driveDeadzone) {
+    //     straightVar = 0.0;
+    // }
+    // double completeSpeedLeft = straightVar;
+    // double completeSpeedRight = straightVar;//full speed for going straight/backwards
     
-    if (turnVar!=0.0){//If You Want to Turn
-        if(turnVar>0.0){//Right************************************//
-            if(straightVar>0.0){//Going Forward
-                completeSpeedRight=straightVar-fabs(turnVar);
-                if(completeSpeedRight<0.0){
-                    completeSpeedRight=0.0;
-                }
-            }
-            else if(straightVar<0.0){//Going Backward
-                completeSpeedRight=straightVar+fabs(turnVar);
-                if (completeSpeedRight>0.0){
-                    completeSpeedRight=0.0;
-                }
-            }
-            else{
-                completeSpeedLeft=fabs(turnVar);
-                completeSpeedRight=-fabs(turnVar);
-            }
-        }
-        if(turnVar<0.0){//Left**************************************//
-            if(straightVar>0.0){//Going Forward
-                completeSpeedLeft=straightVar-fabs(turnVar);
-                if(completeSpeedLeft<0.0){
-                    completeSpeedLeft=0.0;
-                }
-            }
-            else if(straightVar<0){//Going Backwards
-                completeSpeedLeft=straightVar+fabs(turnVar);
-                if(completeSpeedLeft>0.0){
-                    completeSpeedLeft=0.0;
-                }
-            }
-            else{
-                completeSpeedLeft=-fabs(turnVar);
-                completeSpeedRight=fabs(turnVar);
-            }
-        }  //Pos. values for right turn relative, Neg. for left relative
-    }
+    // if (turnVar!=0.0){//If You Want to Turn
+    //     if(turnVar>0.0){//Right************************************//
+    //         if(straightVar>0.0){//Going Forward
+    //             completeSpeedRight=straightVar-fabs(turnVar);
+    //             if(completeSpeedRight<0.0){
+    //                 completeSpeedRight=0.0;
+    //             }
+    //         }
+    //         else if(straightVar<0.0){//Going Backward
+    //             completeSpeedRight=straightVar+fabs(turnVar);
+    //             if (completeSpeedRight>0.0){
+    //                 completeSpeedRight=0.0;
+    //             }
+    //         }
+    //         else{
+    //             completeSpeedLeft=fabs(turnVar);
+    //             completeSpeedRight=-fabs(turnVar);
+    //         }
+    //     }
+    //     if(turnVar<0.0){//Left**************************************//
+    //         if(straightVar>0.0){//Going Forward
+    //             completeSpeedLeft=straightVar-fabs(turnVar);
+    //             if(completeSpeedLeft<0.0){
+    //                 completeSpeedLeft=0.0;
+    //             }
+    //         }
+    //         else if(straightVar<0){//Going Backwards
+    //             completeSpeedLeft=straightVar+fabs(turnVar);
+    //             if(completeSpeedLeft>0.0){
+    //                 completeSpeedLeft=0.0;
+    //             }
+    //         }
+    //         else{
+    //             completeSpeedLeft=-fabs(turnVar);
+    //             completeSpeedRight=fabs(turnVar);
+    //         }
+    //     }  //Pos. values for right turn relative, Neg. for left relative
+    // }
+
+    double completeSpeedLeft = driveY + driveX * -.69;
+    double completeSpeedRight = driveY - driveX * -.69;
 
     if (master.get_digital(E_CONTROLLER_DIGITAL_UP)) {
     	bashMode = false;
