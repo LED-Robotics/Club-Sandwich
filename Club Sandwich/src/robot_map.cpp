@@ -10,7 +10,7 @@ Motor driveCRight{12, MOTOR_GEAR_BLUE, true, MOTOR_ENCODER_DEGREES}; //12
 Motor driveFRight{13, MOTOR_GEAR_BLUE, true, MOTOR_ENCODER_DEGREES}; //13
 //Drivetrain Motor Groups
 Motor_Group drivetrainLeft({driveBLeft, driveCLeft, driveFLeft});
-Motor_Group drivetrainRight({driveBRight, driveCRight, driveCRight});
+Motor_Group drivetrainRight({driveBRight, driveCRight, driveFRight});
 
 //Flywheel
 Motor flywheel{15, MOTOR_GEAR_BLUE, true, MOTOR_ENCODER_DEGREES}; //15
