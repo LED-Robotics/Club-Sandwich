@@ -10,10 +10,10 @@ void printData() {
             pros::lcd::print(0, "Auton Selected: Standby");
             break;
         case 1:
-            pros::lcd::print(0, "Auton Slected: Right");
+            pros::lcd::print(0, "Auton Slected: Right Auton");
             break;
         case 2:
-            pros::lcd::print(0, "Auton Selected: Left");
+            pros::lcd::print(0, "Auton Selected: Left Auton");
             break;
         case 3:
             pros::lcd::print(0, "Auton Selected: Programming Skills");
@@ -44,95 +44,18 @@ void executeAutonomous() {
         case 0:
             break;
         case 1:
-            rightWP2();//RIGHT
+            rightWP();//RIGHT
             break;
         case 2:
             leftWP();//LEFT
             break;
         case 3:
-            leftSP();
+            skills();
             break;
     }
 }
 
-void rightWP() {
-    // autonPrime();
-    // intake.move(127);
-    // delay(1500);
-    // intake.move(0);
-    // catapult.move(127);
-    // catapult2.move(127);
-    // delay(750);//fine tune
-    // catapult.move(0);
-    // catapult2.move(0);
-    // autonDrive(-4.5);
-    // delay(500);
-    // autonTurn(220.0);//fine tune
-    // intakePiston.set_value(true);
-    // autonPrime();
-    // intake.move(127);
-    // autonDrive(60.0);
-    // intakePiston.set_value(false);
-    // delay(1500);
-    // intake.move(0);
-    // autonDrive(-40.0);
-    // autonTurn(120);
-    // delay(500);
-    // catapult.move(127);
-    // catapult2.move(127);
-    // delay(350);
-    // catapult.move(0);
-    // catapult2.move(0);
-    // autonTurn(25);
-    // delay(500);
-    // autonDrive(-41.5);
-    // chassis->moveDistance(1.0_ft);
-    // chassis->turnAngle(90.0_deg);
-    // pros::delay(2000);
-    // chassis->moveDistance(2.0_ft);
-    chassis->setState({0_ft, 0_ft, 0_deg});
-    chassis->stop();
-    chassis->waitUntilSettled();
-    chassis->driveToPoint({0.5_ft, 0.0_ft});
-    autonTare();
-    intakePiston.set_value(true);
-    chassis->driveToPoint({1.6_ft, 1.6_ft});
-    autonTare();
-    chassis->turnToAngle(-20_deg);
-    autonTare();
-    chassis->driveToPoint({0.1_ft, 0.0_ft});
-    intake.controllerSet(-1.0);
-    pros::delay(850);
-    chassis->moveDistance(-1.1_ft);
-    autonTare();
-    intakePiston.set_value(true);
-    intake.controllerSet(1.0);
-    autonTare();
-    chassis->driveToPoint({0.125_ft,-3.75_ft});
-    pros::delay(500);
-    intake.controllerSet(0);
-    autonTare();
-    chassis->driveToPoint({-0.9_ft, 1.4_ft});
-    intake.controllerSet(-1.0);
-    autonTare();
-
-
-
-    // chassis->moveDistance(-0.5_ft);
-    // autonTare();
-    // chassis->turnAngle(-25_deg);
-    // autonTare();
-    // chassis->moveDistance(-1.0_ft);
-
-
-
-
-}
-
-void rightWP2(){
-    // chassis->driveToPoint({0.5_ft, 0.0_ft});
-    // intakePiston.set_value(true);
-    // chassis->driveToPoint({2.0_ft, 1.0_ft});
+void rightWP(){
     chassis->driveToPoint({2.25_ft, 0.0_ft});
     intakePiston.set_value(true);
     intake.controllerSet(-1.0);
@@ -162,36 +85,45 @@ void rightWP2(){
     chassis->moveDistance(-0.5_ft);
     chassis->turnAngle(175_deg);
     chassis->moveDistance(-1.75_ft);
-
-
-
-   
-   
-
-}
-
-void leftSP() {//Shoot ball over to your own net, spin and hit elevation bar
-   chassis->moveDistanceAsync(2.0_ft);
-   pros::delay(250);
-   chassis->turnAngleAsync(45_deg);
-   chassis->waitUntilSettled();
-   
-    // chassis->driveToPoint({2.0_ft, 2.0_ft});
 }
 
 void leftWP(){
-    flyWheel.controllerSet(1);
-    pros::delay(850);
-    flyWheel.controllerSet(0);
-    // chassis->setState({0_ft, 0_ft, 0_deg});
-    autonTare();
-    // chassis->driveToPoint({1_ft, 0_ft});
-
+    intakePiston.set_value(true);
+    chassis->moveDistance(2.5_ft);//Forward to side of goal
+    chassis->turnAngle(45_deg);//Turn to align with goal//move up to goal
+    intake.controllerSet(-1.0);
+    pros::delay(1250);          //Outtake
+    intake.controllerSet(0.0);
+    intakePiston.set_value(false);
+    chassis->moveDistance(-0.5_ft);
+    chassis->turnAngle(175_deg);
+    chassis->moveDistance(-1.5_ft);
+    // chassis->moveDistance(1.0_ft);
+    // chassis->moveDistance(-1.0_ft);
+    // chassis->moveDistance(1.0_ft);
+    // chassis->turnAngle(-45_deg);
+    // chassis->moveDistance(-2.0_ft);
+    // intakePiston.set_value(true);
+    // chassis->turnAngle(90_deg);
+    // chassis->moveDistance(-1.0_ft);
 }
-void rightSP(){
 
-}
 void skills() {
-    autonTare();
-    chassis->turnToPoint({1.0_ft, 0.0_ft});
-}//2nd value on the X axis, first value on the Y
+    // autonTare();
+    flyWheel.controllerSet(1);
+    pros::delay(30000);
+    //After all balls launched, turn robot and drive to other side.
+    //curve around the mid extruding pole and slowly curve the robot into the balls and into the net
+    //If you have time, create a movement function to return to the elevation pole and elevate.
+    chassis->moveDistance(-0.25_ft);
+    chassis->turnAngle(60_deg);
+    intakePiston.set_value(true);
+    chassis->moveDistance(-1.0_ft);
+    chassis->turnAngle(-15_deg);
+    chassis->moveDistance(-6.5_ft);
+    intakePiston.set_value(false);
+    chassis->turnAngle(120_deg);
+    chassis->moveDistance(2.0_ft);
+    chassis->turnAngle(60_deg);
+    chassis->moveDistance(-2.0_ft);
+}

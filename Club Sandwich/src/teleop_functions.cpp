@@ -83,9 +83,6 @@ pros::controller_digital_e_t shoot = DIGITAL_R2;
 // have button to prime, stop at limit switch, and fire on a different button
 
 
-bool leftPlowState = false;
-bool rightPlowState = false;
-
 void teleopFlywheel(){
     bool thunkerNoThunking = master.get_digital(DIGITAL_R2);
 
@@ -97,24 +94,15 @@ void teleopFlywheel(){
     }
 }
 
+bool flapperNoFlapping;
+bool flapCount=true;
 
-void teleopFlap() {
-    int flapCounter;
-    int flapRetract;
-    bool flap=master.get_digital(DIGITAL_LEFT);
-    bool noFlap=master.get_digital(DIGITAL_RIGHT);
-    if(flap){
-        leftFlap.moveAbsolute(90, 100);
-    }
-    if(noFlap){
-        leftFlap.moveAbsolute(-90, 100);
-    }
-}
 
 int pneumaticOut = 0;
+
 void teleopZoneFlapper() {
-    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)) {
-        backFlapPiston.set_value(pneumaticOut % 2 == 1);
+    if (master.get_digital_new_press(DIGITAL_B)) {
+        backFlaps.set_value(pneumaticOut % 2 == 1);
         pneumaticOut++;
     }
 }

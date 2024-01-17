@@ -15,13 +15,12 @@ extern Motor intake;
 
 extern Motor flyWheel;
 
-extern Motor leftFlap;
 
 // //Digital Out/In
 extern pros::ADIDigitalOut intakePiston;
-extern pros::ADIDigitalOut backFlapPiston;
-extern pros::ADIDigitalIn limitSwitch;
-extern pros::ADIDigitalIn catapultPrime;
+
+extern pros::ADIDigitalOut backFlaps;
+
 extern pros::IMU gyro;
 
 extern pros::Controller master;

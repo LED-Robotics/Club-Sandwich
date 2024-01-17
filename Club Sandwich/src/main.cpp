@@ -29,7 +29,6 @@ void initialize() {
 
 	flyWheel.setBrakeMode(AbstractMotor::brakeMode::coast);
 	gyro.reset(true);
-	leftFlap.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 }
 
 /**
@@ -37,7 +36,9 @@ void initialize() {
  * the VEX Competition Switch, following either autonomous or opcontrol. When
  * the robot is enabled, this task will exit.
  */
-void disabled() {}
+void disabled() {
+	chassis->stop();
+}
 
 /**
  * Runs after initialize(), and before autonomous when connected to the Field
@@ -62,7 +63,7 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-	rightWP2();
+	executeAutonomous();
 	}
 /**
  * Runs the operator control code. This function will be started in its own task
@@ -94,7 +95,6 @@ void opcontrol() {
 
 		teleopFlywheel();
 
-		teleopFlap();
 
 		teleopZoneFlapper();
 
