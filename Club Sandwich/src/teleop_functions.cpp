@@ -4,8 +4,8 @@
 using namespace pros;
 
 void teleopDrive() {
-    double completeSpeedLeft = driveY*.89 + driveX * .69;
-    double completeSpeedRight = driveY - driveX * .69;
+    double completeSpeedLeft = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y) *.89 + master.get_analog(E_CONTROLLER_ANALOG_RIGHT_X) * .69;
+    double completeSpeedRight = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y) *.89 - master.get_analog(E_CONTROLLER_ANALOG_RIGHT_X) * .69;
 
     if (master.get_digital(E_CONTROLLER_DIGITAL_UP)) {
     	bashMode = false;

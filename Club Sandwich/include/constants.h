@@ -17,6 +17,8 @@ extern int allianceSelected;
 
 extern bool pneumaticOut;
 
+extern const double INCH_CONSTANT;
+
 
 //AUTONOMOUS
 #define LEFT 0
@@ -33,10 +35,6 @@ extern int autonomousSelected;
 //TELEOPERATED
 //Driver
 extern const float driveDeadzone;
-
-extern const controller_analog_e_t DRIVE_X;
-
-extern const controller_analog_e_t DRIVE_Y;
 
 extern bool bashMode;
 

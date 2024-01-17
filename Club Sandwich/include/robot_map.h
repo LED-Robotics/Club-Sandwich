@@ -25,7 +25,7 @@ extern ADIDigitalOut pneumaticLeft;
 extern ADIDigitalOut pneumaticRight;
 
 //Gyro
-extern ADIGyro gyro;
+extern IMU gyro;
 
 //Controllers
 extern Controller master;

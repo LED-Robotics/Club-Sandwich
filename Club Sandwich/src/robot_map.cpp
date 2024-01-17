@@ -23,7 +23,7 @@ ADIDigitalOut pneumaticLeft{'H'}; //H
 ADIDigitalOut pneumaticRight{'A'}; //A
 
 //Gyro
-ADIGyro gyro{14}; //14
+IMU gyro{14}; //14
 
 //Controller
 Controller master{CONTROLLER_MASTER};
