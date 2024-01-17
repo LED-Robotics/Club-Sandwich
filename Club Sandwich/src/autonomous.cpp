@@ -91,9 +91,20 @@ void lcdAllianceSelect() {
 void executeAutonomous() {
     switch (autonomousSelected) {
         case 0:
-            a_ChassisDrive(10.0);
-            a_ChassisDrive(-2.0);
+            a_ChassisDrive(12.0);
             a_ChassisTurn(10.0);
+            a_ChassisDrive(6.0);
+            delay(200);
+            a_ChassisDrive(-1.0);
+            delay(200);
+            a_ChassisDrive(5.0);
+            delay(200);
+            a_ChassisDrive(-4.5);
+            a_ChassisTurn(10.0);
+            a_ChassisDrive(-1.0);
+            a_FlywheelGoBurr(127.0);
+            delay(27500);
+            a_FlywheelGoBurr(0.0);
             break;
         case 1:
             leftAuton();

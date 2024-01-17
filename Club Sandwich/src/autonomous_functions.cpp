@@ -49,6 +49,7 @@ void a_ChassisDrive(double distance) {
     driveBRight.move(0);
     driveCRight.move(0);
     driveFRight.move(0);
+    delay(200);
 }
 
 void a_ChassisTurn(double angle) {
@@ -92,6 +93,7 @@ void a_ChassisTurn(double angle) {
     driveBRight.move(0);
     driveCRight.move(0);
     driveFRight.move(0);
+    delay(200);
 }
 
 void a_FlywheelGoBurr(double speed) {
