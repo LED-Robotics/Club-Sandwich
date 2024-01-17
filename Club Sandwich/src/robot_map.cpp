@@ -19,8 +19,8 @@ Motor flywheel{15, MOTOR_GEAR_GREEN, true, MOTOR_ENCODER_DEGREES}; //15
 Motor climb{5, MOTOR_GEAR_RED, true, MOTOR_ENCODER_DEGREES}; //5
 
 //Pneumatics
-ADIDigitalOut pneumaticLeft{'A'}; //A
-ADIDigitalOut pneumaticRight{'H'}; //H
+ADIDigitalOut pneumaticLeft{'H'}; //H
+ADIDigitalOut pneumaticRight{'A'}; //A
 
 //Gyro
 ADIGyro gyro{14}; //14

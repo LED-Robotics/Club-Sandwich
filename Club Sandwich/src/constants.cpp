@@ -28,10 +28,6 @@ const controller_analog_e_t DRIVE_X{ANALOG_RIGHT_X};
 
 const controller_analog_e_t DRIVE_Y{ANALOG_LEFT_Y};
 
-double turnVar;
-
-double straightVar;
-
 bool bashMode = false;
 
 //Catapult

@@ -38,10 +38,6 @@ extern const controller_analog_e_t DRIVE_X;
 
 extern const controller_analog_e_t DRIVE_Y;
 
-extern double turnVar;
-
-extern double straightVar;
-
 extern bool bashMode;
 
 //Catapult
