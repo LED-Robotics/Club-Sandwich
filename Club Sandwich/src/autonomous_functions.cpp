@@ -96,8 +96,8 @@ void a_ChassisTurn(double angle) {
     delay(200);
 }
 
-void a_FlywheelGoBurr(double speed) {
-    flywheel.move(speed);
+void a_FredwheelGoBurr(double speed) {
+    fredwheel.move(speed);
 }
 
 void a_PneumaticFlexzLeft(bool flex) {

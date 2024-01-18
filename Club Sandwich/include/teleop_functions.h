@@ -2,7 +2,7 @@
 #include <cstdint>
 void teleopDrive();
 
-void teleopFlywheel();
+void teleopFredwheel();
 
 void teleopCling();
 

@@ -13,7 +13,7 @@ Motor_Group drivetrainLeft({driveBLeft, driveCLeft, driveFLeft});
 Motor_Group drivetrainRight({driveBRight, driveCRight, driveFRight});
 
 //Flywheel
-Motor flywheel{15, MOTOR_GEAR_GREEN, true, MOTOR_ENCODER_DEGREES}; //15
+Motor fredwheel{15, MOTOR_GEAR_GREEN, true, MOTOR_ENCODER_DEGREES}; //15
 
 //Climb
 Motor climb{5, MOTOR_GEAR_RED, true, MOTOR_ENCODER_DEGREES}; //5

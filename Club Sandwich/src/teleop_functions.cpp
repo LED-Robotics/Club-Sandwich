@@ -24,13 +24,13 @@ void teleopDrive() {
     }
 }
 
-void teleopFlywheel() {
+void teleopFredwheel() {
     if (master.get_digital(E_CONTROLLER_DIGITAL_A)) {
-        flywheel.move((int32_t)(127.0));
+        fredwheel.move((int32_t)(127.0));
     } else if (master.get_digital(E_CONTROLLER_DIGITAL_B)) {
-        flywheel.move((int32_t)(-127.0));
+        fredwheel.move((int32_t)(-127.0));
     } else {
-        flywheel.move((int32_t)(0.0));
+        fredwheel.move((int32_t)(0.0));
     }
 }
 

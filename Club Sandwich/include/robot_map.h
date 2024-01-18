@@ -15,7 +15,7 @@ extern Motor_Group drivetrainLeft;
 extern Motor_Group drivetrainRight;
 
 //Flywheel
-extern Motor flywheel;
+extern Motor fredwheel;
 
 //Climb
 extern Motor climb;

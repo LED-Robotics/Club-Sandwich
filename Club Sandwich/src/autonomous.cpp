@@ -10,11 +10,10 @@ void printData(bool funButtonPressed) {
 	lcd::set_text(1, "Remember RULE #1: to have fun!");
     lcd::set_text(2, "- - - - - - - - - - - - -");
     lcd::set_text(3, "- - - - - - - - - - - - -");
-    lcd::set_text(4, "- - - - - - - - - - - - -");
-    lcd::set_text(5, "- - - - - - - - - - - - -");
+    lcd::set_text(4, "FRED     \\   /       FRED");
+    lcd::set_text(5, "   FRED > o w o < FRED   ");
     lcd::set_text(6, "- - - - - - - - - - - - -");
     lcd::set_text(7, "- - - - - - - - - - - - -");
-    lcd::set_text(8, "- - - - - - - - - - - - -");
     
     switch (autonomousSelected) {
         case 0:
@@ -37,13 +36,13 @@ void printData(bool funButtonPressed) {
             case true:
                 lcd::set_text_color(255,70,255); //Purple
                 lcd::clear_line(4);
-                lcd::print(4, "BLUE Alliance!");
+                lcd::print(4, "BLUE Alliance!           ");
                 lcd::set_background_color(0, 0, 255); //Blue
                 break;
             case false:
                 lcd::set_text_color(34, 255, 76); //Green
                 lcd::clear_line(4);
-                lcd::print(4, "RED Alliance!");
+                lcd::print(4, "RED Alliance!            ");
                 lcd::set_background_color(255, 0, 0); //Red
                 break;
         }
@@ -55,6 +54,7 @@ void printData(bool funButtonPressed) {
     }
 
     if (funButtonPressed) {
+        lcd::print(4, "          -   -          ");
         lcd::print(6, "L           E          D");
         lcd::print(7, "LIGHT     IT     UP ! ! !");
         funButtonPressed = false;
@@ -102,9 +102,11 @@ void executeAutonomous() {
             a_ChassisDrive(-4.5);
             a_ChassisTurn(10.0);
             a_ChassisDrive(-1.0);
-            a_FlywheelGoBurr(127.0);
+            a_FredwheelGoBurr(127.0);
             delay(27500);
-            a_FlywheelGoBurr(0.0);
+            a_FredwheelGoBurr(0.0);
+            delay(3000);
+            
             break;
         case 1:
             leftAuton();
@@ -128,6 +130,6 @@ void rightAuton() {
 
 void skills() {
     while (true) {
-        a_FlywheelGoBurr(127.0);
+        a_FredwheelGoBurr(127.0);
     }
 }

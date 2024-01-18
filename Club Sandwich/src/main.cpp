@@ -88,7 +88,7 @@ void opcontrol() {
 
 		teleopDrive();
 
-		teleopFlywheel();
+		teleopFredwheel();
 
 		teleopCling();
 
