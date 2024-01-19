@@ -38,6 +38,10 @@ extern const pros::controller_analog_e_t DRIVE_X;
 
 extern const pros::controller_analog_e_t DRIVE_Y;
 
+extern double driveX;
+
+extern double driveY;
+
 extern const float driveDeadzone;
 
 extern const float driveCurveExtent;
@@ -51,12 +55,5 @@ extern bool loading;
 
 //Controller
 extern bool partnerConnected;
-
-//For separating commands between controllers
-// extern const controller_id_e_t INTAKE_CONTROLLER;
-
-// extern const controller_id_e_t CATAPULT_CONTROLLER;
-
-// extern const controller_id_e_t ELEVATE_CONTROLLER;
 
 #endif

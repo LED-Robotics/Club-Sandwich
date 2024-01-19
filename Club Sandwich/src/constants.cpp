@@ -28,6 +28,10 @@ const pros::controller_analog_e_t DRIVE_X{ANALOG_RIGHT_X};
 
 const pros::controller_analog_e_t DRIVE_Y{ANALOG_LEFT_Y};
 
+double driveX;
+
+double driveY;
+
 const float driveDeadzone{.02};
 
 const float driveCurveExtent{.95};

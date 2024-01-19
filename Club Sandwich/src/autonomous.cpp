@@ -91,43 +91,6 @@ void lcdAllianceSelect() {
 void executeAutonomous() {
     switch (autonomousSelected) {
         case 0:
-            //Push Triballs to goal
-            a_ChassisDrive(12.0);
-            a_ChassisTurn(10.0);
-            a_ChassisDrive(6.0);
-            //Bash Triballs into goal
-            delay(200);
-            a_ChassisDrive(-1.0);
-            delay(200);
-            a_ChassisDrive(5.0);
-            delay(200);
-            //Back chassis into load zone
-            a_ChassisDrive(-4.5);
-            a_ChassisTurn(10.0);
-            a_ChassisDrive(-1.0);
-            //Fredwheel
-            // a_FredwheelGoBurr(127.0);
-            // delay(27500); //27.5 seconds of pure fredwheel power
-            // a_FredwheelGoBurr(0.0);
-            delay(3000);  //Comment when using flywheel
-            //Drive to center and push Triballs over
-            a_ChassisDrive(2.0);
-            a_ChassisTurn(5.0);
-            a_ChassisDrive(29.0);
-            delay(200);
-            // a_PneumaticFlexzLeft(true);
-            // a_PneumaticFlexzRight(true);
-            a_ChassisTurn(-9.1);
-            a_ChassisDrive(43.5);
-            // a_PneumaticFlexzLeft(false);
-            // a_PneumaticFlexzRight(false);
-            delay(100);
-            a_ChassisDrive(40.0);
-            a_ChassisTurn(-41.2);
-            delay(200);
-            a_ChassisDrive(20.0);
-            a_ChassisTurn(45.0);
-            a_FredwheelGoBurr(40.0);
             break;
         case 1:
             leftAuton();

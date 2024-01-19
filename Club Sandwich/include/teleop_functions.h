@@ -1,10 +1,16 @@
 #include "robot_map.h"
 #include <cstdint>
-void teleopDrive();
 
-void teleopFredwheel();
+void t_CheckPartnerConnect();
 
-void teleopCling();
+void t_OkapiLibDrive();
 
-//Deprecated feature
-// void teleopPneumaticFlexz();
+//Deprecated 2024-01-18
+// void t_Drive();
+
+void t_Fredwheel();
+
+void t_Cling();
+
+//Deprecated 2024-01-18
+// void t_PneumaticFlexz();

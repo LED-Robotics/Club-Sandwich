@@ -80,19 +80,18 @@ void autonomous() {
 
 void opcontrol() {
 	while (true) {
-		if (partner.is_connected() && !partnerConnected) {
-			partnerConnected = true;
-		} else if (!partner.is_connected() && partnerConnected) {
-			partnerConnected = false;
-		}
+		t_CheckPartnerConnect();
 
-		teleopDrive();
+		t_OkapiLibDrive();
 
-		teleopFredwheel();
+		//Deprecated 2024-01-18
+		// t_Drive();
 
-		teleopCling();
+		t_Fredwheel();
 
-		//Main call; feature deprecated 2024-01-18
+		t_Cling();
+
+		//Deprecated 2024-01-18
 		// teleopPneumaticFlexz();
 
 		pros::delay(20);
