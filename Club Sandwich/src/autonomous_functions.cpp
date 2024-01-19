@@ -100,10 +100,11 @@ void a_FredwheelGoBurr(double speed) {
     fredwheel.move(speed);
 }
 
-void a_PneumaticFlexzLeft(bool flex) {
-    pneumaticLeft.set_value(flex);
-}
+//Deprecated feature
+// void a_PneumaticFlexzLeft(bool flex) {
+//     pneumaticLeft.set_value(flex);
+// }
 
-void a_PneumaticFlexzRight(bool flex) {
-    pneumaticRight.set_value(flex);
-}
+// void a_PneumaticFlexzRight(bool flex) {
+//     pneumaticRight.set_value(flex);
+// }

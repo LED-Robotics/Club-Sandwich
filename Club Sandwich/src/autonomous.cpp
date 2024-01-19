@@ -115,12 +115,12 @@ void executeAutonomous() {
             a_ChassisTurn(5.0);
             a_ChassisDrive(29.0);
             delay(200);
-            a_PneumaticFlexzLeft(true);
-            a_PneumaticFlexzRight(true);
+            // a_PneumaticFlexzLeft(true);
+            // a_PneumaticFlexzRight(true);
             a_ChassisTurn(-9.1);
             a_ChassisDrive(43.5);
-            a_PneumaticFlexzLeft(false);
-            a_PneumaticFlexzRight(false);
+            // a_PneumaticFlexzLeft(false);
+            // a_PneumaticFlexzRight(false);
             delay(100);
             a_ChassisDrive(40.0);
             a_ChassisTurn(-41.2);

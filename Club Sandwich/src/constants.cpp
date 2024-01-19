@@ -24,7 +24,13 @@ int autonomousSelected{-1};
 
 //TELEOPERATED
 //Driver
+const pros::controller_analog_e_t DRIVE_X{ANALOG_RIGHT_X};
+
+const pros::controller_analog_e_t DRIVE_Y{ANALOG_LEFT_Y};
+
 const float driveDeadzone{.02};
+
+const float driveCurveExtent{.95};
 
 bool bashMode = false;
 
@@ -35,9 +41,3 @@ bool loading = false;
 
 //Controller
 bool partnerConnected{true};
-
-// const controller_id_e_t INTAKE_CONTROLLER{CONTROLLER_MASTER / CONTROLLER_PARTNER};
-
-// const controller_id_e_t CATAPULT_CONTROLLER{CONTROLLER_MASTER / CONTROLLER_PARTNER};
-
-// const controller_id_e_t ELEVATE_CONTROLLER{CONTROLLER_MASTER / CONTROLLER_PARTNER};

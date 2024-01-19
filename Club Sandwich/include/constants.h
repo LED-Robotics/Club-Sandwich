@@ -34,7 +34,13 @@ extern int autonomousSelected;
 
 //TELEOPERATED
 //Driver
+extern const pros::controller_analog_e_t DRIVE_X;
+
+extern const pros::controller_analog_e_t DRIVE_Y;
+
 extern const float driveDeadzone;
+
+extern const float driveCurveExtent;
 
 extern bool bashMode;
 

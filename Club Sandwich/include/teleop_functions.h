@@ -6,4 +6,5 @@ void teleopFredwheel();
 
 void teleopCling();
 
-void teleopPneumaticFlexz();
+//Deprecated feature
+// void teleopPneumaticFlexz();

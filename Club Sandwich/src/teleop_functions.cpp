@@ -46,27 +46,27 @@ void teleopCling() {
     if (master.get_digital(E_CONTROLLER_DIGITAL_Y) || master.get_digital(E_CONTROLLER_DIGITAL_X)) {
         climb.move((int32_t)((master.get_digital(E_CONTROLLER_DIGITAL_Y) - master.get_digital(E_CONTROLLER_DIGITAL_X))*127.0));
     } else {
-        
+        climb.move((int32_t)(master.get_analog(E_CONTROLLER_ANALOG_RIGHT_Y)*127.0));
     }
 }
 
-void teleopPneumaticFlexz() {
-    if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_L2)) {
-        pneumaticLeft.set_value(false);
-        pneumaticRight.set_value(false);
-    }
+// void teleopPneumaticFlexz() {
+//     if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_L2)) {
+//         pneumaticLeft.set_value(false);
+//         pneumaticRight.set_value(false);
+//     }
 
-    if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_R2)) {
-        pneumaticLeft.set_value(true);
-        pneumaticRight.set_value(true);
-    }
+//     if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_R2)) {
+//         pneumaticLeft.set_value(true);
+//         pneumaticRight.set_value(true);
+//     }
 
-    if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_R1)) {
-        pneumaticLeft.set_value(!pneumaticOut);
-        pneumaticOut != pneumaticOut;
-    }
-    if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_L1)) {
-        pneumaticRight.set_value(!pneumaticOut);
-        pneumaticOut != pneumaticOut;
-    }
-}
+//     if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_R1)) {
+//         pneumaticLeft.set_value(!pneumaticOut);
+//         pneumaticOut != pneumaticOut;
+//     }
+//     if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_L1)) {
+//         pneumaticRight.set_value(!pneumaticOut);
+//         pneumaticOut != pneumaticOut;
+//     }
+// }

@@ -7,6 +7,8 @@ void a_ChassisTurn(double angle);
 
 void a_FredwheelGoBurr(double speed);
 
-void a_PneumaticFlexzLeft(bool flex);
 
-void a_PneumaticFlexzRight(bool flex);
+//Deprecated feature
+// void a_PneumaticFlexzLeft(bool flex);
+
+// void a_PneumaticFlexzRight(bool flex);

@@ -80,11 +80,11 @@ void autonomous() {
 
 void opcontrol() {
 	while (true) {
-		// if (partner.is_connected() && !partnerConnected) {
-		// 	partnerConnected = true;
-		// } else if (!partner.is_connected() && partnerConnected) {
-		// 	partnerConnected = false;
-		// }
+		if (partner.is_connected() && !partnerConnected) {
+			partnerConnected = true;
+		} else if (!partner.is_connected() && partnerConnected) {
+			partnerConnected = false;
+		}
 
 		teleopDrive();
 
@@ -92,7 +92,8 @@ void opcontrol() {
 
 		teleopCling();
 
-		teleopPneumaticFlexz();
+		//Main call; feature deprecated 2024-01-18
+		// teleopPneumaticFlexz();
 
 		pros::delay(20);
 	}
