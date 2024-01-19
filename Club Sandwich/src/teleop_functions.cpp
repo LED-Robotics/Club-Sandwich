@@ -25,17 +25,29 @@ void teleopDrive() {
 }
 
 void teleopFredwheel() {
-    if (master.get_digital(E_CONTROLLER_DIGITAL_A)) {
-        fredwheel.move((int32_t)(127.0));
-    } else if (master.get_digital(E_CONTROLLER_DIGITAL_B)) {
-        fredwheel.move((int32_t)(-127.0));
+    if (master.get_digital(E_CONTROLLER_DIGITAL_A) || master.get_digital(E_CONTROLLER_DIGITAL_B)) {
+        if (master.get_digital(E_CONTROLLER_DIGITAL_A)) {
+            fredwheel.move((int32_t)(127.0));
+        } else if (master.get_digital(E_CONTROLLER_DIGITAL_B)) {
+            fredwheel.move((int32_t)(-127.0));
+        } else {
+            fredwheel.move((int32_t)(0.0));
+        }
     } else {
-        fredwheel.move((int32_t)(0.0));
+        if (partner.get_analog(E_CONTROLLER_ANALOG_LEFT_Y)) {
+            fredwheel.move(E_CONTROLLER_ANALOG_LEFT_Y);
+        } else {
+            fredwheel.move((int32_t)(0.0));
+        }
     }
 }
 
 void teleopCling() {
-    climb.move((int32_t)((master.get_digital(E_CONTROLLER_DIGITAL_Y) - master.get_digital(E_CONTROLLER_DIGITAL_X))*127.0));
+    if (master.get_digital(E_CONTROLLER_DIGITAL_Y) || master.get_digital(E_CONTROLLER_DIGITAL_X)) {
+        climb.move((int32_t)((master.get_digital(E_CONTROLLER_DIGITAL_Y) - master.get_digital(E_CONTROLLER_DIGITAL_X))*127.0));
+    } else {
+        
+    }
 }
 
 void teleopPneumaticFlexz() {

@@ -27,4 +27,4 @@ IMU gyro{14}; //14
 
 //Controller
 Controller master{CONTROLLER_MASTER};
-// Controller partner{CONTROLLER_PARTNER};
+Controller partner{CONTROLLER_PARTNER};

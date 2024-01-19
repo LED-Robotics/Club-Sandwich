@@ -29,4 +29,4 @@ extern IMU gyro;
 
 //Controllers
 extern Controller master;
-// extern Controller partner;
+extern Controller partner;
