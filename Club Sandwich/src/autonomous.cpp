@@ -91,6 +91,11 @@ void lcdAllianceSelect() {
 void executeAutonomous() {
     switch (autonomousSelected) {
         case 0:
+            //driveToPoint({0.0_ft, 0.0ft});
+            //turnAngle(0.0_deg);
+            chassis->turnAngleAsync(0.0_deg);
+            chassis->moveDistance(.5_ft);
+            // chassis->
             break;
         case 1:
             leftAuton();

@@ -12,13 +12,23 @@ void t_CheckPartnerConnect() {
 }
 
 void t_OkapiLibDrive() {
-    driveX = (double)master.get_analog(DRIVE_X) / 127.0;
+    driveX = (double)master.get_analog(DRIVE_X) / 127.0 * .9;
     driveY = (double)master.get_analog(DRIVE_Y) / 127.0;
 
     driveX = driveCurveExtent * pow(driveX, 3) + (1- driveCurveExtent) * driveX;
     driveY = driveCurveExtent * pow(driveY, 3) + (1- driveCurveExtent) * driveY;
 
-    chassisModel->arcade(driveY, driveX, driveDeadzone);
+    if (master.get_digital(E_CONTROLLER_DIGITAL_UP)) {
+        bashMode = false;
+    } else if (master.get_digital(E_CONTROLLER_DIGITAL_RIGHT)) {
+        bashMode = true;
+    }
+
+    if (bashMode) {
+        chassisModel->arcade(-driveY, -driveX, driveDeadzone);
+    } else {
+        chassisModel->arcade(driveY, driveX, driveDeadzone);
+    }
 }
 
 //Deprecated 2024-01-19
@@ -54,7 +64,7 @@ void t_Fredwheel() {
         }
     } else {
         if (partner.get_analog(E_CONTROLLER_ANALOG_LEFT_Y)) {
-            fredwheel.move(E_CONTROLLER_ANALOG_LEFT_Y);
+            fredwheel.move(partner.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
         } else {
             fredwheel.move((int32_t)(0.0));
         }
@@ -65,7 +75,7 @@ void t_Cling() {
     if (master.get_digital(E_CONTROLLER_DIGITAL_Y) || master.get_digital(E_CONTROLLER_DIGITAL_X)) {
         climb.move((int32_t)((master.get_digital(E_CONTROLLER_DIGITAL_Y) - master.get_digital(E_CONTROLLER_DIGITAL_X))*127.0));
     } else {
-        climb.move((int32_t)(master.get_analog(E_CONTROLLER_ANALOG_RIGHT_Y)*127.0));
+        climb.move((int32_t)(partner.get_analog(E_CONTROLLER_ANALOG_RIGHT_Y)*127.0));
     }
 }
 

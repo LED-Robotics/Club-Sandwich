@@ -20,7 +20,7 @@ ChassisControllerBuilder()
     {-11, -12, -13}    // Right motors are 3 & 4
 )
 // Green gearset, 4 in wheel diam, 11.5 in wheel track
-.withDimensions({AbstractMotor::gearset::blue, (5.0/3.0)}, {{3.25_in, 16.9_in}, imev5BlueTPR})//KALEB ACTUAL BOT:{AbstractMotor::gearset::blue, (5.0 / 3.0)}, {{3.25_in, 19.0_in}, imev5BlueTPR}
+.withDimensions({AbstractMotor::gearset::blue, (5.0/3.0)}, {{3.25_in, 6.74_in}, imev5BlueTPR})//KALEB ACTUAL BOT:{AbstractMotor::gearset::blue, (5.0 / 3.0)}, {{3.25_in, 19.0_in}, imev5BlueTPR}
 .withGains(
     {0.00125, 0.0, 0.0000},
     {0.00125, 0.0, 0.0000},
