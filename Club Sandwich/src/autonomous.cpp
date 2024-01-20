@@ -91,30 +91,6 @@ void lcdAllianceSelect() {
 void executeAutonomous() {
     switch (autonomousSelected) {
         case 0:
-            //driveToPoint({0.0_ft, 0.0ft});
-            //turnAngle(0.0_deg);
-            // a_FredwheelGoBurr(127.0);
-            // delay(27500); //27.5 Seconds of full Fredwheel
-
-            chassis->moveDistance(4.0_in);
-            chassis->waitUntilSettled();
-            chassis->turnAngle(-70.0_deg);
-            chassis->waitUntilSettled();
-            chassis->moveDistance(17.0_in);
-            chassis->turnAngle(45.0_deg);
-            chassis->waitUntilSettled();
-            chassis->moveDistance(5.75_in);
-            chassis->waitUntilSettled();
-            chassis->moveDistance(-6.0_in);
-            chassis->waitUntilSettled();
-            chassis->turnAngle(90.0_deg);
-            chassis->waitUntilSettled();
-            chassis->moveDistance(47.5_in);
-            chassis->waitUntilSettled();
-            chassis->turnAngle(-55.0_deg);
-            chassis->waitUntilSettled();
-            chassis->moveDistance(70.0_in);
-            a_Tare();
             break;
         case 1:
             leftAuton();
@@ -129,7 +105,12 @@ void executeAutonomous() {
 }
 
 void leftAuton() {
-
+    //Orin Autonomous
+    chassis->moveDistance(18_in);
+    chassis->turnAngle(50_deg);
+    chassis->moveDistance(18_in);
+    chassis->moveDistance(-12_in);
+    chassis->moveDistance(12_in);
 }
 
 void rightAuton() {
@@ -137,5 +118,28 @@ void rightAuton() {
 }
 
 void skills() {
+    //driveToPoint({0.0_ft, 0.0ft});
+    //turnAngle(0.0_deg);
     a_FredwheelGoBurr(127.0);
+    delay(27500); //27.5 Seconds of full Fredwheel
+
+    chassis->moveDistance(4.0_in);
+    chassis->waitUntilSettled();
+    chassis->turnAngle(-70.0_deg);
+    chassis->waitUntilSettled();
+    chassis->moveDistance(17.0_in);
+    chassis->turnAngle(45.0_deg);
+    chassis->waitUntilSettled();
+    chassis->moveDistance(5.75_in);
+    chassis->waitUntilSettled();
+    chassis->moveDistance(-6.0_in);
+    chassis->waitUntilSettled();
+    chassis->turnAngle(90.0_deg);
+    chassis->waitUntilSettled();
+    chassis->moveDistance(47.5_in);
+    chassis->waitUntilSettled();
+    chassis->turnAngle(-55.0_deg);
+    chassis->waitUntilSettled();
+    chassis->moveDistance(70.0_in);
+    a_Tare();
 }
