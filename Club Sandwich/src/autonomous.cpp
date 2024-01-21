@@ -124,7 +124,7 @@ void skills() {
     //driveToPoint({0.0_ft, 0.0ft});
     //turnAngle(0.0_deg);
     a_FredwheelGoBurr(127.0);
-    delay(27500); //27.5 Seconds of full Fredwheel
+    delay(29500); //27.5 Seconds of full Fredwheel
 
     chassis->moveDistance(4.0_in);
     chassis->waitUntilSettled();
