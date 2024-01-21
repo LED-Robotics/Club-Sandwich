@@ -91,6 +91,7 @@ void lcdAllianceSelect() {
 void executeAutonomous() {
     switch (autonomousSelected) {
         case 0:
+            chassis->stop();
             break;
         case 1:
             leftAuton();
@@ -111,10 +112,12 @@ void leftAuton() {
     chassis->moveDistance(18_in);
     chassis->moveDistance(-12_in);
     chassis->moveDistance(12_in);
+    chassis->waitUntilSettled();
+    chassis->stop();
 }
 
 void rightAuton() {
-    
+    chassis->stop();
 }
 
 void skills() {
@@ -141,5 +144,7 @@ void skills() {
     chassis->turnAngle(-55.0_deg);
     chassis->waitUntilSettled();
     chassis->moveDistance(70.0_in);
+    chassis->waitUntilSettled();
     a_Tare();
+    chassis->stop();
 }

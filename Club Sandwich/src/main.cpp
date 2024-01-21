@@ -79,6 +79,7 @@ void autonomous() {
  */
 
 void opcontrol() {
+	chassis->stop();
 	while (true) {
 		t_CheckPartnerConnect();
 
