@@ -118,6 +118,7 @@ void leftAuton() {
     chassis->turnAngle(-30_deg);
     chassis->turnAngle(180_deg);
     chassis->moveDistance(-22_in);
+    chassis->waitUntilSettled();
     chassis->stop();
 }
 
