@@ -22,7 +22,7 @@ ChassisControllerBuilder()
 // Green gearset, 4 in wheel diam, 11.5 in wheel track
 .withDimensions({AbstractMotor::gearset::blue, (1.0)}, {{4.25_in, 14.0_in}, imev5BlueTPR})//BUTTER ACTUAL BOT:{AbstractMotor::gearset::blue, (X.0 / Y.0)}, {{4.25_in, 5.0_in}, imev5BlueTPR}
 .withGains(
-    {0.00090, 0.0, 0.0000},
+    {0.00095, 0.0, 0.0000},
     {0.00090, 0.0, 0.0000},
     {0.000, 0.0, 0.0000}
 )

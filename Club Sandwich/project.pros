@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "Helicoprion",
+    "project_name": "Club Samuel",
     "target": "v5",
     "templates": {
       "kernel": {
@@ -309,8 +309,8 @@
       }
     },
     "upload_options": {
-      "slot": 1,
-      "icon": "X",
+      "slot": 2,
+      "icon": "pros",
       "description": "Pineapples"
     }
   }

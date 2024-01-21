@@ -91,6 +91,18 @@ void lcdAllianceSelect() {
 void executeAutonomous() {
     switch (autonomousSelected) {
         case 0:
+            //Orin Autonomous
+    chassis->moveDistance(18_in);
+    chassis->turnAngle(50_deg);
+    chassis->moveDistance(18_in);
+    chassis->moveDistance(-12_in);
+    chassis->moveDistance(12_in);
+    chassis->moveDistance(-18_in);
+    chassis->turnAngle(135_deg);
+    chassis->moveDistance(18_in);
+    chassis->turnAngle(-30_deg);
+    chassis->moveDistance(22_in);
+
             break;
         case 1:
             leftAuton();
@@ -111,6 +123,11 @@ void leftAuton() {
     chassis->moveDistance(18_in);
     chassis->moveDistance(-12_in);
     chassis->moveDistance(12_in);
+    chassis->moveDistance(-3_in);
+    chassis->turnAngle(120_deg);
+    chassis->moveDistance(9_in);
+    chassis->turnAngle(-30_deg);
+    chassis->moveDistance(8_in);
 }
 
 void rightAuton() {
