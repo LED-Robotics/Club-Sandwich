@@ -101,7 +101,8 @@ void executeAutonomous() {
     chassis->turnAngle(135_deg);
     chassis->moveDistance(18_in);
     chassis->turnAngle(-30_deg);
-    chassis->moveDistance(22_in);
+    chassis->turnAngle(180_deg);
+    chassis->moveDistance(-22_in);
 
             break;
         case 1:
@@ -123,11 +124,12 @@ void leftAuton() {
     chassis->moveDistance(18_in);
     chassis->moveDistance(-12_in);
     chassis->moveDistance(12_in);
-    chassis->moveDistance(-3_in);
-    chassis->turnAngle(120_deg);
-    chassis->moveDistance(9_in);
+    chassis->moveDistance(-18_in);
+    chassis->turnAngle(135_deg);
+    chassis->moveDistance(18_in);
     chassis->turnAngle(-30_deg);
-    chassis->moveDistance(8_in);
+    chassis->moveDistance(22_in);
+
 }
 
 void rightAuton() {
