@@ -92,14 +92,14 @@ void executeAutonomous() {
     switch (autonomousSelected) {
         case 0:
             //Orin Autonomous
-    chassis->moveDistance(27_in);
+    chassis->moveDistance(30_in);
     chassis->turnAngle(40.0_deg);
     chassis->moveDistance(-7_in);
     chassis->moveDistance(11_in);
-    chassis->turnAngle(-33.0_deg);
+    chassis->turnAngle(-45.0_deg);
     chassis->moveDistance(-34_in);
-    chassis->turnAngle(-40.0_deg);
-    chassis->moveDistance(-38_in);
+    chassis->turnAngle(-48.0_deg);
+    chassis->moveDistance(-42_in);
 
 
 
