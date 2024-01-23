@@ -107,17 +107,14 @@ void executeAutonomous() {
 
 void leftAuton() {
     //Orin Autonomous
-    chassis->moveDistance(18_in);
-    chassis->turnAngle(50_deg);
-    chassis->moveDistance(18_in);
-    chassis->moveDistance(-12_in);
-    chassis->moveDistance(12_in);
-    chassis->moveDistance(-18_in);
-    chassis->turnAngle(135_deg);
-    chassis->moveDistance(18_in);
-    chassis->turnAngle(-30_deg);
-    chassis->turnAngle(180_deg);
-    chassis->moveDistance(-22_in);
+    chassis->moveDistance(27_in);
+    chassis->turnAngle(40.0_deg);
+    chassis->moveDistance(-7_in);
+    chassis->moveDistance(11_in);
+    chassis->turnAngle(-33.0_deg);
+    chassis->moveDistance(-34_in);
+    chassis->turnAngle(-40.0_deg);
+    chassis->moveDistance(-38_in);
     chassis->waitUntilSettled();
     chassis->stop();
 }
