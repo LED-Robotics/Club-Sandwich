@@ -99,7 +99,7 @@ void executeAutonomous() {
         // chassis->moveDistance(-36_in);
         // chassis->turnAngle(-48.0_deg);
         // chassis->moveDistance(-42_in);  
-        // chassis->a_Tare();
+        a_Tare();
     case 0:
         //Orin Autonomous
         rightAuton();
