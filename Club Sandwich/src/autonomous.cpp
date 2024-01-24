@@ -90,50 +90,54 @@ void lcdAllianceSelect() {
 //EXECUTION 
 void executeAutonomous() {
     switch (autonomousSelected) {
-        case 0:
-            //Orin Autonomous
-    chassis->moveDistance(30_in);
-    chassis->turnAngle(40.0_deg);
-    chassis->moveDistance(-7_in);
-    chassis->moveDistance(11_in);
-    chassis->turnAngle(-45.0_deg);
-    chassis->moveDistance(-34_in);
-    chassis->turnAngle(-48.0_deg);
-    chassis->moveDistance(-42_in);
-
-
-
-
-            break;
-        case 1:
-            leftAuton();
-            break;
-        case 2:
-            rightAuton();
-            break;
-        case 3:
-            skills();
-            break;
+        //Orin Autonomous
+        chassis->moveDistance(28_in);
+        chassis->turnAngle(40.0_deg);
+        chassis->moveDistance(-7_in);
+        chassis->moveDistance(11_in);
+        // chassis->turnAngle(-43.0_deg);
+        // chassis->moveDistance(-36_in);
+        // chassis->turnAngle(-48.0_deg);
+        // chassis->moveDistance(-42_in);  
+        // chassis->a_Tare();
+    case 0:
+        //Orin Autonomous
+        rightAuton();
+        break;
+    case 1:
+        leftAuton();
+        break;
+    case 2:
+        break;
+    case 3:
+        skills();
+        break;
     }
 }
 
 void leftAuton() {
     //Orin Autonomous
-    chassis->moveDistance(18_in);
-    chassis->turnAngle(50_deg);
-    chassis->moveDistance(18_in);
-    chassis->moveDistance(-12_in);
-    chassis->moveDistance(12_in);
-    chassis->moveDistance(-18_in);
-    chassis->turnAngle(135_deg);
-    chassis->moveDistance(18_in);
-    chassis->turnAngle(-30_deg);
-    chassis->moveDistance(22_in);
-
+    chassis->moveDistance(28_in);
+    chassis->turnAngle(40.0_deg);
+    chassis->moveDistance(-7_in);
+    chassis->moveDistance(11_in);
+    // chassis->turnAngle(-43.0_deg);
+    // chassis->moveDistance(-36_in);
+    // chassis->turnAngle(-48.0_deg);
+    // chassis->moveDistance(-42_in);         
 }
 
 void rightAuton() {
-    
+        chassis->moveDistance(28_in);
+    chassis->turnAngle(40.0_deg);
+    chassis->moveDistance(-7_in);
+    chassis->moveDistance(11_in);
+    // chassis->turnAngle(-43.0_deg);
+    // chassis->moveDistance(-36_in);
+    // chassis->turnAngle(-48.0_deg);
+    // chassis->moveDistance(-42_in);
+    // chassis->a_Tare()
+
 }
 
 void skills() {
@@ -160,5 +164,5 @@ void skills() {
     chassis->turnAngle(-55.0_deg);
     chassis->waitUntilSettled();
     chassis->moveDistance(70.0_in);
-    a_Tare();
+    // chassis->a_Tare();
 }

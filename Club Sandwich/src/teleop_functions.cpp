@@ -25,7 +25,7 @@ void t_OkapiLibDrive() {
     }
 
     if (bashMode) {
-        chassisModel->arcade(-driveY, -driveX, driveDeadzone);
+        chassisModel->arcade(-driveY, driveX, driveDeadzone);
     } else {
         chassisModel->arcade(driveY, driveX, driveDeadzone);
     }
