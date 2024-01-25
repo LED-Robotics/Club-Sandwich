@@ -145,7 +145,7 @@ void rightAuton() {
 void skills() {
     //driveToPoint({0.0_ft, 0.0ft});
     //turnAngle(0.0_deg);
-    a_FredwheelGoBurr(127.0);
+    a_FredIntakeGoBurr(127.0);
     delay(27500); //27.5 Seconds of full Fredwheel
 
     chassis->moveDistance(4.0_in);
@@ -159,13 +159,42 @@ void skills() {
     chassis->waitUntilSettled();
     chassis->moveDistance(-6.0_in);
     chassis->waitUntilSettled();
-    chassis->turnAngle(90.0_deg);
+    chassis->turnAngle(135.0_deg);
     chassis->waitUntilSettled();
-    chassis->moveDistance(47.5_in);
+    chassis->moveDistance(30_in);
     chassis->waitUntilSettled();
-    chassis->turnAngle(-55.0_deg);
+    chassis->turnAngle(-45.0_deg);
     chassis->waitUntilSettled();
-    chassis->moveDistance(70.0_in);
+    chassis->moveDistance(90.0_in);
+    chassis->waitUntilSettled();
+    chassis->turnAngle(-45_deg);
+    chassis->waitUntilSettled();
+    chassis->moveDistance(25.0_in);
+    chassis->waitUntilSettled();
+    chassis->turnAngle(-45_deg);
+    chassis->waitUntilSettled();
+    chassis->moveDistance(22.0_in);
+    chassis->waitUntilSettled();
+    chassis->moveDistance(-10_in);
+    chassis->waitUntilSettled();
+    chassis->moveDistance(10_in);
+    chassis->waitUntilSettled();
+    chassis->moveDistance(-5_in);
+    chassis->waitUntilSettled();
+    chassis->turnAngle(-90_deg);
+    chassis->waitUntilSettled();
+    chassis->moveDistance(40_in);
+    chassis->waitUntilSettled();
+    chassis->turnAngle(90_deg);
+    chassis->waitUntilSettled();
+    chassis->moveDistance(40_in);
+    chassis->waitUntilSettled();
+    chassis->turnAngle(90_deg);
+    chassis->waitUntilSettled();
+    chassis->moveDistance(20_in);
+    chassis->waitUntilSettled();
+    chassis->waitUntilSettled();
+    chassis->waitUntilSettled();
     chassis->waitUntilSettled();
     a_Tare();
 }

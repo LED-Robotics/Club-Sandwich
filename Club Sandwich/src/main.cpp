@@ -88,7 +88,7 @@ void opcontrol() {
 		//Deprecated 2024-01-18
 		// t_Drive();
 
-		t_Fredwheel();
+		t_Fredintake();
 
 		t_Cling();
 

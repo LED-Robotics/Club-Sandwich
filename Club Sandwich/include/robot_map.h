@@ -16,14 +16,15 @@ extern std::shared_ptr<OdomChassisController> chassis;
 extern std::shared_ptr<ChassisModel> chassisModel;
 
 //Flywheel
-extern pros::Motor fredwheel;
+extern pros::Motor fredIntake;
 
 //Climb
 extern pros::Motor climb;
 
-//Pneumatics
-extern pros::ADIDigitalOut pneumaticLeft;
-extern pros::ADIDigitalOut pneumaticRight;
+// Feature Archived 2024-01-25
+// //Pneumatics
+// extern pros::ADIDigitalOut pneumaticLeft;
+// extern pros::ADIDigitalOut pneumaticRight;
 
 //Gyro
 extern pros::IMU gyro;

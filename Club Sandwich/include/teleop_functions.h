@@ -8,7 +8,7 @@ void t_OkapiLibDrive();
 //Deprecated 2024-01-18
 // void t_Drive();
 
-void t_Fredwheel();
+void t_Fredintake();
 
 void t_Cling();
 

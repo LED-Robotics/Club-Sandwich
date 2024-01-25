@@ -7,7 +7,7 @@
 //Deprecated 2024-01-19
 // void a_ChassisTurn(double angle);
 
-void a_FredwheelGoBurr(double speed);
+void a_FredIntakeGoBurr(double speed);
 
 void a_Tare();
 

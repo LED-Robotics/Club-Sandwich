@@ -53,20 +53,14 @@ void t_OkapiLibDrive() {
 //     }
 // }
 
-void t_Fredwheel() {
-    if (master.get_digital(E_CONTROLLER_DIGITAL_A) || master.get_digital(E_CONTROLLER_DIGITAL_B)) {
-        if (master.get_digital(E_CONTROLLER_DIGITAL_A)) {
-            fredwheel.move((int32_t)(127.0));
-        } else if (master.get_digital(E_CONTROLLER_DIGITAL_B)) {
-            fredwheel.move((int32_t)(-127.0));
-        } else {
-            fredwheel.move((int32_t)(0.0));
-        }
+void t_Fredintake() {
+    if (master.get_digital(E_CONTROLLER_DIGITAL_L2) || master.get_digital(E_CONTROLLER_DIGITAL_R2)) {
+        fredIntake.move((master.get_digital(E_CONTROLLER_DIGITAL_R2) - master.get_digital(E_CONTROLLER_DIGITAL_L2)) * 127.0); 
     } else {
         if (partner.get_analog(E_CONTROLLER_ANALOG_LEFT_Y)) {
-            fredwheel.move(partner.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
+            fredIntake.move(partner.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
         } else {
-            fredwheel.move((int32_t)(0.0));
+            fredIntake.move((int32_t)(0.0));
         }
     }
 }

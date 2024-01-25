@@ -98,8 +98,8 @@
 //     delay(200);
 // }
 
-void a_FredwheelGoBurr(double speed) {
-    fredwheel.move(speed);
+void a_FredIntakeGoBurr(double speed) {
+    fredIntake.move(speed);
 }
 
 void a_Tare(){

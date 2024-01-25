@@ -31,7 +31,7 @@ ChassisControllerBuilder()
 std::shared_ptr<ChassisModel> chassisModel = chassis->getModel();
 
 //Flywheel
-pros::Motor fredwheel{15, MOTOR_GEAR_GREEN, true, MOTOR_ENCODER_DEGREES}; //15
+pros::Motor fredIntake{15, MOTOR_GEAR_GREEN, true, MOTOR_ENCODER_DEGREES}; //15
 
 //Climb
 pros::Motor climb{5, MOTOR_GEAR_RED, true, MOTOR_ENCODER_DEGREES}; //5
