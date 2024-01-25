@@ -124,7 +124,9 @@ void leftAuton() {
     // chassis->turnAngle(-43.0_deg);
     // chassis->moveDistance(-36_in);
     // chassis->turnAngle(-48.0_deg);
-    // chassis->moveDistance(-42_in);         
+    // chassis->moveDistance(-42_in);
+    chassis->waitUntilSettled();
+    a_Tare();     
 }
 
 void rightAuton() {
@@ -136,8 +138,8 @@ void rightAuton() {
     // chassis->moveDistance(-36_in);
     // chassis->turnAngle(-48.0_deg);
     // chassis->moveDistance(-42_in);
-    // chassis->a_Tare()
-
+    chassis->waitUntilSettled();
+    a_Tare();
 }
 
 void skills() {
@@ -164,5 +166,6 @@ void skills() {
     chassis->turnAngle(-55.0_deg);
     chassis->waitUntilSettled();
     chassis->moveDistance(70.0_in);
-    // chassis->a_Tare();
+    chassis->waitUntilSettled();
+    a_Tare();
 }
