@@ -91,68 +91,69 @@ void lcdAllianceSelect() {
 void executeAutonomous() {
     switch (autonomousSelected) {
         //Orin Autonomous
-    chassis->moveDistance(4.0_in);
-    chassis->waitUntilSettled();
-    chassis->turnAngle(-70.0_deg);
-    chassis->waitUntilSettled();
-    chassis->moveDistance(17.0_in);
-    chassis->turnAngle(45.0_deg);
-    chassis->waitUntilSettled();
-    chassis->moveDistance(5.75_in);
-    chassis->waitUntilSettled();
-    chassis->moveDistance(-6.0_in);
-    chassis->waitUntilSettled();
-    chassis->turnAngle(135.0_deg);
-    chassis->waitUntilSettled();
-    chassis->moveDistance(30_in);
-    chassis->waitUntilSettled();
-    chassis->turnAngle(-45.0_deg);
-    chassis->waitUntilSettled();
-    chassis->moveDistance(90.0_in);
-    chassis->waitUntilSettled();
-    chassis->turnAngle(-45_deg);
-    chassis->waitUntilSettled();
-    chassis->moveDistance(25.0_in);
-    chassis->waitUntilSettled();
-    chassis->turnAngle(-45_deg);
-    chassis->waitUntilSettled();
-    chassis->moveDistance(22.0_in);
-    chassis->waitUntilSettled();
-    chassis->moveDistance(-10_in);
-    chassis->waitUntilSettled();
-    chassis->moveDistance(10_in);
-    chassis->waitUntilSettled();
-    chassis->moveDistance(-5_in);
-    chassis->waitUntilSettled();
-    chassis->turnAngle(-90_deg);
-    chassis->waitUntilSettled();
-    chassis->moveDistance(40_in);
-    chassis->waitUntilSettled();
-    chassis->turnAngle(90_deg);
-    chassis->waitUntilSettled();
-    chassis->moveDistance(40_in);
-    chassis->waitUntilSettled();
-    chassis->turnAngle(90_deg);
-    chassis->waitUntilSettled();
-    chassis->moveDistance(20_in);
-    chassis->waitUntilSettled();
-    chassis->waitUntilSettled();
-    chassis->waitUntilSettled();
-    chassis->waitUntilSettled();
-    a_Tare();
-    case 0:
-        //Orin Autonomous
-        rightAuton();
-        break;
-    case 1:
-        leftAuton();
-        break;
-    case 2:
-        break;
-    case 3:
-        skills();
-        break;
-    }
+        case 0:
+            chassis->moveDistance(4.0_in);
+            chassis->waitUntilSettled();
+            chassis->turnAngle(-70.0_deg);
+            chassis->waitUntilSettled();
+            chassis->moveDistance(17.0_in);
+            chassis->turnAngle(45.0_deg);
+            chassis->waitUntilSettled();
+            chassis->moveDistance(5.75_in);
+            chassis->waitUntilSettled();
+            chassis->moveDistance(-6.0_in);
+            chassis->waitUntilSettled();
+            chassis->turnAngle(135.0_deg);
+            chassis->waitUntilSettled();
+            chassis->moveDistance(30_in);
+            chassis->waitUntilSettled();
+            chassis->turnAngle(-45.0_deg);
+            chassis->waitUntilSettled();
+            chassis->moveDistance(90.0_in);
+            chassis->waitUntilSettled();
+            chassis->turnAngle(-45_deg);
+            chassis->waitUntilSettled();
+            chassis->moveDistance(25.0_in);
+            chassis->waitUntilSettled();
+            chassis->turnAngle(-45_deg);
+            chassis->waitUntilSettled();
+            chassis->moveDistance(22.0_in);
+            chassis->waitUntilSettled();
+            chassis->moveDistance(-10_in);
+            chassis->waitUntilSettled();
+            chassis->moveDistance(10_in);
+            chassis->waitUntilSettled();
+            chassis->moveDistance(-5_in);
+            chassis->waitUntilSettled();
+            chassis->turnAngle(-90_deg);
+            chassis->waitUntilSettled();
+            chassis->moveDistance(40_in);
+            chassis->waitUntilSettled();
+            chassis->turnAngle(90_deg);
+            chassis->waitUntilSettled();
+            chassis->moveDistance(40_in);
+            chassis->waitUntilSettled();
+            chassis->turnAngle(90_deg);
+            chassis->waitUntilSettled();
+            chassis->moveDistance(20_in);
+            chassis->waitUntilSettled();
+            chassis->waitUntilSettled();
+            chassis->waitUntilSettled();
+            chassis->waitUntilSettled();
+            a_Tare();
+            //Orin Autonomous
+
+            break;
+        case 1:
+            leftAuton();
+            break;
+        case 2:
+            rightAuton();
+            break;
+        case 3:
+            skills();
+            break;
+        }
 }
 
 void leftAuton() {
