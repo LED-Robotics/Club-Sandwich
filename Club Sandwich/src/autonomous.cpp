@@ -128,22 +128,23 @@ void rightAuton() {
 
     // 1st Triball
 
-    chassis->moveDistance(30_in);
-    chassis->turnAngle(-45.0_deg);
+    chassis->moveDistance(20_in);
+    chassis->turnAngle(-58.0_deg);
     chassis->moveDistance(10_in);
     chassis->moveDistance(-12_in);
     chassis->moveDistance(10_in);
 
     // 2nd Triball
-
+    chassisModel->Left(230);
     chassis->moveDistance(-8.0_in);
-    chassis->turnAngle(-90.0_deg);
+    chassis->turnAngle(-100.0_deg);
     chassis->moveDistance(25.0_in);
-    chassis->turnAngle(90_deg);
+    chassis->turnAngle(85_deg);
     chassis->moveDistance(12_in);
-    chassis->turnAngle(135.0_deg);
+    chassis->turnAngle(130.0_deg);
     climb.move(127);
     chassis->moveDistance(25.0_in);
+    chassis->turnAngle(-15_deg);
     delay(1000);
     climb.move(0);
     fredIntake.move(127);
