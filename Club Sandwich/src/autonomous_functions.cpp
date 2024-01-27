@@ -98,9 +98,7 @@
 //     delay(200);
 // }
 
-void a_FredIntakeGoBurr(double speed) {
-    fredIntake.move(speed);
-}
+//Fredwheel and Climb Deprecated 2024-01-27
 
 void a_Tare(){
     chassis->stop();

@@ -13,7 +13,7 @@ void t_CheckPartnerConnect() {
 
 void t_OkapiLibDrive() {
     driveX = (double)master.get_analog(DRIVE_X) / 127.0 * .9;
-    driveY = (double)master.get_analog(DRIVE_Y) / 127.0;
+    driveY = (double)master.get_analog(DRIVE_Y) / 127.0; 
 
     driveX = driveCurveExtent * pow(driveX, 3) + (1- driveCurveExtent) * driveX;
     driveY = driveCurveExtent * pow(driveY, 3) + (1- driveCurveExtent) * driveY;

@@ -92,54 +92,8 @@ void executeAutonomous() {
     switch (autonomousSelected) {
         //Orin Autonomous
         case 0:
-            chassis->moveDistance(4.0_in);
-            chassis->waitUntilSettled();
-            chassis->turnAngle(-70.0_deg);
-            chassis->waitUntilSettled();
-            chassis->moveDistance(17.0_in);
-            chassis->turnAngle(25.0_deg);
-            chassis->waitUntilSettled();
-            chassis->moveDistance(5.75_in);
-            chassis->waitUntilSettled();
-            chassis->moveDistance(-6.0_in);
-            chassis->waitUntilSettled();
-            chassis->turnAngle(135.0_deg);
-            chassis->waitUntilSettled();
-            chassis->moveDistance(20_in);
-            // chassis->waitUntilSettled();
-            // chassis->turnAngle(-45.0_deg);
-            // chassis->waitUntilSettled();
-            // chassis->moveDistance(90.0_in);
-            // chassis->waitUntilSettled();
-            // chassis->turnAngle(-45_deg);
-            // chassis->waitUntilSettled();
-            // chassis->moveDistance(25.0_in);
-            // chassis->waitUntilSettled();
-            // chassis->turnAngle(-45_deg);
-            // chassis->waitUntilSettled();
-            // chassis->moveDistance(22.0_in);
-            // chassis->waitUntilSettled();
-            // chassis->moveDistance(-10_in);
-            // chassis->waitUntilSettled();
-            // chassis->moveDistance(10_in);
-            // chassis->waitUntilSettled();
-            // chassis->moveDistance(-5_in);
-            // chassis->waitUntilSettled();
-            // chassis->turnAngle(-90_deg);
-            // chassis->waitUntilSettled();
-            // chassis->moveDistance(40_in);
-            // chassis->waitUntilSettled();
-            // chassis->turnAngle(90_deg);
-            // chassis->waitUntilSettled();
-            // chassis->moveDistance(40_in);
-            // chassis->waitUntilSettled();
-            // chassis->turnAngle(90_deg);
-            // chassis->waitUntilSettled();
-            // chassis->moveDistance(20_in);
-            // chassis->waitUntilSettled();
-            // chassis->waitUntilSettled();
-            // chassis->waitUntilSettled();
-            // chassis->waitUntilSettled();
+
+
             a_Tare();
             //Orin Autonomous
 
@@ -158,26 +112,69 @@ void executeAutonomous() {
 
 void leftAuton() {
     //Orin Autonomous
-        chassis->moveDistance(28_in);
-        chassis->turnAngle(40.0_deg);
-        chassis->moveDistance(-7_in);
-        chassis->moveDistance(11_in);
-        // chassis->turnAngle(-43.0_deg);
-        // chassis->moveDistance(-36_in);
-        // chassis->turnAngle(-48.0_deg);
-        // chassis->moveDistance(-42_in);  
+        chassis->moveDistance(30_in);
+        chassis->turnAngle(45.0_deg);
+        chassis->moveDistance(12_in);
+        chassis->moveDistance(-10_in);
+        chassis->moveDistance(12_in);
+        chassis->moveDistance(-10_in);
+        chassis->turnAngle(-45.0_deg); 
+        chassis->turnAngle(-45.0_deg);     
+        chassis->moveDistance(-42_in);             
         a_Tare();    
 }
 
 void rightAuton() {
-        chassis->moveDistance(28_in);
-    chassis->turnAngle(40.0_deg);
-    chassis->moveDistance(-7_in);
-    chassis->moveDistance(11_in);
-    // chassis->turnAngle(-43.0_deg);
-    // chassis->moveDistance(-36_in);
-    // chassis->turnAngle(-48.0_deg);
-    // chassis->moveDistance(-42_in);
+
+    // 1st Triball
+
+    chassis->moveDistance(30_in);
+    chassis->turnAngle(-45.0_deg);
+    chassis->moveDistance(10_in);
+    chassis->moveDistance(-12_in);
+    chassis->moveDistance(10_in);
+
+    // 2nd Triball
+
+    chassis->moveDistance(-8.0_in);
+    chassis->turnAngle(-90.0_deg);
+    chassis->moveDistance(25.0_in);
+    chassis->turnAngle(90_deg);
+    chassis->moveDistance(12_in);
+    chassis->turnAngle(135.0_deg);
+    climb.move(127);
+    chassis->moveDistance(25.0_in);
+    delay(1000);
+    climb.move(0);
+    fredIntake.move(127);
+    chassis->moveDistance(25.0_in);
+    chassis->turnAngle(180_deg);
+    fredIntake.move(-127);
+    chassis->moveDistance(5_in);
+    chassis->turnAngle(180_deg);
+    chassis->moveDistance(8_in);
+    chassis->waitUntilSettled();
+    delay(1000);
+    fredIntake.move(0);
+
+    // 3rd Triball
+
+    chassis->moveDistance(-45_in);
+    fredIntake.move(127);
+    chassis->waitUntilSettled();
+    chassis->moveDistance(-15_in);
+    chassis->turnAngle(-270_deg);
+    chassis->moveDistance(18_in);
+    chassis->turnAngle(-90_deg);
+    fredIntake.move(127);
+    chassis->moveDistance(-22_in);
+    delay(2000);
+    chassis->moveDistance(44_in);
+    chassis->turnAngle(180_deg);
+    fredIntake.move(-127);
+    chassis->moveDistance(5_in);
+    chassis->turnAngle(180_deg);
+    chassis->moveDistance(8_in);
     chassis->waitUntilSettled();
     a_Tare();
 }
@@ -185,56 +182,13 @@ void rightAuton() {
 void skills() {
     //driveToPoint({0.0_ft, 0.0ft});
     //turnAngle(0.0_deg);
-    a_FredIntakeGoBurr(127.0);
-    delay(27500); //27.5 Seconds of full Fredwheel
-
-    chassis->moveDistance(4.0_in);
-    chassis->waitUntilSettled();
-    chassis->turnAngle(-70.0_deg);
-    chassis->waitUntilSettled();
-    chassis->moveDistance(17.0_in);
-    chassis->turnAngle(45.0_deg);
-    chassis->waitUntilSettled();
-    chassis->moveDistance(5.75_in);
-    chassis->waitUntilSettled();
-    chassis->moveDistance(-6.0_in);
-    chassis->waitUntilSettled();
-    chassis->turnAngle(135.0_deg);
-    chassis->waitUntilSettled();
+    fredIntake.move(127);
+    delay(33000);
+    chassis->moveDistance(93_in);
+    chassis->turnAngle(45_deg);
     chassis->moveDistance(30_in);
-    chassis->waitUntilSettled();
-    chassis->turnAngle(-45.0_deg);
-    chassis->waitUntilSettled();
-    chassis->moveDistance(90.0_in);
-    chassis->waitUntilSettled();
-    chassis->turnAngle(-45_deg);
-    chassis->waitUntilSettled();
-    chassis->moveDistance(25.0_in);
-    chassis->waitUntilSettled();
-    chassis->turnAngle(-45_deg);
-    chassis->waitUntilSettled();
-    chassis->moveDistance(22.0_in);
-    chassis->waitUntilSettled();
-    chassis->moveDistance(-10_in);
-    chassis->waitUntilSettled();
+    chassis->turnAngle(45.0_deg);
     chassis->moveDistance(10_in);
-    chassis->waitUntilSettled();
-    chassis->moveDistance(-5_in);
-    chassis->waitUntilSettled();
-    chassis->turnAngle(-90_deg);
-    chassis->waitUntilSettled();
-    chassis->moveDistance(40_in);
-    chassis->waitUntilSettled();
-    chassis->turnAngle(90_deg);
-    chassis->waitUntilSettled();
-    chassis->moveDistance(40_in);
-    chassis->waitUntilSettled();
-    chassis->turnAngle(90_deg);
-    chassis->waitUntilSettled();
-    chassis->moveDistance(20_in);
-    chassis->waitUntilSettled();
-    chassis->waitUntilSettled();
-    chassis->waitUntilSettled();
-    chassis->waitUntilSettled();
-    a_Tare();
+    chassis->moveDistance(-10_in);
+    chassis->moveDistance(12_in);
 }
