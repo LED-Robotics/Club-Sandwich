@@ -10,20 +10,15 @@ ChassisControllerBuilder()
 // Green gearset, 4 in wheel diam, 11.5 in wheel track
 .withDimensions({AbstractMotor::gearset::blue, (5.0/3.0)}, {{3.25_in, 16.9_in}, imev5BlueTPR})//KALEB ACTUAL BOT:{AbstractMotor::gearset::blue, (5.0 / 3.0)}, {{3.25_in, 19.0_in}, imev5BlueTPR}
 .withGains(
-    {0.00125, 0.0, 0.0000},
-    {0.00125, 0.0, 0.0000},
+    {0.00115, 0.0, 0.0000},
+    {0.00115, 0.0, 0.0000},
     {0.000, 0.0, 0.0000}
 )
 .withOdometry()
 .buildOdometry();
 std::shared_ptr<ChassisModel> chassisModel = chassis->getModel();
 
-// Motor backLeft{4, true, AbstractMotor::gearset::blue , AbstractMotor::encoderUnits::degrees};
-// Motor frontLeft{2, true, AbstractMotor::gearset::blue, AbstractMotor::encoderUnits::degrees};
-// Motor backRight{3, false, AbstractMotor::gearset::blue, AbstractMotor::encoderUnits::degrees};
-// Motor frontRight{1, false, AbstractMotor::gearset::blue, AbstractMotor::encoderUnits::degrees};
-
-Motor intake{9, true, AbstractMotor::gearset::invalid, AbstractMotor::encoderUnits::degrees};//*Small Motors 200 RPM
+Motor intake{9, true, AbstractMotor::gearset::green, AbstractMotor::encoderUnits::degrees};//*Small Motors 200 RPM
 
 Motor flyWheel{14,false, AbstractMotor::gearset::blue, AbstractMotor::encoderUnits::degrees};
 

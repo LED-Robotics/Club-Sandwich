@@ -1,7 +1,7 @@
 #include "autonomous.h"
 #include "autonomous_functions.h"
 #include <math.h>
-// using namespace pros;
+// using namespace pros;                                                                                                                        Pineapples
 
 void printData() {
     pros::lcd::clear_line(0);
@@ -10,21 +10,28 @@ void printData() {
             pros::lcd::print(0, "Auton Selected: Standby");
             break;
         case 1:
-            pros::lcd::print(0, "Auton Slected: Right Auton");
+            pros::lcd::print(0, "Auton Selected: Right Auton");
             break;
         case 2:
-            pros::lcd::print(0, "Auton Selected: Left Auton");
+            pros::lcd::print(0, "Auton Selected: Right Guarantee");
             break;
         case 3:
+            pros::lcd::print(0, "Auton Selected: Left Auton");
+            break;
+        case 4:
+            pros::lcd::print(0, "Auton Selected: Left Auto WP");
+            break;
+        case 5:
             pros::lcd::print(0, "Auton Selected: Programming Skills");
             break;
+
     }
     pros::lcd::clear_line(1);
 }
 
 void lcdAutonSelect() {
     autonomousSelected++;
-    if (autonomousSelected > 3) { autonomousSelected = 0; }
+    if (autonomousSelected > 5) { autonomousSelected = 0; }
     printData();
 }
 
@@ -44,86 +51,141 @@ void executeAutonomous() {
         case 0:
             break;
         case 1:
-            rightWP();//RIGHT
+            right3Pt();
             break;
         case 2:
-            leftWP();//LEFT
+            rightAutonGuarantee();
             break;
         case 3:
+            leftAuton();
+            break;
+        case 4:
+            leftAutonWP();
+            break;
+        case 5:
             skills();
             break;
     }
 }
 
-void rightWP(){
-    chassis->driveToPoint({2.25_ft, 0.0_ft});
-    intakePiston.set_value(true);
+void right3Pt(){
+    goofyAsyncs(2.25_ft);
+    chassis->turnAngle(17.5_deg);
     intake.controllerSet(-1.0);
-    pros::delay(1250);
+    pros::delay(1000);
     intake.controllerSet(0.0);
-    chassis->setState({0_ft, 0_ft, 0_deg});
-    chassis->driveToPoint({0.5_ft, -1.75_ft});
+    chassis->turnAngle(-17.5_deg);
+    chassis->turnAngle(-75_deg);
+    intakePiston.set_value(true);
     intake.controllerSet(1.0);
-    pros::delay(500);
+    goofyAsyncs(2.45_ft);
+    pros::delay(300);
     intake.controllerSet(0.0);
-    chassis->turnAngle(120_deg);
-    chassis->moveDistance(1.5_ft);
+    chassis->turnAngle(135_deg);
+    goofyAsyncs(1.5_ft);
     intake.controllerSet(-1.0);
     pros::delay(750);
     intake.controllerSet(0.0);
-    chassis->moveDistance(-0.5_ft);
-    chassis->turnAngle(-55_deg);
-    chassis->moveDistance(1.25_ft);
+    goofyAsyncs(-1.0_ft);
+    chassis->turnAngle(-50_deg);
     intake.controllerSet(1.0);
-    pros::delay(500);
+    intakePiston.set_value(true);
+    goofyAsyncs(2.0_ft);
+    pros::delay(200);
     intake.controllerSet(0.0);
-    chassis->turnAngle(90_deg);
+    chassis->turnAngle(100_deg);
     intake.controllerSet(-1.0);
-    pros::delay(800);
+    pros::delay(650);
     intake.controllerSet(0.0);
     intakePiston.set_value(false);
-    chassis->moveDistance(-0.5_ft);
-    chassis->turnAngle(175_deg);
-    chassis->moveDistance(-1.75_ft);
+    goofyAsyncs(-0.5_ft);
+    chassis->turnAngle(190_deg);
+    backFlaps.set_value(true);
+    goofyAsyncs(-3.0_ft);
+    backFlaps.set_value(false);
+    intakePiston.set_value(false);
+    
 }
 
-void leftWP(){
+void rightAutonGuarantee(){
     intakePiston.set_value(true);
-    chassis->moveDistance(2.5_ft);//Forward to side of goal
-    chassis->turnAngle(45_deg);//Turn to align with goal//move up to goal
+    goofyAsyncs(2.5_ft);
+    chassis->turnAngle(-45_deg);
     intake.controllerSet(-1.0);
-    pros::delay(1250);          //Outtake
+    pros::delay(1250);        
     intake.controllerSet(0.0);
     intakePiston.set_value(false);
-    chassis->moveDistance(-0.5_ft);
-    chassis->turnAngle(175_deg);
-    chassis->moveDistance(-1.5_ft);
-    // chassis->moveDistance(1.0_ft);
-    // chassis->moveDistance(-1.0_ft);
-    // chassis->moveDistance(1.0_ft);
-    // chassis->turnAngle(-45_deg);
-    // chassis->moveDistance(-2.0_ft);
-    // intakePiston.set_value(true);
-    // chassis->turnAngle(90_deg);
-    // chassis->moveDistance(-1.0_ft);
+    goofyAsyncs(-0.5_ft);
+    chassis->turnAngle(-195_deg);
+    goofyAsyncs(-1.5_ft);
+
+
+}
+
+void leftAuton(){
+
+    intakePiston.set_value(true);
+    goofyAsyncs(2.5_ft);
+    chassis->turnAngle(45_deg);
+    intake.controllerSet(-1.0);
+    pros::delay(1250);
+    intake.controllerSet(0.0);
+    intakePiston.set_value(false);
+    goofyAsyncs(-0.5_ft);
+    chassis->turnAngle(195_deg);
+    goofyAsyncs(-1.5_ft);
+    goofyAsyncs(1.0_ft);
+    goofyAsyncs(-1.0_ft);
+    goofyAsyncs(1.0_ft);
+}
+
+void leftAutonWP(){
+    backFlaps.set_value(true);//og
+    pros::delay(250);//og
+    chassis->turnAngle(-30_deg);//og
+    backFlaps.set_value(false);//og
+    pros::delay(500);//og
+    goofyAsyncs(0.75_ft);//og
+    chassis->turnAngle(-16_deg);//og
+    goofyAsyncs(2.5_ft);//og
+    intakePiston.set_value(true);//og
+
 }
 
 void skills() {
     // autonTare();
-    flyWheel.controllerSet(1);
+    flyWheel.controllerSet(1.0);
     pros::delay(30000);
-    //After all balls launched, turn robot and drive to other side.
-    //curve around the mid extruding pole and slowly curve the robot into the balls and into the net
-    //If you have time, create a movement function to return to the elevation pole and elevate.
-    chassis->moveDistance(-0.25_ft);
+    flyWheel.controllerSet(0.0);
+    goofyAsyncs(-0.5_ft);
     chassis->turnAngle(60_deg);
+    goofyAsyncs(-1.0_ft);
+    chassis->turnAngle(-22_deg);
     intakePiston.set_value(true);
-    chassis->moveDistance(-1.0_ft);
-    chassis->turnAngle(-15_deg);
-    chassis->moveDistance(-6.5_ft);
+    goofyAsyncs(-6.0_ft);
     intakePiston.set_value(false);
-    chassis->turnAngle(120_deg);
-    chassis->moveDistance(2.0_ft);
-    chassis->turnAngle(60_deg);
-    chassis->moveDistance(-2.0_ft);
+    chassis->turnAngle(-45_deg);
+    goofyAsyncs(-3.0_ft);
+    chassis->turnAngle(-45_deg);
+    goofyAsyncs(-2.0_ft);
+    goofyAsyncs(1.0_ft);
+    goofyAsyncs(-1.0_ft);
+    goofyAsyncs(0.8_ft);
+    chassis->turnAngle(150_deg);
+    goofyAsyncs(3.0_ft);
+    backFlaps.set_value(true);
+    chassis->turnAngle(-30_deg);
+    goofyAsyncs(-1.5_ft);
+    chassis->turnAngle(15_deg);
+    goofyAsyncs(-2.0_ft);
+    goofyAsyncs(2.5_ft);
+    goofyAsyncs(-3.0_ft);
+    master.print(1, 0, "DONE END TIME");
+
+
+    //1/10th of a time auton
+    // chassis->turnAngle(-50_deg);
+    // chassis->moveDistance(-0.5_ft);
+    // chassis->turnAngle(60_deg);
+    // chassis->moveDistance(-2.0_ft);
 }

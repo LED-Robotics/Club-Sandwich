@@ -95,7 +95,6 @@ void opcontrol() {
 
 		teleopFlywheel();
 
-
 		teleopZoneFlapper();
 
 		pros::delay(20);

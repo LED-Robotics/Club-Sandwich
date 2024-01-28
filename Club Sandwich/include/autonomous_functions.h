@@ -5,14 +5,6 @@
 #define RIGHT 1
 extern const double INCH_CONSTANT;
 
-void autonDrive(double distance);
-
-void autonTurn(double angle);
-
-void autonIntake(bool forwards);
-
-void autonPrime();
-
-void autonCatapult();
-
 void autonTare();
+
+void goofyAsyncs(QLength daDistnace);

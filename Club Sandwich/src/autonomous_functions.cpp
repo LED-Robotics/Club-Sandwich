@@ -1,5 +1,7 @@
 #include "autonomous_functions.h"
 
+#include "robot_map.h"
+
 // const double INCH_CONSTANT = 0.09794150344116636047315923899847;
 // const double INCH_CONSTANT = 58.76490206469981;
 const double INCH_CONSTANT = 34.617869579932255;  // guess this bozo
@@ -84,3 +86,19 @@ void autonTare(){
     chassis->waitUntilSettled();
 
 }
+
+void goofyAsyncs(QLength daDistnace){//distance looper cause turning is god
+    chassis->moveDistanceAsync(daDistnace);
+    pros::delay(500);
+    while (!chassis->isSettled()){
+        //While pid says isnt settled, if velocity comes to a near stop, break the async and continue
+        double avgRPM=(fabs(backLeft.getActualVelocity())+fabs(frontLeft.getActualVelocity())+fabs(backRight.getActualVelocity())+fabs(frontRight.getActualVelocity()))/4;
+        if(avgRPM < 3.0){//If robot velocity is less than 10 RPM and distance traveled is over half 
+            chassis->stop();
+            break;
+        }
+    }
+}
+
+
+
