@@ -85,7 +85,6 @@ pros::controller_digital_e_t shoot = DIGITAL_R2;
 
 void teleopFlywheel(){
     bool thunkerNoThunking = master.get_digital(DIGITAL_R2);
-
     if(thunkerNoThunking){
         flyWheel.controllerSet(1.0);
     }
@@ -107,6 +106,17 @@ void teleopZoneFlapper() {
     }
 }
 
+void teleopLEDY() {
+    if (master.get_digital_new_press(DIGITAL_Y)) {
+        //LED Code
+    }
+}
+
+void teleopLEDX() {
+    if (master.get_digital_new_press(DIGITAL_X)) {
+        //LED Code
+    }
+}
 
 //For drive, turning controlled by right sitck, left stick for forward and backward
 //Turning, reverse drive value to make spin

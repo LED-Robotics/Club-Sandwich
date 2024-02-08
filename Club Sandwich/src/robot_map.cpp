@@ -1,5 +1,5 @@
 #include "robot_map.h"
-
+#include "controls.h"
 
 std::shared_ptr<OdomChassisController> chassis =
 ChassisControllerBuilder()
@@ -33,3 +33,5 @@ pros::IMU gyro{20};
 pros::Controller master{CONTROLLER_MASTER};
 pros::Controller partner{CONTROLLER_PARTNER};
 
+pros::ADILED leftLED{'A', leftLEDLength};
+pros::ADILED rightLED{'B', rightLEDLength};

@@ -27,4 +27,7 @@ extern bool partnerConnected;
 
 // extern const controller_id_e_t ELEVATE_CONTROLLER;
 
+extern const uint32_t leftLEDLength;
+extern const uint32_t rightLEDLength;
+
 #endif

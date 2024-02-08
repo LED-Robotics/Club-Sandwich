@@ -11,7 +11,6 @@ extern Motor intake;
 
 extern Motor flyWheel;
 
-
 // //Digital Out/In
 extern pros::ADIDigitalOut intakePiston;
 
@@ -21,3 +20,7 @@ extern pros::IMU gyro;
 
 extern pros::Controller master;
 extern pros::Controller partner;
+
+//LED
+extern pros::ADILED leftLED;
+extern pros::ADILED rightLED;

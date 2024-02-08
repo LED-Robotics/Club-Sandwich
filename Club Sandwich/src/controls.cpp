@@ -19,3 +19,6 @@ bool partnerConnected{true};
 // const controller_id_e_t CATAPULT_CONTROLLER{CONTROLLER_MASTER / CONTROLLER_PARTNER};
 
 // const controller_id_e_t ELEVATE_CONTROLLER{CONTROLLER_MASTER / CONTROLLER_PARTNER};
+
+const uint32_t leftLEDLength = 16;
+const uint32_t rightLEDLength = 16;

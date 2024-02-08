@@ -19,3 +19,5 @@ void right3Pt();
 void rightAutonGuarantee();
 
 void skills();
+
+void useLEDS(uint32_t LED_LEFT_COLOR, uint32_t LED_RIGHT_COLOR);

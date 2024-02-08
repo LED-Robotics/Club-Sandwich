@@ -11,3 +11,7 @@ void teleopElevate();
 void teleopFlap();
 
 void teleopZoneFlapper();
+
+void teleopLEDY();
+
+void teleopLEDX();

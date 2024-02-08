@@ -23,7 +23,7 @@
 void initialize() {
 	pros::lcd::initialize();
 	pros::lcd::register_btn0_cb(lcdAutonSelect);
-	// pros::lcd::register_btn1_cb(lcdAllianceSelect);
+	pros::lcd::register_btn1_cb(lcdAllianceSelect);
 	// lcdAutonSelect();
 	// lcdAllianceSelect();
 
@@ -96,6 +96,10 @@ void opcontrol() {
 		teleopFlywheel();
 
 		teleopZoneFlapper();
+
+		teleopLEDY();
+
+		teleopLEDX();
 
 		pros::delay(20);
 	}

@@ -87,18 +87,20 @@ void autonTare(){
 
 }
 
-void goofyAsyncs(QLength daDistnace){//distance looper cause turning is god
-    chassis->moveDistanceAsync(daDistnace);
-    pros::delay(500);
-    while (!chassis->isSettled()){
-        //While pid says isnt settled, if velocity comes to a near stop, break the async and continue
-        double avgRPM=(fabs(backLeft.getActualVelocity())+fabs(frontLeft.getActualVelocity())+fabs(backRight.getActualVelocity())+fabs(frontRight.getActualVelocity()))/4;
-        if(avgRPM < 3.0){//If robot velocity is less than 10 RPM and distance traveled is over half 
-            chassis->stop();
-            break;
-        }
-    }
+// void goofyAsyncs(QLength daDistnace){//distance looper cause turning is god
+//     chassis->moveDistanceAsync(daDistnace);
+//     pros::delay(500);
+//     while (!chassis->isSettled()){
+//         //While pid says isnt settled, if velocity comes to a near stop, break the async and continue
+//         double avgRPM=(fabs(backLeft.getActualVelocity())+fabs(frontLeft.getActualVelocity())+fabs(backRight.getActualVelocity())+fabs(frontRight.getActualVelocity()))/4;
+//         if(avgRPM < 3.0){//If robot velocity is less than 10 RPM and distance traveled is over half 
+//             chassis->stop();
+//             break;
+//         }
+//     }
+// }
+
+void useLEDS(uint32_t LED_LEFT_COLOR, uint32_t LED_RIGHT_COLOR) {
+    leftLED.set_all(LED_LEFT_COLOR);
+    rightLED.set_all(LED_RIGHT_COLOR);
 }
-
-
-
