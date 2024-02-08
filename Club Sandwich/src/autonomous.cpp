@@ -112,15 +112,19 @@ void executeAutonomous() {
 
 void leftAuton() {
     //Orin Autonomous
-        chassis->moveDistance(30_in);
-        chassis->turnAngle(45.0_deg);
-        chassis->moveDistance(12_in);
-        chassis->moveDistance(-10_in);
-        chassis->moveDistance(12_in);
-        chassis->moveDistance(-10_in);
-        chassis->turnAngle(-45.0_deg); 
-        chassis->turnAngle(-45.0_deg);     
-        chassis->moveDistance(-42_in);             
+        chassis->moveDistance(25_in);
+        chassis->moveDistance(-5_in);
+        chassis->moveDistance(8 _in);
+
+
+        w33e1.
+        
+        chassis->moveDistance(-9_in);
+        chassis->turnAngle(45_deg);
+        chassis->moveDistance(-22_in);
+        chassis->turnAngle(45_deg);
+        chassis->moveDistance(-32_in);
+
         a_Tare();    
 }
 
@@ -135,7 +139,7 @@ void rightAuton() {
     chassis->moveDistance(10_in);
 
     // 2nd Triball
-    chassisModel->Left(230);
+    
     chassis->moveDistance(-8.0_in);
     chassis->turnAngle(-100.0_deg);
     chassis->moveDistance(25.0_in);
