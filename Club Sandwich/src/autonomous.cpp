@@ -38,10 +38,8 @@ void lcdAutonSelect() {
 void lcdAllianceSelect() {
     if (alliance == RED_ID) {
         alliance = BLUE_ID;
-        pros::lcd::set_background_color(0, 0, 255);
     } else if (alliance == BLUE_ID) {
         alliance = RED_ID;
-        pros::lcd::set_background_color(255, 0, 0);
     }
     printData();
 }

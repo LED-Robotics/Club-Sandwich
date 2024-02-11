@@ -24,6 +24,13 @@ Motor flyWheel{14,false, AbstractMotor::gearset::blue, AbstractMotor::encoderUni
 
 Motor leftFlap{5, true, AbstractMotor::gearset::invalid, AbstractMotor::encoderUnits::degrees};
 
+
+//Drive motor's here only for the async auton commands to grab actual velocity.
+Motor backLeft{2, true, AbstractMotor::gearset::blue, AbstractMotor::encoderUnits::degrees};
+Motor frontLeft{18, true, AbstractMotor::gearset::blue, AbstractMotor::encoderUnits::degrees};
+Motor backRight{1, false, AbstractMotor::gearset::blue, AbstractMotor::encoderUnits::degrees};
+Motor frontRight{3, false, AbstractMotor::gearset::blue, AbstractMotor::encoderUnits::degrees};
+
 pros::ADIDigitalOut intakePiston{'H'};
 
 pros::ADIDigitalOut backFlaps{'G'};

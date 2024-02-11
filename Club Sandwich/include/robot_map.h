@@ -11,6 +11,11 @@ extern Motor intake;
 
 extern Motor flyWheel;
 
+extern Motor backLeft;
+extern Motor frontLeft;
+extern Motor backRight;
+extern Motor frontRight;
+
 
 // //Digital Out/In
 extern pros::ADIDigitalOut intakePiston;

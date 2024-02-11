@@ -5,14 +5,6 @@
 #include "teleop_functions.h"
 #include "controls.h"
 
-// using namespace pros;
-
-/**
- * A callback function for LLEMU's center button.
- *
- * When this callback is fired, it will toggle line 2 of the LCD text between
- * "I was pressed!" and nothing.
- */
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -22,7 +14,7 @@
  */
 void initialize() {
 	pros::lcd::initialize();
-	pros::lcd::register_btn0_cb(lcdAutonSelect);
+	pros::lcd::register_btn1_cb(lcdAutonSelect);
 	// pros::lcd::register_btn1_cb(lcdAllianceSelect);
 	// lcdAutonSelect();
 	// lcdAllianceSelect();
